@@ -6,7 +6,7 @@ services:
     container_name: nuxt-app
     restart: always
     volumes:
-      - "/data/accum_runs/:/data/accum_runs"
+      - "/data/accum_runs/:/public/data/accum_runs"
     ports:
       - '3010:3010'
     command: 'npm start'
