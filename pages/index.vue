@@ -3,7 +3,7 @@
     <div class="p-4 font-peyda absolute w-full h-full flex flex-col justify-center content-evenly">
 
     <div
-      class=" mt-28  mb-4 lg:p-1 transition-all cursor-pointer rounded-[2.5rem] h-inherit">
+      class=" mt-8  mb-4 lg:p-1 transition-all cursor-pointer rounded-[2.5rem] h-inherit">
       <div class="border-emerald-400 border-2 rounded-[2.2rem] overflow-hidden h-inherit">
         <MapboxMap map-id="mainMap" style="
             width: 120%;
@@ -145,29 +145,9 @@
       </div>
     </div>
 
-
-
-
-
-  <div class="border-emerald-400 border-2 rounded-[2.2rem] overflow-hidden h-fit p-4">
-
-    
-    {{ JSON.stringify(data) }}
-    <ul>
-      <li v-for="file in geojsonFiles" :key="file" @click="readGeoJSON(file)">
-        {{ geojsonFiles }}
-        {{ file }}
-      </li>
-    </ul>
-
-    <div v-if="selectedGeoJSON">
-      <h3>Selected GeoJSON File: {{ selectedGeoJSON.name }}</h3>
-      <pre>{{ selectedGeoJSON.content }}</pre>
-    </div>
+<div>
+  <date-picker :from="minT" :to="maxT" :shortcut="true" :show="show" @close="show=false" :column="column"  :styles="styles" :modal="true" :auto-submit="false"  type="datetime"/>  
   
-
-  <date-picker  :shortcut="true" :show="show" @close="show=false" :column="column"  :styles="styles" :modal="true" :auto-submit="false"  type="datetime"/>  
-  <button @click="show=true">Show</button>
 
 </div>
 </div>
@@ -175,21 +155,16 @@
 
 <script setup>
 import Slider from '@vueform/slider'
-import { getRTLTextPluginStatus } from "mapbox-gl";
-import { setRTLTextPlugin } from "mapbox-gl";
-const geojsonFiles=ref([])
-const selectedGeoJSON=ref(null)
+import { getRTLTextPluginStatus } from "mapbox-gl"
+import { setRTLTextPlugin } from "mapbox-gl"
 const show = ref(false)
 const nuxtApp = useNuxtApp()
-const data=ref(null)
-
 
 // console.log(nuxtApp)
 
 const column= {
             576: 1, 
             700: 2, 
-            
         }   
 
 const styles = {   
@@ -204,10 +179,32 @@ const styles = {
   "background":"#000",
 } 
 
-const value = ref(null);
 
+
+const minT=ref("")
+const maxT=ref("")
 
 onMounted(() => {
+
+  const { data: geojs_raw } =  $fetch('/api/read-geojsons').then((geojs_raw)=>{
+    
+  let geojs=geojs_raw.geojs_data
+  minT.value =formatdate(geojs_raw.minT)
+  maxT.value= formatdate(geojs_raw.maxT)
+
+
+    console.log("process.client ", process.client)
+  if (process.client) {
+    console.log()
+      // window.localStorage.setData("salam", JSON.stringify(geojs));
+    
+    }
+  })
+  
+  
+
+
+
   const pluginURL =
     "https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-rtl-text/v0.2.3/mapbox-gl-rtl-text.js";
 
@@ -221,14 +218,50 @@ onMounted(() => {
     });
   }
 
-  data.value= fetchGeoJSONFiles()  
+  
+
 });
 
 
-const locales = nuxtApp.static
-const locale = nuxtApp.static
+
+
+function formatdate(dateTimeString){
+
+const year = dateTimeString.slice(0, 4);
+const month = dateTimeString.slice(4, 6) - 1; // Subtract 1 as months are zero-based in Date objects
+const day = dateTimeString.slice(6, 8);
+const hour = dateTimeString.slice(8, 10);
+const minute = dateTimeString.slice(10, 12);
+
+
+const dateObj = new Date(year, month, day, hour, minute);
+const timestamp = dateObj.getTime();
+
+
+  const iranize = `${dateTimeString.slice(0, 4)}/${dateTimeString.slice(4, 6)}/${dateTimeString.slice(6, 8)} ${dateTimeString.slice(8, 10)}:${dateTimeString.slice(10, 12)}`;
+
+ 
+const thatdayFa = {
+    "day" : getDateFormat(timestamp , {"day" : "2-digit"}),
+    "month" : getDateFormat(timestamp , {"month" : "numeric"}),
+    "monthTitle" : getDateFormat(timestamp , {"month" : "long"}),
+    "year" : getDateFormat(timestamp , {"year" : "numeric"}),
+    "dayWeek" : getDateFormat(timestamp , {"weekday" : "long"}),
+}
+ 
+console.log(thatdayFa);
+return toRegularNumber(thatdayFa.year)+"/"+toRegularNumber(thatdayFa.month)+"/" +toRegularNumber(thatdayFa.day)+" "+toRegularNumber(hour)+":"+toRegularNumber(minute)
+
+}
+ 
+function getDateFormat(uDate,option){
+    let date = new Intl.DateTimeFormat('fa-IR', option).format(uDate);
+    return date;
+} 
+
+
 // const date = nuxtApp.ssrContext.uselocaledate(new Date('2016-10-26'))
-const useX = () => useState('x')
+// const useX = () => useState('x')
 
 function toFarsiNumber(n) {
   const farsiDigits = ["۰", "۱", "۲", "۳", "۴", "۵", "۶", "۷", "۸", "۹"];
@@ -236,36 +269,16 @@ function toFarsiNumber(n) {
   return n.toString().replace(/\d/g, (x) => farsiDigits[x]);
 }
 
+function toRegularNumber(str) {
+  const farsiDigits = ["۰", "۱", "۲", "۳", "۴", "۵", "۶", "۷", "۸", "۹"];
 
-//   nuxtServerInit({ commit }) {
-//     const { body } = await fetch('https://jsonplaceholder.typicode.com/posts/1')
-//   .then(response => response.json())
-//   commit('SET_ANNOUNCEMENT', body)
-// }
+  return str.replace(/[۰-۹]/g, (x) => farsiDigits.indexOf(x));
+}
 
-async function fetchGeoJSONFiles() {
 
-      
-  const { data } = await useFetch('/api/read_geojsons.get');
-    
-    
-  return data
-    }
 
-function readGeoJSON(fileName) {
-  const filePath = `"/public/data/accum_runs/${fileName}"`;
-      fetch(filePath)
-        .then((response) => response.json())
-        .then((data) => {
-          this.selectedGeoJSON = {
-            name: fileName,
-            content: JSON.stringify(data, null, 2)
-          };
-        })
-        .catch((error) => {
-          console.error(`"Error reading GeoJSON file ${fileName}:"`, error);
-        });
-    }
+
+
 </script>
 
 
