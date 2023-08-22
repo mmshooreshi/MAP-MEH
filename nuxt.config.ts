@@ -1,11 +1,16 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
+import {defineNuxtConfig} from 'nuxt/config'
+
 export default defineNuxtConfig({
   devtools: { enabled: true },
+  components: true,
    modules: [
-    'nuxt-mapbox',
-    'nuxt-windicss',
-    'nuxt-font-loader',
     '@unocss/nuxt',
+    'nuxt-windicss',
+    'nuxt-mapbox',
+    'nuxt-font-loader',
+    '@alireza-ab/vue3-persian-datepicker/nuxt'
+
 
   ],
   mapbox: {
@@ -14,20 +19,16 @@ export default defineNuxtConfig({
 
   css: [
     'virtual:windi.css',
-    'virtual:windi-devtools',
     '@/assets/css/main.css',
-
+    '@unocss/reset/tailwind.css'
   ],
 
-  windicss: {
-    analyze: true
-  },
 
   fontLoader: {
     autoImport: true,
     local: [
       {
-        src: '/fonts/woff2/PeydaWeb-Black.woff2',
+        src: '/fonts/woff/PeydaWeb-Black-Persian.woff',
         family: 'peyda',
         weight: '100 900',
         class: 'font-peyda'

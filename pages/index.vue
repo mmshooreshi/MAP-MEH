@@ -1,165 +1,139 @@
 <template>
-<div     class="font-peyda bg-gradient-to-tr from-dark-300 to-indigo-700 p-8 absolute w-full h-full">
-  <div
-      class="group hover:bg-opacity-25 p-4 transition-all cursor-pointer bg-opacity-0 bg-green-500 w-full h-full rounded-6xl bg-blend-saturation"
-    >
-      <div class="bg-gradient-52 p-2 w-full h-full rounded-3xl overflow-hidden">
-        <MapboxMap
-          map-id="mainMap"
-          style="
+  <!-- <div class="font-peyda bg-gradient-to-tr from-dark-300 to-indigo-700 p-8 absolute w-full h-full"> -->
+    <div class="p-4 font-peyda absolute w-full h-full flex flex-col justify-center content-evenly">
+
+    <div
+      class=" mt-28  mb-4 lg:p-1 transition-all cursor-pointer rounded-[2.5rem] h-inherit">
+      <div class="border-emerald-400 border-2 rounded-[2.2rem] overflow-hidden h-inherit">
+        <MapboxMap map-id="mainMap" style="
             width: 120%;
             height: 120%;
             margin: -10%;
             display: block;
             position: relative;
-          "
-          :options="{
+          " :options="{
             style: 'mapbox://styles/mapbox/navigation-night-v1',
             center: [46.05269519417466, 33.123403650750646],
             zoom: 10,
             maxZoom: 22,
-          }"
-        >
-          <MapboxSource
-            source-id="ID"
-            :source="{
-              type: 'geojson',
-              data: '/data/iran.geojson',
-            }"
-          />
-          <MapboxSource
-            source-id="IDD"
-            :source="{
-              type: 'geojson',
-              data: '/data/mehran-towers.geojson',
-            }"
-          />
+          }">
+          <MapboxSource source-id="ID" :source="{
+            type: 'geojson',
+            data: '/data/iran.geojson',
+          }" />
+          <MapboxSource source-id="IDD" :source="{
+            type: 'geojson',
+            data: '/data/mehran-towers.geojson',
+          }" />
 
-          <MapboxSource
-  source-id="t1"
-  :source="{
-    type: 'geojson',
-    data: '/data/mehran-towers-t1.geojson',
-  }"
-/>
+          <MapboxSource source-id="t1" :source="{
+            type: 'geojson',
+            data: '/data/mehran-towers-t1.geojson',
+          }" />
 
-<MapboxLayer
-  :layer="{
-    id: 'property-heat',
-    type: 'heatmap',
-    source: 't1',
-    maxzoom: 18,
-    paint: {
-      'heatmap-weight': {
-        property: 'site_accum',
-        type: 'exponential',
-        stops: [
-          [0, 0],
-          [1000, 7],
-        ],
-      },
-      'heatmap-color': [
-        'interpolate',
-        ['linear'],
-        ['heatmap-density'],
-        0,
-        'rgba(209, 229, 240, 0)',
-        0.05,
-        'rgba(209, 229, 240, 0.3)',
-        1,
-        'rgba(227, 16, 48, 0.5)',
-      ],
-      'heatmap-radius': {
-        stops: [
-          [5, 50],
-          [18, 100],
-        ],
-      },
-      'heatmap-opacity': {
-        default: 1,
-        stops: [
-          [14, 1],
-          [18, 0],
-        ],
-      },
-    },
-  }"
-/>
+          <MapboxLayer :layer="{
+            id: 'property-heat',
+            type: 'heatmap',
+            source: 't1',
+            maxzoom: 18,
+            paint: {
+              'heatmap-weight': {
+                property: 'site_accum',
+                type: 'exponential',
+                stops: [
+                  [0, 0],
+                  [1000, 7],
+                ],
+              },
+              'heatmap-color': [
+                'interpolate',
+                ['linear'],
+                ['heatmap-density'],
+                0,
+                'rgba(209, 229, 240, 0)',
+                0.05,
+                'rgba(209, 229, 240, 0.3)',
+                1,
+                'rgba(227, 16, 48, 0.5)',
+              ],
+              'heatmap-radius': {
+                stops: [
+                  [5, 50],
+                  [18, 100],
+                ],
+              },
+              'heatmap-opacity': {
+                default: 1,
+                stops: [
+                  [14, 1],
+                  [18, 0],
+                ],
+              },
+            },
+          }" />
 
-<MapboxLayer
-  :layer="{
-    id: 'property-point',
-    type: 'circle',
-    source: 't1',
-    minzoom: 8,
-    paint: {
-      'circle-color': [
-        'interpolate',
-        ['linear'],
-        ['get', 'site_accum'],
-        0,
-        '#ffffb205',
-        250,
-        '#ffffb235',
-        376,
-        '#feb24c45',
-        400,
-        '#fd8d3c55',
-        800,
-        '#fc4e2665',
-        1000,
-        '#e31a1c85',
-      ],
-      'circle-stroke-color': 'white',
-      'circle-stroke-width': 0,
-      'circle-radius': {
-        property: 'site_accum',
-        type: 'exponential',
-        stops: [
-          [{zoom: 8, value: 0}, 10],
-          [{zoom: 8, value: 7}, 20],
-          [{zoom: 22, value: 0}, 40],
-          [{zoom: 22, value: 7}, 100],
-        ],
-      },
-      'circle-opacity': {
-        stops: [
-          [14, 0],
-          [18, 1],
-        ],
-      },
-      'circle-translate': [0, -10],
-      'circle-translate-anchor': 'map',
-    },
-  }"
-/>
+          <MapboxLayer :layer="{
+            id: 'property-point',
+            type: 'circle',
+            source: 't1',
+            minzoom: 8,
+            paint: {
+              'circle-color': [
+                'interpolate',
+                ['linear'],
+                ['get', 'site_accum'],
+                1,
+                'rgba(253, 141, 60, 0.333)',
+                250,
+                'rgba(255, 255, 178, 0.208)',
+                376,
+                'rgba(254, 178, 76, 0.271)',
+                400,
+                'rgba(253, 141, 60, 0.333)',
+                800,
+                'rgba(252, 78, 38, 0.396)',
+                1000,
+                'rgba(227, 26, 28, 0.522)',
+              ],
+              'circle-stroke-color': 'white',
+              'circle-stroke-width': 0,
+              'circle-radius': {
+                property: 'site_accum',
+                type: 'exponential',
+                stops: [
+                  [{ zoom: 8, value: 0 }, 10],
+                  [{ zoom: 8, value: 7 }, 20],
+                  [{ zoom: 22, value: 0 }, 40],
+                  [{ zoom: 22, value: 7 }, 100],
+                ],
+              },
+              'circle-opacity': {
+                stops: [
+                  [14, 0],
+                  [18, 1],
+                ],
+              },
+              'circle-translate': [0, -10],
+              'circle-translate-anchor': 'map',
+            },
+          }" />
 
-<MapboxLayer
-  :layer="{
-    id: 'cluster-count',
-    type: 'symbol',
-    source: 't1',
-    filter: ['has', 'site_accum'],
-    layout: {
-      'text-field': ['get', 'site_accum'],
-      'text-font': ['DIN Offc Pro Medium', 'Arial Unicode MS Bold'],
-      'text-size': 18,
-    },
-  }"
-/>
+          <MapboxLayer :layer="{
+            id: 'cluster-count',
+            type: 'symbol',
+            source: 't1',
+            filter: ['has', 'site_accum'],
+            layout: {
+              'text-field': ['get', 'site_accum'],
+              'text-font': ['DIN Offc Pro Medium', 'Arial Unicode MS Bold'],
+              'text-size': 18,
+            },
+          }" />
 
-          <MapboxDefaultMarker
-            marker-id="marker1"
-            :options="{}"
-            :lnglat="[46.05269519417466, 33.123403650750646]"
-          >
-            <MapboxDefaultPopup
-              popup-id="popup1"
-              :lnglat="[46.05269519417466, 33.123403650750646]"
-              :options="{
-                closeOnClick: true,
-              }"
-            >
+          <MapboxDefaultMarker marker-id="marker1" :options="{}" :lnglat="[46.05269519417466, 33.123403650750646]">
+            <MapboxDefaultPopup popup-id="popup1" :lnglat="[46.05269519417466, 33.123403650750646]" :options="{
+              closeOnClick: true,
+            }">
               <h1 class="text-lg font-peyda text-gray-200">
                 ناحیه‌ی مرزی مهران
               </h1>
@@ -171,16 +145,67 @@
       </div>
     </div>
 
-</div>
 
+
+
+
+  <div class="border-emerald-400 border-2 rounded-[2.2rem] overflow-hidden h-fit p-4">
+
+    
+    {{ JSON.stringify(data) }}
+    <ul>
+      <li v-for="file in geojsonFiles" :key="file" @click="readGeoJSON(file)">
+        {{ geojsonFiles }}
+        {{ file }}
+      </li>
+    </ul>
+
+    <div v-if="selectedGeoJSON">
+      <h3>Selected GeoJSON File: {{ selectedGeoJSON.name }}</h3>
+      <pre>{{ selectedGeoJSON.content }}</pre>
+    </div>
+  
+
+  <date-picker  :shortcut="true" :show="show" @close="show=false" :column="column"  :styles="styles" :modal="true" :auto-submit="false"  type="datetime"/>  
+  <button @click="show=true">Show</button>
+
+</div>
+</div>
 </template>
 
 <script setup>
-// import Slider from '@vueform/slider'
-import {getRTLTextPluginStatus} from "mapbox-gl";
-import {setRTLTextPlugin} from "mapbox-gl";
+import Slider from '@vueform/slider'
+import { getRTLTextPluginStatus } from "mapbox-gl";
+import { setRTLTextPlugin } from "mapbox-gl";
+const geojsonFiles=ref([])
+const selectedGeoJSON=ref(null)
+const show = ref(false)
+const nuxtApp = useNuxtApp()
+const data=ref(null)
+
+
+// console.log(nuxtApp)
+
+const column= {
+            576: 1, 
+            700: 2, 
+            
+        }   
+
+const styles = {   
+  "primary-color":"#00fa9a",
+  "secondary-color":"#00dcff",
+  "overlay-color":"#00f",
+  "text-color":"white",
+  "hover-color":  "#00fa9a",           
+  "disabled-opacity":"0.3",   
+  "z-index":"1000", 
+  "in-range-background":"#00fa9a30", 
+  "background":"#000",
+} 
 
 const value = ref(null);
+
 
 onMounted(() => {
   const pluginURL =
@@ -195,29 +220,225 @@ onMounted(() => {
       }
     });
   }
+
+  data.value= fetchGeoJSONFiles()  
 });
+
+
+const locales = nuxtApp.static
+const locale = nuxtApp.static
+// const date = nuxtApp.ssrContext.uselocaledate(new Date('2016-10-26'))
+const useX = () => useState('x')
 
 function toFarsiNumber(n) {
   const farsiDigits = ["۰", "۱", "۲", "۳", "۴", "۵", "۶", "۷", "۸", "۹"];
 
   return n.toString().replace(/\d/g, (x) => farsiDigits[x]);
 }
+
+
+//   nuxtServerInit({ commit }) {
+//     const { body } = await fetch('https://jsonplaceholder.typicode.com/posts/1')
+//   .then(response => response.json())
+//   commit('SET_ANNOUNCEMENT', body)
+// }
+
+async function fetchGeoJSONFiles() {
+
+      
+  const { data } = await useFetch('/api/read_geojsons.get');
+    
+    
+  return data
+    }
+
+function readGeoJSON(fileName) {
+  const filePath = `"/public/data/accum_runs/${fileName}"`;
+      fetch(filePath)
+        .then((response) => response.json())
+        .then((data) => {
+          this.selectedGeoJSON = {
+            name: fileName,
+            content: JSON.stringify(data, null, 2)
+          };
+        })
+        .catch((error) => {
+          console.error(`"Error reading GeoJSON file ${fileName}:"`, error);
+        });
+    }
 </script>
 
+
 <style>
+.pdp .pdp-picker .pdp-select-year li, .pdp .pdp-picker .pdp-select-month li {
+    max-width: 20%;
+    height: 20%;
+    margin: 0.5rem;
+    cursor: pointer;
+    /* margin: 0.1rem; */
+    /* margin-right: 0.6rem; */
+    /* margin-left: 0.4rem; */
+    -webkit-font-smoothing: antialiased;
+    display: inline-flex;
+    font-size: x-large;
+    /* font-weight: 100; */
+    flex: 30% 0;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.pdp .pdp-picker .pdp-header .bottom button svg {
+
+    width: 20px;
+    height: 20px;
+}
+
+.pdp .pdp-picker{
+  padding-top: 0rem !important;
+    padding-bottom: 0rem !important;
+    font-family: Peyda;
+    padding-left: 0rem !important;
+    padding-right: 0rem !important;
+    border-radius: 30px;
+
+    background: rgba(85, 108, 103, 0.25);
+box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+backdrop-filter: blur( 18px );
+-webkit-backdrop-filter: blur( 18px );
+
+
+
+    border: 2px solid #00fa9a;
+    overflow: auto;
+}
+
+@media (max-width: 600px){
+.pdp-shortcut {
+  flex-direction: row !important;
+  flex-wrap: unset !important;
+  justify-content: space-between;
+  overflow: auto;
+  padding: 1px !important;
+  max-width: 60vw;
+}
+}
+
+
+.pdp .pdp-picker .pdp-footer .pdp-today, .pdp .pdp-picker .pdp-footer .pdp-submit {
+    
+    border-radius: 0.5rem;
+    background:transparent !important;
+    color: #00fa9a ;
+    cursor: pointer;
+    border: 1px solid  #00fa9a ;
+}
+
+.pdp .pdp-picker .pdp-footer .pdp-today:hover, .pdp .pdp-picker .pdp-footer .pdp-submit:hover {
+    
+    border-radius: 0.5rem;
+    background:#00fa9a !important;
+    color: #13211b ;
+    cursor: pointer;
+}
+
+.pdp-month{
+  color: #cedbe0 !important;
+}
+.pdp-year {
+    color: #cedbe0 !important;
+    margin-right: 25px;
+}
+ .pdp-year:hover, .pdp-month:hover {
+  color: #ffffff !important;
+ }
+.pdp-arrow{
+  fill:#00fa9a !important;
+}
+.pdp-weekday{
+  color: #95cfb2 !important;
+}
+.pdp .pdp-picker .pdp-footer > div small {
+ letter-spacing: 1px;
+ margin-left: 5px;
+}
+
+.pdp .pdp-picker .pdp-shortcut li {
+    margin: 0.4rem 0.2rem;
+    padding: 0.2rem;
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+    
+    text-align: center;
+    cursor: pointer;
+    border-radius: 0.6rem;
+    border: 0.5px solid;
+    letter-spacing: 0.5px;
+    color: #a8efb9;
+    white-space: nowrap;
+    font-weight: 500;
+}
+
+::-webkit-scrollbar{
+        height:4px;
+        width: 4px;
+        background: gray;
+        border: 0px solid gray;
+
+    }
+    ::-webkit-scrollbar-thumb:horizontal{
+        background:#00fa9a ;
+        border-radius: 10px;
+    }
+
 .mapboxgl-popup-content {
-  background: #1931bd;
-  border-radius: 15px;
-  box-shadow: 0 10px 2px rgba(14, 130, 85, 0.1);
-  padding: 10px;
-  pointer-events: auto;
-  position: relative;
+
+    border-radius: 15px;
+   
+    padding: 10px;
+    pointer-events: auto;
+    position: relative;
+    background: rgba(47,134,123,0.35);
+    -webkit-backdrop-filter: blur(23px);
+    backdrop-filter: blur(23px);
+    border: 2px solid rgba(47,134,123,0);
+    transition: all 0.3s;
+
+
+    
+
+   
 }
 
 .mapboxgl-popup:hover .mapboxgl-popup-content {
-  background: #0b196a;
+  padding-top: 20px;
+  margin-top: -20px;
+  padding-bottom: 20px;
+  transform: translateY(-10%);
+  animation-name: moveAnimation;
+  animation-duration:0.4s ;
+  animation-iteration-count:1;
+  animation-direction:alternate;
+  transition: all 0.1s;
+
   color: black !important;
+  border: 2px solid rgba(47,134,123,1);
+  box-shadow: 0px -1px 20px 2px  rgba(130, 221, 162, 0.424);
 }
+
+
+@keyframes moveAnimation {
+  0% {
+    transform: translateY(0%);
+  }
+  20% {
+    transform: translateY(20%);
+  }
+  100% {
+    transform: translateY(-10%);
+  }
+}
+
+
 
 .mapboxgl-popup-close-button {
   display: none;
@@ -231,20 +452,25 @@ function toFarsiNumber(n) {
 }
 
 .mapboxgl-popup-tip {
-  border: 10px solid transparent;
+  border-top-color: rgb(130, 221, 162);
+  border-radius: 20px 20px;
   height: 0;
   width: 0;
   z-index: 1;
 }
 
-.mapboxgl-popup-anchor-bottom .mapboxgl-popup-tip {
-  align-self: center;
-  border-bottom: none;
-  border-top-color: #1931bd;
+.mapboxgl-popup-tip {
+  transition: all 0.3s;
+  transform: translateY(-200%);
+  z-index: -1;
+  border-top-color: rgb(130, 221, 162) !important;
+
 }
 
 .mapboxgl-popup:hover .mapboxgl-popup-tip {
-  border-top-color: #101e6f !important;
+  align-self: center;
+  border-bottom: none;
+  transform: translateY(10%);
 }
 
 .mapboxgl-popup {
@@ -256,3 +482,4 @@ function toFarsiNumber(n) {
   will-change: transform;
 }
 </style>
+
