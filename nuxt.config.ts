@@ -36,6 +36,6 @@ export default defineNuxtConfig({
   },
   server: {
     host: process.env.NUXT_HOST,
-    port: 4000,
+    port: 3010,
   },
 })
