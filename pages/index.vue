@@ -1,8 +1,6 @@
 <template>
+<div     class="font-peyda bg-gradient-to-tr from-dark-300 to-indigo-700 p-8 absolute w-full h-full">
   <div
-    class="font-peyda bg-gradient-to-tr from-dark-300 to-indigo-700 p-8 absolute w-full h-full"
-  >
-    <div
       class="group hover:bg-opacity-25 p-4 transition-all cursor-pointer bg-opacity-0 bg-green-500 w-full h-full rounded-6xl bg-blend-saturation"
     >
       <div class="bg-gradient-52 p-2 w-full h-full rounded-3xl overflow-hidden">
@@ -26,14 +24,14 @@
             source-id="ID"
             :source="{
               type: 'geojson',
-              data: '/geo/iran.geojson',
+              data: '/data/iran.geojson',
             }"
           />
           <MapboxSource
             source-id="IDD"
             :source="{
               type: 'geojson',
-              data: '/geo/mehran-towers.geojson',
+              data: '/data/mehran-towers.geojson',
             }"
           />
 
@@ -41,7 +39,7 @@
   source-id="t1"
   :source="{
     type: 'geojson',
-    data: '/geo/mehran-towers-t1.geojson',
+    data: '/data/mehran-towers-t1.geojson',
   }"
 />
 
@@ -100,7 +98,7 @@
         ['linear'],
         ['get', 'site_accum'],
         0,
-        '#ffffb25',
+        '#ffffb205',
         250,
         '#ffffb235',
         376,
@@ -172,21 +170,17 @@
         </MapboxMap>
       </div>
     </div>
-  </div>
 
-  <!-- style: 'mapbox://styles/mapbox/traffic-day-v2', -->
+</div>
 
-  <!-- style: 'mapbox://styles/mmshooreshi/clidfblf0002s01pa99o7ankn', -->
-
-  <!-- 
-    <div class="w-28 h-28 bg-red-400">
-
-  </div> -->
 </template>
 
-<script lang="ts" setup>
+<script setup>
+// import Slider from '@vueform/slider'
 import {getRTLTextPluginStatus} from "mapbox-gl";
 import {setRTLTextPlugin} from "mapbox-gl";
+
+const value = ref(null);
 
 onMounted(() => {
   const pluginURL =
@@ -203,24 +197,11 @@ onMounted(() => {
   }
 });
 
-const mag1 = ["<", ["get", "site_accum"], 20];
-const mag2 = [
-  "all",
-  [">=", ["get", "site_accum"], 20],
-  ["<", ["get", "site_accum"], 75],
-];
-const mag3 = [
-  "all",
-  [">=", ["get", "site_accum"], 75],
-  ["<", ["get", "site_accum"], 200],
-];
-const mag4 = [
-  "all",
-  [">=", ["get", "site_accum"], 200],
-  ["<", ["get", "site_accum"], 400],
-];
-const mag5 = [">=", ["get", "site_accum"], 400];
-const colors = ["#fed976", "#feb24c", "#fd8d3c", "#fc4e2a", "#e31a1c"];
+function toFarsiNumber(n) {
+  const farsiDigits = ["۰", "۱", "۲", "۳", "۴", "۵", "۶", "۷", "۸", "۹"];
+
+  return n.toString().replace(/\d/g, (x) => farsiDigits[x]);
+}
 </script>
 
 <style>

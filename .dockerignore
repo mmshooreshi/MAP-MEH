@@ -1,0 +1,8 @@
+.nuxt
+.vscode
+node_modules
+npm-debug.log
+
+image.tar
+.gitignore
+README.md

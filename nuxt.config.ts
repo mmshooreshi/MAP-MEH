@@ -4,7 +4,8 @@ export default defineNuxtConfig({
    modules: [
     'nuxt-mapbox',
     'nuxt-windicss',
-    'nuxt-font-loader'
+    'nuxt-font-loader',
+    '@unocss/nuxt',
 
   ],
   mapbox: {
@@ -14,6 +15,8 @@ export default defineNuxtConfig({
   css: [
     'virtual:windi.css',
     'virtual:windi-devtools',
+    '@/assets/css/main.css',
+
   ],
 
   windicss: {
@@ -30,5 +33,9 @@ export default defineNuxtConfig({
         class: 'font-peyda'
       }
     ]
-  }
+  },
+  server: {
+    host: process.env.NUXT_HOST,
+    port: 4000,
+  },
 })

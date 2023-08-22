@@ -6,15 +6,22 @@
     "dev": "nuxt dev",
     "generate": "nuxt generate",
     "preview": "nuxt preview",
-    "postinstall": "nuxt prepare"
+    "postinstall": "nuxt prepare",
+    "start": "nuxt start"
   },
   "devDependencies": {
     "@nuxt/devtools": "latest",
     "@types/node": "^18.17.3",
+    "@unocss/nuxt": "^0.55.2",
     "mapbox-gl": "^2.15.0",
     "nuxt": "^3.6.5",
     "nuxt-font-loader": "^2.3.1",
     "nuxt-mapbox": "^1.4.3",
     "nuxt-windicss": "^2.6.1"
+  },
+  "dependencies": {
+    "@alireza-ab/vue-persian-datepicker": "^2.3.2",
+    "@cafebazaar/emrooz": "^0.1.7",
+    "@vueform/slider": "^2.1.7"
   }
 }
