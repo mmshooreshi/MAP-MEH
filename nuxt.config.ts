@@ -1,12 +1,18 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   devtools: {enabled: true},
+  ssr: true,
   components: true,
   runtimeConfig: {
     apiSecret: "123",
     public: {
       apiBase: "/api",
     },
+  },
+
+  server: {
+    host: process.env.NUXT_HOST,
+    port: 3010,
   },
 
   modules: [
