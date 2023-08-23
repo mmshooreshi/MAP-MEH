@@ -13,6 +13,7 @@
     "@nuxt/devtools": "latest",
     "@types/node": "^18.17.3",
     "@unocss/nuxt": "^0.55.2",
+    "daisyui": "^3.6.1",
     "mapbox-gl": "^2.15.0",
     "nuxt": "^3.6.5",
     "nuxt-font-loader": "^2.3.1",
@@ -22,6 +23,7 @@
   "dependencies": {
     "@alireza-ab/persian-date": "^2.6.2",
     "@alireza-ab/vue3-persian-datepicker": "^1.0.2",
+    "@nuxtjs/tailwindcss": "^6.8.0",
     "@unocss/reset": "^0.55.2",
     "@vueform/slider": "^2.1.7",
     "sass": "^1.66.1",

@@ -1,139 +1,195 @@
 <template>
-  <!-- <div class="font-peyda bg-gradient-to-tr from-dark-300 to-indigo-700 p-8 absolute w-full h-full"> -->
-    <div class="p-4 font-peyda absolute w-full h-full flex flex-col justify-center content-evenly">
+  <div
+    class="p-4 font-peyda absolute w-full h-full flex flex-col justify-center content-evenly"
+  >
+    <!-- {{ filescontent}} -->
+    <!-- {{ total }} -->
+    {{ total[o0nfile] }}
+    <!-- {{ indexRef }} -->
+    <div v-if="filestoload" class="h-28 p-4">
+      <input
+        type="range"
+        v-model="o0nfile"
+        min="0"
+        :max="filestoload.length - 1"
+        class="range range-lg"
+        className="range"
+        :step="1"
+      />
+      <div>{{ formatdate(filestoload[o0nfile]) }}</div>
+
+      <div
+        v-if="filescontents[o0nfile] != undefined && 0"
+        class="overflow-scroll m-8 p-8 z-1000 border border-2 h-[50vw] absolute bg-black border-red-500"
+      >
+        {{ filescontents[o0nfile] }}
+      </div>
+    </div>
 
     <div
-      class=" mt-8  mb-4 lg:p-1 transition-all cursor-pointer rounded-[2.5rem] h-inherit">
-      <div class="border-emerald-400 border-2 rounded-[2.2rem] overflow-hidden h-inherit">
-        <MapboxMap map-id="mainMap" style="
+      class="mt-8 mb-4 lg:p-1 transition-all cursor-pointer rounded-[2.5rem] h-inherit"
+    >
+      <div
+        class="border-emerald-400 border-2 rounded-[2.2rem] overflow-hidden h-inherit"
+      >
+        <MapboxMap
+          map-id="mainMap"
+          style="
             width: 120%;
             height: 120%;
             margin: -10%;
             display: block;
             position: relative;
-          " :options="{
+          "
+          :options="{
             style: 'mapbox://styles/mapbox/navigation-night-v1',
             center: [46.05269519417466, 33.123403650750646],
             zoom: 10,
             maxZoom: 22,
-          }">
-          <MapboxSource source-id="ID" :source="{
-            type: 'geojson',
-            data: '/data/iran.geojson',
-          }" />
-          <MapboxSource source-id="IDD" :source="{
-            type: 'geojson',
-            data: '/data/mehran-towers.geojson',
-          }" />
+          }"
+        >
+          <MapboxSource
+            source-id="ID"
+            :source="{
+              type: 'geojson',
+              data: '/data/iran.geojson',
+            }"
+          />
+          <MapboxSource
+            source-id="IDD"
+            :source="{
+              type: 'geojson',
+              data: '/data/mehran-towers.geojson',
+            }"
+          />
 
-          <MapboxSource source-id="t1" :source="{
-            type: 'geojson',
-            data: '/data/mehran-towers-t1.geojson',
-          }" />
+          <div v-if="filescontents[o0nfile] != undefined">
+            <MapboxSource
+              source-id="t1"
+              :source="{
+                type: 'geojson',
+                data: filescontents[o0nfile],
+              }"
+            />
+          </div>
 
-          <MapboxLayer :layer="{
-            id: 'property-heat',
-            type: 'heatmap',
-            source: 't1',
-            maxzoom: 18,
-            paint: {
-              'heatmap-weight': {
-                property: 'site_accum',
-                type: 'exponential',
-                stops: [
-                  [0, 0],
-                  [1000, 7],
+          <MapboxLayer
+            :layer="{
+              id: 'property-heat',
+              type: 'heatmap',
+              source: 't1',
+              maxzoom: 18,
+              paint: {
+                'heatmap-weight': {
+                  property: 'site_accum',
+                  type: 'exponential',
+                  stops: [
+                    [0, 0],
+                    [1000, 7],
+                  ],
+                },
+                'heatmap-color': [
+                  'interpolate',
+                  ['linear'],
+                  ['heatmap-density'],
+                  0,
+                  'rgba(209, 229, 240, 0)',
+                  0.05,
+                  'rgba(209, 229, 240, 0.3)',
+                  1,
+                  'rgba(227, 16, 48, 0.5)',
                 ],
+                'heatmap-radius': {
+                  stops: [
+                    [5, 50],
+                    [18, 100],
+                  ],
+                },
+                'heatmap-opacity': {
+                  default: 1,
+                  stops: [
+                    [14, 1],
+                    [18, 0],
+                  ],
+                },
               },
-              'heatmap-color': [
-                'interpolate',
-                ['linear'],
-                ['heatmap-density'],
-                0,
-                'rgba(209, 229, 240, 0)',
-                0.05,
-                'rgba(209, 229, 240, 0.3)',
-                1,
-                'rgba(227, 16, 48, 0.5)',
-              ],
-              'heatmap-radius': {
-                stops: [
-                  [5, 50],
-                  [18, 100],
-                ],
-              },
-              'heatmap-opacity': {
-                default: 1,
-                stops: [
-                  [14, 1],
-                  [18, 0],
-                ],
-              },
-            },
-          }" />
+            }"
+          />
 
-          <MapboxLayer :layer="{
-            id: 'property-point',
-            type: 'circle',
-            source: 't1',
-            minzoom: 8,
-            paint: {
-              'circle-color': [
-                'interpolate',
-                ['linear'],
-                ['get', 'site_accum'],
-                1,
-                'rgba(253, 141, 60, 0.333)',
-                250,
-                'rgba(255, 255, 178, 0.208)',
-                376,
-                'rgba(254, 178, 76, 0.271)',
-                400,
-                'rgba(253, 141, 60, 0.333)',
-                800,
-                'rgba(252, 78, 38, 0.396)',
-                1000,
-                'rgba(227, 26, 28, 0.522)',
-              ],
-              'circle-stroke-color': 'white',
-              'circle-stroke-width': 0,
-              'circle-radius': {
-                property: 'site_accum',
-                type: 'exponential',
-                stops: [
-                  [{ zoom: 8, value: 0 }, 10],
-                  [{ zoom: 8, value: 7 }, 20],
-                  [{ zoom: 22, value: 0 }, 40],
-                  [{ zoom: 22, value: 7 }, 100],
+          <MapboxLayer
+            :layer="{
+              id: 'property-point',
+              type: 'circle',
+              source: 't1',
+              minzoom: 8,
+              paint: {
+                'circle-color': [
+                  'interpolate',
+                  ['linear'],
+                  ['get', 'site_accum'],
+                  1,
+                  'rgba(253, 141, 60, 0.333)',
+                  250,
+                  'rgba(255, 255, 178, 0.208)',
+                  376,
+                  'rgba(254, 178, 76, 0.271)',
+                  400,
+                  'rgba(253, 141, 60, 0.333)',
+                  800,
+                  'rgba(252, 78, 38, 0.396)',
+                  1000,
+                  'rgba(227, 26, 28, 0.522)',
                 ],
+                'circle-stroke-color': 'white',
+                'circle-stroke-width': 0,
+                'circle-radius': {
+                  property: 'site_accum',
+                  type: 'exponential',
+                  stops: [
+                    [{zoom: 8, value: 0}, 10],
+                    [{zoom: 8, value: 7}, 20],
+                    [{zoom: 22, value: 0}, 40],
+                    [{zoom: 22, value: 7}, 100],
+                  ],
+                },
+                'circle-opacity': {
+                  stops: [
+                    [14, 0],
+                    [18, 1],
+                  ],
+                },
+                'circle-translate': [0, -10],
+                'circle-translate-anchor': 'map',
               },
-              'circle-opacity': {
-                stops: [
-                  [14, 0],
-                  [18, 1],
-                ],
+            }"
+          />
+
+          <MapboxLayer
+            :layer="{
+              id: 'cluster-count',
+              type: 'symbol',
+              source: 't1',
+              filter: ['has', 'site_accum'],
+              layout: {
+                'text-field': ['get', 'site_accum'],
+                'text-font': ['DIN Offc Pro Medium', 'Arial Unicode MS Bold'],
+                'text-size': 18,
               },
-              'circle-translate': [0, -10],
-              'circle-translate-anchor': 'map',
-            },
-          }" />
+            }"
+          />
 
-          <MapboxLayer :layer="{
-            id: 'cluster-count',
-            type: 'symbol',
-            source: 't1',
-            filter: ['has', 'site_accum'],
-            layout: {
-              'text-field': ['get', 'site_accum'],
-              'text-font': ['DIN Offc Pro Medium', 'Arial Unicode MS Bold'],
-              'text-size': 18,
-            },
-          }" />
-
-          <MapboxDefaultMarker marker-id="marker1" :options="{}" :lnglat="[46.05269519417466, 33.123403650750646]">
-            <MapboxDefaultPopup popup-id="popup1" :lnglat="[46.05269519417466, 33.123403650750646]" :options="{
-              closeOnClick: true,
-            }">
+          <MapboxDefaultMarker
+            marker-id="marker1"
+            :options="{}"
+            :lnglat="[46.05269519417466, 33.123403650750646]"
+          >
+            <MapboxDefaultPopup
+              popup-id="popup1"
+              :lnglat="[46.05269519417466, 33.123403650750646]"
+              :options="{
+                closeOnClick: true,
+              }"
+            >
               <h1 class="text-lg font-peyda text-gray-200">
                 ناحیه‌ی مرزی مهران
               </h1>
@@ -145,65 +201,101 @@
       </div>
     </div>
 
-<div>
-  <date-picker :from="minT" :to="maxT" :shortcut="true" :show="show" @close="show=false" :column="column"  :styles="styles" :modal="true" :auto-submit="false"  type="datetime"/>  
-  
-
-</div>
-</div>
+    <div>
+      <date-picker
+        :from="minT"
+        :to="maxT"
+        :shortcut="true"
+        :show="show"
+        @close="show = false"
+        :column="column"
+        :styles="styles"
+        :modal="true"
+        :auto-submit="false"
+        type="datetime"
+      />
+      {{ minT }} {{ maxT }}
+    </div>
+  </div>
 </template>
 
 <script setup>
-import Slider from '@vueform/slider'
-import { getRTLTextPluginStatus } from "mapbox-gl"
-import { setRTLTextPlugin } from "mapbox-gl"
-const show = ref(false)
-const nuxtApp = useNuxtApp()
+import Slider from "@vueform/slider";
+import {getRTLTextPluginStatus} from "mapbox-gl";
+import {setRTLTextPlugin} from "mapbox-gl";
+const show = ref(false);
+const nuxtApp = useNuxtApp();
 
 // console.log(nuxtApp)
 
-const column= {
-            576: 1, 
-            700: 2, 
-        }   
+const column = {
+  576: 1,
+  700: 2,
+};
 
-const styles = {   
-  "primary-color":"#00fa9a",
-  "secondary-color":"#00dcff",
-  "overlay-color":"#00f",
-  "text-color":"white",
-  "hover-color":  "#00fa9a",           
-  "disabled-opacity":"0.3",   
-  "z-index":"1000", 
-  "in-range-background":"#00fa9a30", 
-  "background":"#000",
-} 
+const styles = {
+  "primary-color": "#00fa9a",
+  "secondary-color": "#00dcff",
+  "overlay-color": "#00f",
+  "text-color": "white",
+  "hover-color": "#00fa9a",
+  "disabled-opacity": "0.3",
+  "in-range-background": "#00fa9a30",
+  background: "#000",
+};
+const minT = ref("");
+const maxT = ref("");
+const filestoload = ref([]);
+const filescontents = ref([]);
+const zerosArray = new Array(1000).fill(0);
+const total = ref(zerosArray);
+const indexRef = ref(0);
+// const zerosArray = Array.from({ length: 1000 }, () => 0);
+function geojsonReduce(geojson) {
+  let jso = JSON.parse(geojson).features;
+  console.log(jso);
+  let totaltmp = 0;
+  let newGeojson = {
+    type: "FeatureCollection",
+    features: jso.map((feature) => {
+      totaltmp += feature.properties.site_accum;
+      return {
+        type: "Feature",
+        geometry: feature.geometry,
+        properties: {
+          site_id: feature.properties.site_id,
+          site_accum: feature.properties.site_accum,
+        },
+      };
+    }),
+  };
+  indexRef.value += 1;
+  total.value[indexRef.value] = totaltmp;
+  console.log(newGeojson);
+  return newGeojson;
+}
 
-
-
-const minT=ref("")
-const maxT=ref("")
+const o0nfile = ref("0");
 
 onMounted(() => {
-
-  const { data: geojs_raw } =  $fetch('/api/read-geojsons').then((geojs_raw)=>{
-    
-  let geojs=geojs_raw.geojs_data
-  minT.value =formatdate(geojs_raw.minT)
-  maxT.value= formatdate(geojs_raw.maxT)
-
-
-    console.log("process.client ", process.client)
-  if (process.client) {
-    console.log()
+  const {data: geojs_raw} = $fetch("/api/read-geojsons").then((geojs_raw) => {
+    let geojs = geojs_raw.geojs_data;
+    minT.value = formatdate(geojs_raw.minT);
+    maxT.value = formatdate(geojs_raw.maxT);
+    filescontents.value = geojs_raw.geojs_data;
+    filestoload.value = filescontents.value.map(({key}) => key);
+    filescontents.value = filescontents.value.map(({fileContent}) => {
+      return geojsonReduce(fileContent);
+    });
+    console.log("*****");
+    console.log(filescontents.value);
+    console.log("*****");
+    console.log("process.client ", process.client);
+    if (process.client) {
+      console.log();
       // window.localStorage.setData("salam", JSON.stringify(geojs));
-    
     }
-  })
-  
-  
-
-
+  });
 
   const pluginURL =
     "https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-rtl-text/v0.2.3/mapbox-gl-rtl-text.js";
@@ -217,48 +309,54 @@ onMounted(() => {
       }
     });
   }
-
-  
-
 });
 
+function formatdate(dateTimeString) {
+  if (dateTimeString != undefined) {
+    const year = dateTimeString.slice(0, 4);
+    const month = dateTimeString.slice(4, 6) - 1; // Subtract 1 as months are zero-based in Date objects
+    const day = dateTimeString.slice(6, 8);
+    const hour = dateTimeString.slice(8, 10);
+    const minute = dateTimeString.slice(10, 12);
 
+    const dateObj = new Date(year, month, day, hour, minute);
+    const timestamp = dateObj.getTime();
 
+    const iranize = `${dateTimeString.slice(0, 4)}/${dateTimeString.slice(
+      4,
+      6
+    )}/${dateTimeString.slice(6, 8)} ${dateTimeString.slice(
+      8,
+      10
+    )}:${dateTimeString.slice(10, 12)}`;
 
-function formatdate(dateTimeString){
+    const thatdayFa = {
+      day: getDateFormat(timestamp, {day: "2-digit"}),
+      month: getDateFormat(timestamp, {month: "numeric"}),
+      monthTitle: getDateFormat(timestamp, {month: "long"}),
+      year: getDateFormat(timestamp, {year: "numeric"}),
+      dayWeek: getDateFormat(timestamp, {weekday: "long"}),
+    };
 
-const year = dateTimeString.slice(0, 4);
-const month = dateTimeString.slice(4, 6) - 1; // Subtract 1 as months are zero-based in Date objects
-const day = dateTimeString.slice(6, 8);
-const hour = dateTimeString.slice(8, 10);
-const minute = dateTimeString.slice(10, 12);
-
-
-const dateObj = new Date(year, month, day, hour, minute);
-const timestamp = dateObj.getTime();
-
-
-  const iranize = `${dateTimeString.slice(0, 4)}/${dateTimeString.slice(4, 6)}/${dateTimeString.slice(6, 8)} ${dateTimeString.slice(8, 10)}:${dateTimeString.slice(10, 12)}`;
-
- 
-const thatdayFa = {
-    "day" : getDateFormat(timestamp , {"day" : "2-digit"}),
-    "month" : getDateFormat(timestamp , {"month" : "numeric"}),
-    "monthTitle" : getDateFormat(timestamp , {"month" : "long"}),
-    "year" : getDateFormat(timestamp , {"year" : "numeric"}),
-    "dayWeek" : getDateFormat(timestamp , {"weekday" : "long"}),
+    console.log(thatdayFa);
+    return (
+      toRegularNumber(thatdayFa.year) +
+      "/" +
+      toRegularNumber(thatdayFa.month) +
+      "/" +
+      toRegularNumber(thatdayFa.day) +
+      " " +
+      toRegularNumber(hour) +
+      ":" +
+      toRegularNumber(minute)
+    );
+  }
 }
- 
-console.log(thatdayFa);
-return toRegularNumber(thatdayFa.year)+"/"+toRegularNumber(thatdayFa.month)+"/" +toRegularNumber(thatdayFa.day)+" "+toRegularNumber(hour)+":"+toRegularNumber(minute)
 
+function getDateFormat(uDate, option) {
+  let date = new Intl.DateTimeFormat("fa-IR", option).format(uDate);
+  return date;
 }
- 
-function getDateFormat(uDate,option){
-    let date = new Intl.DateTimeFormat('fa-IR', option).format(uDate);
-    return date;
-} 
-
 
 // const date = nuxtApp.ssrContext.uselocaledate(new Date('2016-10-26'))
 // const useX = () => useState('x')
@@ -274,152 +372,137 @@ function toRegularNumber(str) {
 
   return str.replace(/[۰-۹]/g, (x) => farsiDigits.indexOf(x));
 }
-
-
-
-
-
 </script>
 
-
 <style>
-.pdp .pdp-picker .pdp-select-year li, .pdp .pdp-picker .pdp-select-month li {
-    max-width: 20%;
-    height: 20%;
-    margin: 0.5rem;
-    cursor: pointer;
-    /* margin: 0.1rem; */
-    /* margin-right: 0.6rem; */
-    /* margin-left: 0.4rem; */
-    -webkit-font-smoothing: antialiased;
-    display: inline-flex;
-    font-size: x-large;
-    /* font-weight: 100; */
-    flex: 30% 0;
-    justify-content: space-evenly;
-    align-items: center;
+.pdp .pdp-picker .pdp-select-year li,
+.pdp .pdp-picker .pdp-select-month li {
+  max-width: 20%;
+  height: 20%;
+  margin: 0.5rem;
+  cursor: pointer;
+  /* margin: 0.1rem; */
+  /* margin-right: 0.6rem; */
+  /* margin-left: 0.4rem; */
+  -webkit-font-smoothing: antialiased;
+  display: inline-flex;
+  font-size: x-large;
+  /* font-weight: 100; */
+  flex: 30% 0;
+  justify-content: space-evenly;
+  align-items: center;
 }
 
 .pdp .pdp-picker .pdp-header .bottom button svg {
-
-    width: 20px;
-    height: 20px;
+  width: 20px;
+  height: 20px;
 }
 
-.pdp .pdp-picker{
+.pdp .pdp-picker {
   padding-top: 0rem !important;
-    padding-bottom: 0rem !important;
-    font-family: Peyda;
-    padding-left: 0rem !important;
-    padding-right: 0rem !important;
-    border-radius: 30px;
+  padding-bottom: 0rem !important;
+  font-family: Peyda;
+  padding-left: 0rem !important;
+  padding-right: 0rem !important;
+  border-radius: 30px;
 
-    background: rgba(85, 108, 103, 0.25);
-box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
-backdrop-filter: blur( 18px );
--webkit-backdrop-filter: blur( 18px );
+  background: rgba(85, 108, 103, 0.25);
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
 
-
-
-    border: 2px solid #00fa9a;
-    overflow: auto;
-}
-
-@media (max-width: 600px){
-.pdp-shortcut {
-  flex-direction: row !important;
-  flex-wrap: unset !important;
-  justify-content: space-between;
+  border: 2px solid #00fa9a;
   overflow: auto;
-  padding: 1px !important;
-  max-width: 60vw;
-}
 }
 
-
-.pdp .pdp-picker .pdp-footer .pdp-today, .pdp .pdp-picker .pdp-footer .pdp-submit {
-    
-    border-radius: 0.5rem;
-    background:transparent !important;
-    color: #00fa9a ;
-    cursor: pointer;
-    border: 1px solid  #00fa9a ;
+@media (max-width: 600px) {
+  .pdp-shortcut {
+    flex-direction: row !important;
+    flex-wrap: unset !important;
+    justify-content: space-between;
+    overflow: auto;
+    padding: 1px !important;
+    max-width: 60vw;
+  }
 }
 
-.pdp .pdp-picker .pdp-footer .pdp-today:hover, .pdp .pdp-picker .pdp-footer .pdp-submit:hover {
-    
-    border-radius: 0.5rem;
-    background:#00fa9a !important;
-    color: #13211b ;
-    cursor: pointer;
+.pdp .pdp-picker .pdp-footer .pdp-today,
+.pdp .pdp-picker .pdp-footer .pdp-submit {
+  border-radius: 0.5rem;
+  background: transparent !important;
+  color: #00fa9a;
+  cursor: pointer;
+  border: 1px solid #00fa9a;
 }
 
-.pdp-month{
+.pdp .pdp-picker .pdp-footer .pdp-today:hover,
+.pdp .pdp-picker .pdp-footer .pdp-submit:hover {
+  border-radius: 0.5rem;
+  background: #00fa9a !important;
+  color: #13211b;
+  cursor: pointer;
+}
+
+.pdp-month {
   color: #cedbe0 !important;
 }
 .pdp-year {
-    color: #cedbe0 !important;
-    margin-right: 25px;
+  color: #cedbe0 !important;
+  margin-right: 25px;
 }
- .pdp-year:hover, .pdp-month:hover {
+.pdp-year:hover,
+.pdp-month:hover {
   color: #ffffff !important;
- }
-.pdp-arrow{
-  fill:#00fa9a !important;
 }
-.pdp-weekday{
+.pdp-arrow {
+  fill: #00fa9a !important;
+}
+.pdp-weekday {
   color: #95cfb2 !important;
 }
 .pdp .pdp-picker .pdp-footer > div small {
- letter-spacing: 1px;
- margin-left: 5px;
+  letter-spacing: 1px;
+  margin-left: 5px;
 }
 
 .pdp .pdp-picker .pdp-shortcut li {
-    margin: 0.4rem 0.2rem;
-    padding: 0.2rem;
-    padding-left: 0.5rem;
-    padding-right: 0.5rem;
-    
-    text-align: center;
-    cursor: pointer;
-    border-radius: 0.6rem;
-    border: 0.5px solid;
-    letter-spacing: 0.5px;
-    color: #a8efb9;
-    white-space: nowrap;
-    font-weight: 500;
+  margin: 0.4rem 0.2rem;
+  padding: 0.2rem;
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+
+  text-align: center;
+  cursor: pointer;
+  border-radius: 0.6rem;
+  border: 0.5px solid;
+  letter-spacing: 0.5px;
+  color: #a8efb9;
+  white-space: nowrap;
+  font-weight: 500;
 }
 
-::-webkit-scrollbar{
-        height:4px;
-        width: 4px;
-        background: gray;
-        border: 0px solid gray;
-
-    }
-    ::-webkit-scrollbar-thumb:horizontal{
-        background:#00fa9a ;
-        border-radius: 10px;
-    }
+::-webkit-scrollbar {
+  height: 4px;
+  width: 4px;
+  background: gray;
+  border: 0px solid gray;
+}
+::-webkit-scrollbar-thumb:horizontal {
+  background: #00fa9a;
+  border-radius: 10px;
+}
 
 .mapboxgl-popup-content {
+  border-radius: 15px;
 
-    border-radius: 15px;
-   
-    padding: 10px;
-    pointer-events: auto;
-    position: relative;
-    background: rgba(47,134,123,0.35);
-    -webkit-backdrop-filter: blur(23px);
-    backdrop-filter: blur(23px);
-    border: 2px solid rgba(47,134,123,0);
-    transition: all 0.3s;
-
-
-    
-
-   
+  padding: 10px;
+  pointer-events: auto;
+  position: relative;
+  background: rgba(47, 134, 123, 0.35);
+  -webkit-backdrop-filter: blur(23px);
+  backdrop-filter: blur(23px);
+  border: 2px solid rgba(47, 134, 123, 0);
+  transition: all 0.3s;
 }
 
 .mapboxgl-popup:hover .mapboxgl-popup-content {
@@ -428,16 +511,15 @@ backdrop-filter: blur( 18px );
   padding-bottom: 20px;
   transform: translateY(-10%);
   animation-name: moveAnimation;
-  animation-duration:0.4s ;
-  animation-iteration-count:1;
-  animation-direction:alternate;
+  animation-duration: 0.4s;
+  animation-iteration-count: 1;
+  animation-direction: alternate;
   transition: all 0.1s;
 
   color: black !important;
-  border: 2px solid rgba(47,134,123,1);
-  box-shadow: 0px -1px 20px 2px  rgba(130, 221, 162, 0.424);
+  border: 2px solid rgba(47, 134, 123, 1);
+  box-shadow: 0px -1px 20px 2px rgba(130, 221, 162, 0.424);
 }
-
 
 @keyframes moveAnimation {
   0% {
@@ -450,8 +532,6 @@ backdrop-filter: blur( 18px );
     transform: translateY(-10%);
   }
 }
-
-
 
 .mapboxgl-popup-close-button {
   display: none;
@@ -477,7 +557,6 @@ backdrop-filter: blur( 18px );
   transform: translateY(-200%);
   z-index: -1;
   border-top-color: rgb(130, 221, 162) !important;
-
 }
 
 .mapboxgl-popup:hover .mapboxgl-popup-tip {
@@ -495,4 +574,3 @@ backdrop-filter: blur( 18px );
   will-change: transform;
 }
 </style>
-

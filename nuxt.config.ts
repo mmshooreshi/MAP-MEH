@@ -14,6 +14,7 @@ export default defineNuxtConfig({
   },
   
   modules: [
+    // "@nuxtjs/tailwindcss'",
     "@unocss/nuxt",
     "nuxt-windicss",
     "nuxt-mapbox",
