@@ -1,0 +1,21 @@
+version: '3.7'
+
+services:
+  app:
+    build: .
+    container_name: nuxt-app
+    restart: always
+    volumes:
+      - /home/ubuntu/data/accum_runs:/var/www/dockerize-nuxt/data
+    ports:
+      - '3010:3010'
+    command: 
+      - "find /var/www/dockerize-nuxt/data -type f -name '*.geojson' -exec cp {} /var/www/dockerize-nuxt/nuxt-app/public/data/accum_runs \;"
+      - 'npm start'
+
+  nginx:
+    build: ./nginx
+    ports:
+      - '80:80'
+    depends_on:
+      - app
