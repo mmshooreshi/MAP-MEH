@@ -2,7 +2,6 @@ import path from 'path'
 import fs from 'node:fs';
 
 
-
 export default defineEventHandler(async (event) => {
  // const filePath = path.join(process.cwd(), 'public', 'data', 'accum_runs');
  const accumfolder = path.join(process.cwd(), '/public/data/accum_runs')

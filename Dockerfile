@@ -6,6 +6,8 @@ WORKDIR /var/www/dockerize-nuxt/nuxt-app
 COPY package*.json ./
 RUN npm install
 
+RUN npm install dotenv
+
 COPY . .
 
 RUN npm run build

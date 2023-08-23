@@ -1,4 +1,3 @@
-// https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   devtools: {enabled: true},
   ssr: true,
@@ -10,11 +9,10 @@ export default defineNuxtConfig({
     },
   },
 
-  server: {
-    host: process.env.NUXT_HOST,
+  devServer: {
     port: 3010,
   },
-
+  
   modules: [
     "@unocss/nuxt",
     "nuxt-windicss",
