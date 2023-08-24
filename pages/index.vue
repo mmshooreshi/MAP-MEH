@@ -302,7 +302,7 @@ onMounted(() => {
     filescontents.value = filescontents.value.map(({fileContent}) => {
       // console.log();
       let filter = geojsonReduce(fileContent);
-      if (filter.features.length > 10000) {
+      if (filter.features.length >= 0) {
         return geojsonReduce(fileContent);
       }
     });
