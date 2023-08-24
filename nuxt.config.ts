@@ -36,7 +36,7 @@ export default defineNuxtConfig({
     autoImport: true,
     local: [
       {
-        src: "/fonts/woff/PeydaWeb-Black-Persian.woff",
+        src: "@/fonts/woff/PeydaWeb-Black-Persian.woff",
         family: "peyda",
         weight: "100 900",
         class: "font-peyda",
