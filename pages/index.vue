@@ -22,10 +22,10 @@
       <div
         class="w-full text-center flex flex-row content-between justify-center"
       >
-        <div>{{ formatdate(filestoload[o0nfile]) }}</div>
-        <div class="mx-2">نفر</div>
+        <div class="mx-1">{{ formatdate(filestoload[o0nfile], 1) }}</div>
+        <div class="mx-1">نفر</div>
 
-        <div>{{ total[o0nfile].toLocaleString() }}</div>
+        <div class="mx-1">{{ total[o0nfile].toLocaleString() }}</div>
       </div>
 
       <div
@@ -213,18 +213,24 @@
 
     <div>
       <date-picker
+        class="mx-8"
         :from="minT"
         :to="maxT"
         :shortcut="true"
-        :show="show"
-        @close="show = false"
         :column="column"
         :styles="styles"
         :modal="true"
         :auto-submit="false"
         type="datetime"
       />
-      {{ minT }} {{ maxT }}
+
+      <div class="flex flex-row w-full justify-center gap-4 my-4">
+        <div>{{ minT }}</div>
+
+        <div>تا</div>
+
+        <div>{{ maxT }}</div>
+      </div>
     </div>
   </div>
 </template>
@@ -249,7 +255,6 @@ const styles = {
   "overlay-color": "#00f",
   "text-color": "white",
   "hover-color": "#00fa9a",
-  "disabled-opacity": "0.3",
   "in-range-background": "#00fa9a30",
   background: "#000",
 };
@@ -325,7 +330,7 @@ onMounted(() => {
   }
 });
 
-function formatdate(dateTimeString) {
+function formatdate(dateTimeString, type) {
   if (dateTimeString != undefined) {
     const year = dateTimeString.slice(0, 4);
     const month = dateTimeString.slice(4, 6) - 1; // Subtract 1 as months are zero-based in Date objects
@@ -353,18 +358,33 @@ function formatdate(dateTimeString) {
     };
 
     console.log(thatdayFa);
-    return (
-      "در تاریخِ " +
-      toRegularNumber(thatdayFa.year) +
-      "/" +
-      toRegularNumber(thatdayFa.month) +
-      "/" +
-      toRegularNumber(thatdayFa.day) +
-      "    و ساعتِ " +
-      toRegularNumber(hour) +
-      ":" +
-      toRegularNumber(minute)
-    );
+
+    if (type == 1) {
+      return (
+        "    در تاریخِ   " +
+        toRegularNumber(thatdayFa.year) +
+        "/" +
+        toRegularNumber(thatdayFa.month) +
+        "/" +
+        toRegularNumber(thatdayFa.day) +
+        "   و در ساعتِ   " +
+        toRegularNumber(hour) +
+        ":" +
+        toRegularNumber(minute)
+      );
+    } else {
+      return (
+        toRegularNumber(thatdayFa.year) +
+        "/" +
+        toRegularNumber(thatdayFa.month) +
+        "/" +
+        toRegularNumber(thatdayFa.day) +
+        "   " +
+        toRegularNumber(hour) +
+        ":" +
+        toRegularNumber(minute)
+      );
+    }
   }
 }
 
