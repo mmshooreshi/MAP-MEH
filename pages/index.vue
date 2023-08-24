@@ -18,7 +18,7 @@
         class="range range-lg"
         className="range"
         :step="1"
-      />fonts/woff/PeydaWeb-Black-Persian.woff
+      />
       <div
         class="w-full text-center flex flex-row content-between justify-center"
       >
