@@ -285,7 +285,11 @@ onMounted(() => {
     filescontents.value = geojs_raw.geojs_data;
     filestoload.value = filescontents.value.map(({key}) => key);
     filescontents.value = filescontents.value.map(({fileContent}) => {
-      return geojsonReduce(fileContent);
+      // console.log();
+      let filter = geojsonReduce(fileContent);
+      if (filter.features.length > 10000) {
+        return geojsonReduce(fileContent);
+      }
     });
     console.log("*****");
     console.log(filescontents.value);
