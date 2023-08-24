@@ -6,16 +6,17 @@
     <!-- {{ total }} -->
 
     <!-- {{ indexRef }} -->
-    <div class="w-full text-center text-2xl font-peyda">
+    <div class="text-indigo-500 w-full text-center text-2xl font-peyda">
       نمایشگر انباشتِ ساعتی جمعیت در مرز مهران
     </div>
-    <div v-if="filestoload" class="h-28 p-4 font-peyda">
+
+    <div v-if="filestoload" class="text-emerald-400 h-28 p-4 font-peyda">
       <input
         type="range"
         v-model="o0nfile"
         min="0"
         :max="filestoload.length - 1"
-        class="range range-lg"
+        class="range range-lg prange-info"
         className="range"
         :step="1"
       />
@@ -34,6 +35,13 @@
       >
         {{ filescontents[o0nfile] }}
       </div>
+    </div>
+
+    <div
+      v-if="filestoload.length == 0"
+      class="text-emerald-400 font-peyda text-center w-full"
+    >
+      در حال بارگیری
     </div>
 
     <div
