@@ -8,9 +8,9 @@
     <div class="text-indigo-500 w-full text-center text-2xl font-peyda">
       نمایشگر انباشتِ ساعتی جمعیت در مرز مهران
     </div>
-    {{ filescontents.length }}<br />
+    <!-- {{ filescontents.length }}<br />
     {{ filestoload }}<br />
-    {{ total.length }}<br />
+    {{ total.length }}<br /> -->
 
     <div v-if="filestoload" class="text-emerald-400 h-28 p-4 font-peyda">
       <input
