@@ -2,13 +2,15 @@
   <div
     class="p-4 font-peyda absolute w-full h-full flex flex-col justify-center content-evenly"
   >
-    <!-- {{ filescontent}} -->
     <!-- {{ total }} -->
 
     <!-- {{ indexRef }} -->
     <div class="text-indigo-500 w-full text-center text-2xl font-peyda">
       نمایشگر انباشتِ ساعتی جمعیت در مرز مهران
     </div>
+    {{ filescontents.length }}<br />
+    {{ filestoload }}<br />
+    {{ total.length }}<br />
 
     <div v-if="filestoload" class="text-emerald-400 h-28 p-4 font-peyda">
       <input
@@ -231,14 +233,7 @@
         :auto-submit="false"
         type="datetime"
       />
-
-      <div class="flex flex-row w-full justify-center gap-4 my-4">
-        <div>{{ minT }}</div>
-
-        <div>تا</div>
-
-        <div>{{ maxT }}</div>
-      </div>
+      //
     </div>
   </div>
 </template>
@@ -266,6 +261,8 @@ const styles = {
   "in-range-background": "#00fa9a30",
   background: "#000",
 };
+const minTf = ref("");
+const maxTf = ref("");
 const minT = ref("");
 const maxT = ref("");
 const filestoload = ref([]);
@@ -303,8 +300,13 @@ const o0nfile = ref("0");
 onMounted(() => {
   const {data: geojs_raw} = $fetch("/api/read-geojsons").then((geojs_raw) => {
     let geojs = geojs_raw.geojs_data;
+
     minT.value = formatdate(geojs_raw.minT);
     maxT.value = formatdate(geojs_raw.maxT);
+    minTf.value = geojs_raw.minT;
+    maxTf.value = geojs_raw.maxT;
+
+    minTtimestamp;
     filescontents.value = geojs_raw.geojs_data;
     filestoload.value = filescontents.value.map(({key}) => key);
     filescontents.value = filescontents.value.map(({fileContent}) => {
