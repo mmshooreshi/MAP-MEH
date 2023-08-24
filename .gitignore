@@ -8,7 +8,6 @@ public/data
 .vscode
 dist
 
-pages
 
 # Node dependencies
 node_modules
