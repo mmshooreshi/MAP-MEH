@@ -4,9 +4,12 @@
   >
     <!-- {{ filescontent}} -->
     <!-- {{ total }} -->
-    {{ total[o0nfile] }}
+
     <!-- {{ indexRef }} -->
-    <div v-if="filestoload" class="h-28 p-4">
+    <div class="w-full text-center text-2xl font-peyda">
+      نمایشگر انباشتِ ساعتی جمعیت در مرز مهران
+    </div>
+    <div v-if="filestoload" class="h-28 p-4 font-peyda">
       <input
         type="range"
         v-model="o0nfile"
@@ -15,8 +18,15 @@
         class="range range-lg"
         className="range"
         :step="1"
-      />
-      <div>{{ formatdate(filestoload[o0nfile]) }}</div>
+      />fonts/woff/PeydaWeb-Black-Persian.woff
+      <div
+        class="w-full text-center flex flex-row content-between justify-center"
+      >
+        <div>{{ formatdate(filestoload[o0nfile]) }}</div>
+        <div class="mx-2">نفر</div>
+
+        <div>{{ total[o0nfile].toLocaleString() }}</div>
+      </div>
 
       <div
         v-if="filescontents[o0nfile] != undefined && 0"
@@ -344,12 +354,13 @@ function formatdate(dateTimeString) {
 
     console.log(thatdayFa);
     return (
+      "در تاریخِ " +
       toRegularNumber(thatdayFa.year) +
       "/" +
       toRegularNumber(thatdayFa.month) +
       "/" +
       toRegularNumber(thatdayFa.day) +
-      " " +
+      "    و ساعتِ " +
       toRegularNumber(hour) +
       ":" +
       toRegularNumber(minute)
