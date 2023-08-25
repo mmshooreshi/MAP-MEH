@@ -4,7 +4,7 @@
   >
     <!-- {{ total }} -->
 
-    <!-- {{ indexRef }} -->xx
+    <!-- {{ indexRef }} -->
     <div class="text-indigo-500 w-full text-center text-2xl font-peyda">
       نمایشگر انباشتِ ساعتی جمعیت در مرز مهران
     </div>
@@ -12,7 +12,10 @@
     {{ filestoload }}<br />
     {{ total.length }}<br /> -->
 
-    <div v-if="filestoload" class="text-emerald-400 h-28 p-4 font-peyda">
+    <div
+      v-if="filestoload.length != 0"
+      class="text-emerald-400 h-28 p-4 font-peyda"
+    >
       <input
         type="range"
         v-model="o0nfile"
@@ -46,11 +49,27 @@
       </div>
     </div>
 
-    <div
-      v-if="filestoload.length == 0"
-      class="text-emerald-400 font-peyda text-center w-full"
+    <!-- <div
+      v-if="filestoload.length >= 0"
+      class="loading-text font-peyda text-center w-full mt-8"
     >
       در حال بارگیری
+    </div> -->
+
+    <div
+      v-if="filestoload.length == 0"
+      class="mt-8 flex flex-row gap-2 w-full justify-center"
+    >
+      <span class="loading-text" style="--char-index: 1">L</span>
+      <span class="loading-text" style="--char-index: 2">o</span>
+      <span class="loading-text" style="--char-index: 3">a</span>
+      <span class="loading-text" style="--char-index: 4">d</span>
+      <span class="loading-text" style="--char-index: 5">i</span>
+      <span class="loading-text" style="--char-index: 6">n</span>
+      <span class="loading-text" style="--char-index: 7">g</span>
+      <span class="loading-text" style="--char-index: 8">.</span>
+      <span class="loading-text" style="--char-index: 9">.</span>
+      <span class="loading-text" style="--char-index: 10">.</span>
     </div>
 
     <div
@@ -281,11 +300,11 @@ const indexRef = ref(0);
 
 const o0nfile = ref("0");
 
-onMounted(async () => {
-  const {data: geojs_raw} = await useFetch("/api/read-geojsons").then(
-    (geojs_raw) => {
-      let geojs = geojs_raw.geojs_data;
+onMounted(() => {
+  const {data: geojs_raw} = $fetch("/api/read-geojsons").then((geojs_raw) => {
+    let geojs = geojs_raw.geojs_data;
 
+    try {
       minT.value = formatdate(geojs_raw.minT);
       maxT.value = formatdate(geojs_raw.maxT);
       minTf.value = geojs_raw.minT;
@@ -306,8 +325,8 @@ onMounted(async () => {
         console.log();
         // window.localStorage.setData("salam", JSON.stringify(geojs));
       }
-    }
-  );
+    } catch {}
+  });
 
   const pluginURL =
     "https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-rtl-text/v0.2.3/mapbox-gl-rtl-text.js";
