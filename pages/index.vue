@@ -40,7 +40,7 @@
     </div>
 
     <div
-      v-if="filestoload.length == 0 && total[o0nfile] != 0"
+      v-if="filestoload.length == 0"
       class="text-emerald-400 font-peyda text-center w-full"
     >
       در حال بارگیری
