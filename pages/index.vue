@@ -40,7 +40,7 @@
     </div>
 
     <div
-      v-if="filestoload.length == 0"
+      v-if="filestoload.length == 0 && total[o0nfile] != 0"
       class="text-emerald-400 font-peyda text-center w-full"
     >
       در حال بارگیری
@@ -306,7 +306,6 @@ onMounted(() => {
     minTf.value = geojs_raw.minT;
     maxTf.value = geojs_raw.maxT;
 
-    minTtimestamp;
     filescontents.value = geojs_raw.geojs_data;
     filestoload.value = filescontents.value.map(({key}) => key);
     filescontents.value = filescontents.value.map(({fileContent}) => {
