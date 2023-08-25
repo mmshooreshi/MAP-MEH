@@ -3,11 +3,13 @@ import fs from "node:fs";
 
 export default defineEventHandler(async (event) => {
   //// const filePath = path.join(process.cwd(), 'public', 'data', 'accum_runs');
-  const accumfolder = path.join(process.cwd(), "/public/data/accum_runs");
+  //const accumfolder = path.join(process.cwd(), "/public/data/accum_runs");
+  const accumfolder = "/var/www/dockerize-nuxt/data";
+
   //  console.log(accumfolder);
   try {
     const filePaths = await readdirRecursive(accumfolder);
-
+    // return filePaths;
     return readGeoJSONFilesAndStoreInLocalStorage(filePaths);
     //  const db =  Promise.all(
     //    filePaths.map(async (fpath) => {
