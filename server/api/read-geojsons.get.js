@@ -54,25 +54,30 @@ async function readGeoJSONFilesAndStoreInLocalStorage(filePaths) {
     const geojsonData = await Promise.all(
       filePaths.map(async (filePath) => {
         try {
-          const stats = await fs.stat(filePath);
+          const stats = await fs.promises.stat(filePath);
           const fileSizeInBytes = stats.size;
+          const fileName = path.basename(filePath);
 
           if (fileSizeInBytes < 10240) {
-            console.log("File size is less than 10 KB. Ignoring file.");
+            // console.log("File size is less than 10 KB. Ignoring file.");
           } else {
             // Read the file content
-            const fileContent = await fs.promises.readFile(filePath, "utf-8");
-
-            console.log("File content:", fileContent);
+            let fileContent = await fs.promises.readFile(filePath, "utf-8");
+            fileContent = geojsonReduce(fileContent);
+            // console.log(fileContent.total);
 
             const key = convertFileNameToDateTime2(fileName);
             minTimestamp = Math.min(minTimestamp, key).toString();
             maxTimestamp = Math.max(maxTimestamp, key).toString();
 
-            return {key, fileContent};
+            return {
+              key: key,
+              fileContent: fileContent.newGeojson,
+              total: fileContent.total,
+            };
           }
         } catch (error) {
-          console.error("Error reading file:", error);
+          // console.error("Error reading file:", error);
         }
       })
     );
@@ -114,7 +119,7 @@ function convertFileNameToDateTime2(fileName) {
   const day = dateTimePart.substring(6, 8);
   const hour = dateTimePart.substring(8, 10);
   const dateObj = new Date(Date.UTC(year, month - 1, day, hour, 0, 0));
-  dateObj.setUTCHours(hour + 4);
+  dateObj.setUTCHours(parseInt(hour) + 4);
   // const dateObj = new Date(year, month - 1, day, hour, 0, 0);
   // dateObj.setHours(dateObj.getHours() + 4);
   // return `${[dateTimePart, dateObj, year, month - 1, day, hour, 0, 0]}`;
@@ -127,4 +132,28 @@ function convertFileNameToDateTime2(fileName) {
     .replace(/[-:.TZ]/g, "");
 
   return `${dateObj.toISOString().replace(/[-:.TZ]/g, "")}`;
+}
+
+function geojsonReduce(geojson) {
+  let total = 0;
+  let jso = JSON.parse(geojson).features;
+  let newGeojson = {
+    type: "FeatureCollection",
+    features: jso.map((feature) => {
+      total += parseInt(feature.properties.site_accum);
+      return {
+        type: "Feature",
+        geometry: feature.geometry,
+        properties: {
+          site_id: feature.properties.site_id,
+          site_accum: feature.properties.site_accum,
+        },
+      };
+    }),
+  };
+
+  // console.log(newGeojson);
+
+  // console.log(newGeojson);
+  return {newGeojson, total};
 }

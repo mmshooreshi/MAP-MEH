@@ -4,7 +4,7 @@
   >
     <!-- {{ total }} -->
 
-    <!-- {{ indexRef }} -->
+    <!-- {{ indexRef }} -->xx
     <div class="text-indigo-500 w-full text-center text-2xl font-peyda">
       نمایشگر انباشتِ ساعتی جمعیت در مرز مهران
     </div>
@@ -22,7 +22,9 @@
         className="range"
         :step="1"
       />
+      <!-- {{ total }} -->
       <div
+        v-if="filestoload.length > 0"
         class="w-full text-center flex flex-row content-between justify-center"
       >
         <div class="mx-1">
@@ -31,7 +33,9 @@
         </div>
         <div class="mx-1">نفر</div>
 
-        <div class="mx-1">{{ total[o0nfile].toLocaleString() }}</div>
+        <div v-if="total[o0nfile]" class="mx-1">
+          {{ total[o0nfile].toLocaleString() }}
+        </div>
       </div>
 
       <div
@@ -271,32 +275,9 @@ const maxT = ref("");
 const filestoload = ref([]);
 const filescontents = ref([]);
 const zerosArray = new Array(1000).fill(0);
-const total = ref(zerosArray);
+const total = ref([]);
 const indexRef = ref(0);
 // const zerosArray = Array.from({ length: 1000 }, () => 0);
-function geojsonReduce(geojson) {
-  let jso = JSON.parse(geojson).features;
-  console.log(jso);
-  let totaltmp = 0;
-  let newGeojson = {
-    type: "FeatureCollection",
-    features: jso.map((feature) => {
-      totaltmp += feature.properties.site_accum;
-      return {
-        type: "Feature",
-        geometry: feature.geometry,
-        properties: {
-          site_id: feature.properties.site_id,
-          site_accum: feature.properties.site_accum,
-        },
-      };
-    }),
-  };
-  indexRef.value += 1;
-  total.value[indexRef.value] = totaltmp;
-  console.log(newGeojson);
-  return newGeojson;
-}
 
 const o0nfile = ref("0");
 
@@ -311,15 +292,13 @@ onMounted(() => {
 
     filescontents.value = geojs_raw.geojs_data;
     filestoload.value = filescontents.value.map(({key}) => key);
-    filescontents.value = filescontents.value.map(({fileContent}) => {
-      // console.log();
-      let filter = geojsonReduce(fileContent);
-      if (filter.features.length >= 0) {
-        return geojsonReduce(fileContent);
-      }
-    });
+    total.value = filescontents.value.map(({total}) => total);
+    filescontents.value = filescontents.value.map(
+      ({fileContent}) => fileContent
+    );
+
     console.log("*****");
-    console.log(filescontents.value);
+    console.log(filestoload.value, filescontents.value);
     console.log("*****");
     console.log("process.client ", process.client);
     if (process.client) {
