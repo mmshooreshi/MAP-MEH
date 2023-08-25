@@ -25,7 +25,10 @@
       <div
         class="w-full text-center flex flex-row content-between justify-center"
       >
-        <div class="mx-1">{{ formatdate(filestoload[o0nfile], 1) }}</div>
+        <div class="mx-1">
+          <!-- {{ filestoload[o0nfile] }} -->
+          {{ formatdate(filestoload[o0nfile], 1) }}
+        </div>
         <div class="mx-1">نفر</div>
 
         <div class="mx-1">{{ total[o0nfile].toLocaleString() }}</div>
