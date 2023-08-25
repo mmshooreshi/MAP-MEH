@@ -281,31 +281,33 @@ const indexRef = ref(0);
 
 const o0nfile = ref("0");
 
-onMounted(() => {
-  const {data: geojs_raw} = await useFetch("/api/read-geojsons").then((geojs_raw) => {
-    let geojs = geojs_raw.geojs_data;
+onMounted(async () => {
+  const {data: geojs_raw} = await useFetch("/api/read-geojsons").then(
+    (geojs_raw) => {
+      let geojs = geojs_raw.geojs_data;
 
-    minT.value = formatdate(geojs_raw.minT);
-    maxT.value = formatdate(geojs_raw.maxT);
-    minTf.value = geojs_raw.minT;
-    maxTf.value = geojs_raw.maxT;
+      minT.value = formatdate(geojs_raw.minT);
+      maxT.value = formatdate(geojs_raw.maxT);
+      minTf.value = geojs_raw.minT;
+      maxTf.value = geojs_raw.maxT;
 
-    filescontents.value = geojs_raw.geojs_data;
-    filestoload.value = filescontents.value.map(({key}) => key);
-    total.value = filescontents.value.map(({total}) => total);
-    filescontents.value = filescontents.value.map(
-      ({fileContent}) => fileContent
-    );
+      filescontents.value = geojs_raw.geojs_data;
+      filestoload.value = filescontents.value.map(({key}) => key);
+      total.value = filescontents.value.map(({total}) => total);
+      filescontents.value = filescontents.value.map(
+        ({fileContent}) => fileContent
+      );
 
-    console.log("*****");
-    console.log(filestoload.value, filescontents.value);
-    console.log("*****");
-    console.log("process.client ", process.client);
-    if (process.client) {
-      console.log();
-      // window.localStorage.setData("salam", JSON.stringify(geojs));
+      console.log("*****");
+      console.log(filestoload.value, filescontents.value);
+      console.log("*****");
+      console.log("process.client ", process.client);
+      if (process.client) {
+        console.log();
+        // window.localStorage.setData("salam", JSON.stringify(geojs));
+      }
     }
-  });
+  );
 
   const pluginURL =
     "https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-rtl-text/v0.2.3/mapbox-gl-rtl-text.js";
