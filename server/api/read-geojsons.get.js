@@ -3,8 +3,8 @@ import fs from "node:fs";
 
 export default defineEventHandler(async (event) => {
   //// const filePath = path.join(process.cwd(), 'public', 'data', 'accum_runs');
-  // const accumfolder = path.join(process.cwd(), "/public/data/accum_runs");
-  const accumfolder = "/var/www/dockerize-nuxt/data";
+  const accumfolder = path.join(process.cwd(), "/public/data/accum_runs");
+  // const accumfolder = "/var/www/dockerize-nuxt/data";
 
   //  console.log(accumfolder);
   try {
@@ -58,7 +58,7 @@ async function readGeoJSONFilesAndStoreInLocalStorage(filePaths) {
           const fileSizeInBytes = stats.size;
           const fileName = path.basename(filePath);
 
-          if (fileSizeInBytes < 10240) {
+          if (fileSizeInBytes < 5240) {
             // console.log("File size is less than 10 KB. Ignoring file.");
           } else {
             // Read the file content

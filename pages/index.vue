@@ -299,18 +299,29 @@ const indexRef = ref(0);
 // const zerosArray = Array.from({ length: 1000 }, () => 0);
 
 const o0nfile = ref("0");
+function clean(obj) {
+  for (var propName in obj) {
+    if (obj[propName] === null || obj[propName] === undefined) {
+      delete obj[propName];
+    }
+  }
+  return obj;
+}
 
 onMounted(() => {
   const {data: geojs_raw} = $fetch("/api/read-geojsons").then((geojs_raw) => {
-    let geojs = geojs_raw.geojs_data;
+    var geojs = geojs_raw.geojs_data.filter((elements) => {
+      return elements !== null;
+    });
 
+    console.log(geojs);
     try {
       minT.value = formatdate(geojs_raw.minT);
       maxT.value = formatdate(geojs_raw.maxT);
       minTf.value = geojs_raw.minT;
       maxTf.value = geojs_raw.maxT;
 
-      filescontents.value = geojs_raw.geojs_data;
+      filescontents.value = geojs;
       filestoload.value = filescontents.value.map(({key}) => key);
       total.value = filescontents.value.map(({total}) => total);
       filescontents.value = filescontents.value.map(
