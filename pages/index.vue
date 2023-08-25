@@ -282,7 +282,7 @@ const indexRef = ref(0);
 const o0nfile = ref("0");
 
 onMounted(() => {
-  const {data: geojs_raw} = $fetch("/api/read-geojsons").then((geojs_raw) => {
+  const {data: geojs_raw} = await useFetch("/api/read-geojsons").then((geojs_raw) => {
     let geojs = geojs_raw.geojs_data;
 
     minT.value = formatdate(geojs_raw.minT);
