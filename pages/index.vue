@@ -9,6 +9,7 @@
     {{ filestoload }}<br />
     {{ total.length }}<br /> -->
 
+    <!-- {{ filestoload }} -->
     <div
       v-if="filestoload.length != 0"
       class="text-emerald-400 h-28 p-4 font-peyda"
@@ -22,6 +23,20 @@
         className="range"
         :step="1"
       />
+
+      <!-- {{ dayMax }} -->
+      <div v-if="days.length != 0">
+        <input
+          type="range"
+          v-model="dayModel"
+          min="0"
+          :max="dayMax - 1"
+          class="range range-lg prange-info"
+          className="range"
+          :step="1"
+        />
+        <div>{{ days[dayModel] }}</div>
+      </div>
       <!-- {{ total }} -->
       <div
         v-if="filestoload.length > 0"
@@ -289,6 +304,11 @@ const minTf = ref("");
 const maxTf = ref("");
 const minT = ref("");
 const maxT = ref("");
+
+const days = ref([]);
+const dayModel = ref(0);
+const dayMax = ref(0);
+
 const filestoload = ref([]);
 const filescontents = ref([]);
 const zerosArray = new Array(1000).fill(0);
@@ -316,8 +336,9 @@ onMounted(() => {
     try {
       minT.value = formatdate(geojs_raw.minT);
       maxT.value = formatdate(geojs_raw.maxT);
-      minTf.value = geojs_raw.minT;
-      maxTf.value = geojs_raw.maxT;
+
+      minTf.value = new Date(formatdate(geojs_raw.minT));
+      maxTf.value = new Date(formatdate(geojs_raw.maxT));
 
       filescontents.value = geojs;
       filestoload.value = filescontents.value.map(({key}) => key);
@@ -325,6 +346,20 @@ onMounted(() => {
       filescontents.value = filescontents.value.map(
         ({fileContent}) => fileContent
       );
+
+      dayMax.value = Math.ceil(
+        (maxTf.value.getTime() - minTf.value.getTime()) / (3600 * 24 * 1000)
+      );
+
+      for (var i = 0; i < dayMax.value; i++) {
+        // Get the date of the current iteration
+        var currentDate = new Date(
+          minTf.value.getTime() + i * 24 * 60 * 60 * 1000
+        );
+
+        // Add the date to the array
+        days.value.push(currentDate.getTime());
+      }
 
       console.log("*****");
       console.log(filestoload.value, filescontents.value);
