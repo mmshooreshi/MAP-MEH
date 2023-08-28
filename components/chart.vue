@@ -1,7 +1,7 @@
 <template>
   <div class="chart">
     <h3 class="chart__title">{{ props.title }}</h3>
-    <Bar class="chart__bar" :data="chartData" />
+    <Bar class="chart__bar" :data="chartData" :options="options" />
   </div>
 </template>
 
@@ -31,7 +31,15 @@ const props = defineProps(["title", "label", "labels", "data"]);
 const chartData = {
   labels: props.labels,
   datasets: [
-    {data: props.data, backgroundColor: "#f87979", label: props.label},
+    {data: props.data, backgroundColor: "#00fa9a", label: props.label},
   ],
+};
+
+const option = {
+  scales: {
+    y: {
+      beginAtZero: true,
+    },
+  },
 };
 </script>

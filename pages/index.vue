@@ -10,6 +10,18 @@
     {{ total.length }}<br /> -->
 
     <!-- {{ filestoload }} -->
+
+    <button @click="showD = !showD">نمایش چارت</button>
+    <div class="h-[50vh] w-[90vw]" v-if="filestoload.length > 0 && showD">
+      <Chart
+        class="chart h-[50vh]"
+        title="title"
+        label="label"
+        :labels="xaxisData"
+        :data="total"
+      />
+    </div>
+
     <div
       v-if="filestoload.length != 0"
       class="text-emerald-400 h-28 p-4 font-peyda"
@@ -282,7 +294,9 @@ import Slider from "@vueform/slider";
 import {getRTLTextPluginStatus} from "mapbox-gl";
 import {setRTLTextPlugin} from "mapbox-gl";
 const show = ref(false);
+const showD = ref(false);
 const nuxtApp = useNuxtApp();
+import Chart from "/components/chart.vue";
 
 // console.log(nuxtApp)
 
@@ -310,6 +324,7 @@ const dayModel = ref(0);
 const dayMax = ref(0);
 
 const filestoload = ref([]);
+const xaxisData = ref([]);
 const filescontents = ref([]);
 const zerosArray = new Array(1000).fill(0);
 const total = ref([]);
@@ -342,7 +357,9 @@ onMounted(() => {
 
       filescontents.value = geojs;
       filestoload.value = filescontents.value.map(({key}) => key);
-      total.value = filescontents.value.map(({total}) => total);
+      xaxisData.value = filescontents.value.map(({key}) => formatdate(key, 0));
+
+      total.value = filescontents.value.map(({total}) => parseInt(total));
       filescontents.value = filescontents.value.map(
         ({fileContent}) => fileContent
       );
@@ -358,7 +375,7 @@ onMounted(() => {
         );
 
         // Add the date to the array
-        days.value.push(currentDate.getTime());
+        days.value.push(currentDate);
       }
 
       console.log("*****");
@@ -465,7 +482,7 @@ function toRegularNumber(str) {
 }
 </script>
 
-<style>
+<style lang="scss" scoped>
 .pdp .pdp-picker .pdp-select-year li,
 .pdp .pdp-picker .pdp-select-month li {
   max-width: 20%;

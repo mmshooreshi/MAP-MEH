@@ -2,13 +2,7 @@
   <div class="stats">
     <h2 class="stats__title title">Статистика</h2>
     <div class="charts">
-      <Chart
-        class="chart"
-        title="Выручка"
-        label="Прибыль"
-        :labels="profitLabels"
-        :data="profitData"
-      />
+      <Chart :labels="profitLabels" :data="profitData" />
       <!-- <chart-pie class="chart" title="Продано" :labels="saledLabels" :dataset="saledDataset" /> -->
     </div>
     <div class="saled">
