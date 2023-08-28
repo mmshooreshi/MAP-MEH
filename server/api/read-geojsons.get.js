@@ -3,8 +3,8 @@ import fs from "node:fs";
 
 export default defineEventHandler(async (event) => {
   //// const filePath = path.join(process.cwd(), 'public', 'data', 'accum_runs');
-  // const accumfolder = path.join(process.cwd(), "/public/data/accum_runs");
-  const accumfolder = "/var/www/dockerize-nuxt/data";
+  const accumfolder = path.join(process.cwd(), "/public/data/accum_runs");
+  // const accumfolder = "/var/www/dockerize-nuxt/data";
 
   //  console.log(accumfolder);
   try {
@@ -119,7 +119,7 @@ function convertFileNameToDateTime2(fileName) {
   const day = dateTimePart.substring(6, 8);
   const hour = dateTimePart.substring(8, 10);
   const dateObj = new Date(Date.UTC(year, month - 1, day, hour, 0, 0));
-  dateObj.setUTCHours(parseInt(hour) + 4);
+  dateObj.setUTCHours(parseInt(hour));
   // const dateObj = new Date(year, month - 1, day, hour, 0, 0);
   // dateObj.setHours(dateObj.getHours() + 4);
   // return `${[dateTimePart, dateObj, year, month - 1, day, hour, 0, 0]}`;

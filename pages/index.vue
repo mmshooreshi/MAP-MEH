@@ -2,9 +2,6 @@
   <div
     class="p-4 font-peyda absolute w-full h-full flex flex-col justify-center content-evenly"
   >
-    <!-- {{ total }} -->
-
-    <!-- {{ indexRef }} -->
     <div class="text-indigo-500 w-full text-center text-2xl font-peyda">
       نمایشگر انباشتِ ساعتی جمعیت در مرز مهران
     </div>
@@ -72,6 +69,7 @@
       <span class="loading-text" style="--char-index: 10">.</span>
     </div>
 
+    <!-- s<ClientOnly> <Chart></Chart> </ClientOnly>s -->
     <div
       class="mt-8 mb-4 lg:p-1 transition-all cursor-pointer rounded-[2.5rem] h-inherit"
     >

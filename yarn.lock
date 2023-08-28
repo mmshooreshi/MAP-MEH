@@ -471,6 +471,11 @@
     "methods" "^1.1.2"
     "path-to-regexp" "^6.1.0"
 
+"@kurkle/color@^0.3.0":
+  "integrity" "sha512-fuscdXJ9G1qb7W8VdHi+IwRqij3lBkosAm4ydQtEmbY58OzHXqQhvlxqEkoz0yssNVn38bcpRWgA9PP+OGoisw=="
+  "resolved" "https://registry.npmjs.org/@kurkle/color/-/color-0.3.2.tgz"
+  "version" "0.3.2"
+
 "@mapbox/fusspot@^0.4.0":
   "integrity" "sha512-6sys1vUlhNCqMvJOqPEPSi0jc9tg7aJ//oG1A16H3PXoIt9whtNngD7UzBHUVTH15zunR/vRvMtGNVsogm1KzA=="
   "resolved" "https://registry.npmjs.org/@mapbox/fusspot/-/fusspot-0.4.0.tgz"
@@ -2473,6 +2478,24 @@
   "resolved" "https://registry.npmjs.org/chalk/-/chalk-5.3.0.tgz"
   "version" "5.3.0"
 
+"chart.js@^4.1.1", "chart.js@^4.4.0":
+  "integrity" "sha512-vQEj6d+z0dcsKLlQvbKIMYFHd3t8W/7L2vfJIbYcfyPcRx92CsHqECpueN8qVGNlKyDcr5wBrYAYKnfu/9Q1hQ=="
+  "resolved" "https://registry.npmjs.org/chart.js/-/chart.js-4.4.0.tgz"
+  "version" "4.4.0"
+  dependencies:
+    "@kurkle/color" "^0.3.0"
+
+"chart.xkcd@^1.1.13":
+  "integrity" "sha512-++JC2J1D13MdB4XZHYfa/gekbJ9DtYMwSFohbtTsryrf1C3ylMy3jcNKgSSo6CA38lS3HDR1Xol+BGWtwZFJTg=="
+  "resolved" "https://registry.npmjs.org/chart.xkcd/-/chart.xkcd-1.1.13.tgz"
+  "version" "1.1.13"
+  dependencies:
+    "d3-axis" "^1.0.12"
+    "d3-scale" "^3.2.0"
+    "d3-selection" "^1.4.1"
+    "d3-shape" "^1.3.7"
+    "dayjs" "^1.8.17"
+
 "cheerio-select@^2.1.0":
   "integrity" "sha512-9v9kG0LvzrlcungtnJtpGNxY+fzECQKhK4EGJX2vByejiMX84MFNQw4UxPJl3bFbTMw+Dfs37XaIkCwTZfLh4g=="
   "resolved" "https://registry.npmjs.org/cheerio-select/-/cheerio-select-2.1.0.tgz"
@@ -2913,6 +2936,77 @@
   "resolved" "https://registry.npmjs.org/cuint/-/cuint-0.2.2.tgz"
   "version" "0.2.2"
 
+"d3-array@^2.3.0", "d3-array@2":
+  "integrity" "sha512-B0ErZK/66mHtEsR1TkPEEkwdy+WDesimkM5gpZr5Dsg54BiTA5RXtYW5qTLIAcekaS9xfZrzBLF/OAkB3Qn1YQ=="
+  "resolved" "https://registry.npmjs.org/d3-array/-/d3-array-2.12.1.tgz"
+  "version" "2.12.1"
+  dependencies:
+    "internmap" "^1.0.0"
+
+"d3-axis@^1.0.12":
+  "integrity" "sha512-ejINPfPSNdGFKEOAtnBtdkpr24c4d4jsei6Lg98mxf424ivoDP2956/5HDpIAtmHo85lqT4pruy+zEgvRUBqaQ=="
+  "resolved" "https://registry.npmjs.org/d3-axis/-/d3-axis-1.0.12.tgz"
+  "version" "1.0.12"
+
+"d3-color@1 - 2":
+  "integrity" "sha512-SPXi0TSKPD4g9tw0NMZFnR95XVgUZiBH+uUTqQuDu1OsE2zomHU7ho0FISciaPvosimixwHFl3WHLGabv6dDgQ=="
+  "resolved" "https://registry.npmjs.org/d3-color/-/d3-color-2.0.0.tgz"
+  "version" "2.0.0"
+
+"d3-format@1 - 2":
+  "integrity" "sha512-Ab3S6XuE/Q+flY96HXT0jOXcM4EAClYFnRGY5zsjRGNy6qCYrQsMffs7cV5Q9xejb35zxW5hf/guKw34kvIKsA=="
+  "resolved" "https://registry.npmjs.org/d3-format/-/d3-format-2.0.0.tgz"
+  "version" "2.0.0"
+
+"d3-interpolate@1.2.0 - 2":
+  "integrity" "sha512-c5UhwwTs/yybcmTpAVqwSFl6vrQ8JZJoT5F7xNFK9pymv5C0Ymcc9/LIJHtYIggg/yS9YHw8i8O8tgb9pupjeQ=="
+  "resolved" "https://registry.npmjs.org/d3-interpolate/-/d3-interpolate-2.0.1.tgz"
+  "version" "2.0.1"
+  dependencies:
+    "d3-color" "1 - 2"
+
+"d3-path@1":
+  "integrity" "sha512-VLaYcn81dtHVTjEHd8B+pbe9yHWpXKZUC87PzoFmsFrJqgFwDe/qxfp5MlfsfM1V5E/iVt0MmEbWQ7FVIXh/bg=="
+  "resolved" "https://registry.npmjs.org/d3-path/-/d3-path-1.0.9.tgz"
+  "version" "1.0.9"
+
+"d3-scale@^3.2.0":
+  "integrity" "sha512-1JGp44NQCt5d1g+Yy+GeOnZP7xHo0ii8zsQp6PGzd+C1/dl0KGsp9A7Mxwp+1D1o4unbTTxVdU/ZOIEBoeZPbQ=="
+  "resolved" "https://registry.npmjs.org/d3-scale/-/d3-scale-3.3.0.tgz"
+  "version" "3.3.0"
+  dependencies:
+    "d3-array" "^2.3.0"
+    "d3-format" "1 - 2"
+    "d3-interpolate" "1.2.0 - 2"
+    "d3-time" "^2.1.1"
+    "d3-time-format" "2 - 3"
+
+"d3-selection@^1.4.1":
+  "integrity" "sha512-SJ0BqYihzOjDnnlfyeHT0e30k0K1+5sR3d5fNueCNeuhZTnGw4M4o8mqJchSwgKMXCNFo+e2VTChiSJ0vYtXkg=="
+  "resolved" "https://registry.npmjs.org/d3-selection/-/d3-selection-1.4.2.tgz"
+  "version" "1.4.2"
+
+"d3-shape@^1.3.7":
+  "integrity" "sha512-EUkvKjqPFUAZyOlhY5gzCxCeI0Aep04LwIRpsZ/mLFelJiUfnK56jo5JMDSE7yyP2kLSb6LtF+S5chMk7uqPqw=="
+  "resolved" "https://registry.npmjs.org/d3-shape/-/d3-shape-1.3.7.tgz"
+  "version" "1.3.7"
+  dependencies:
+    "d3-path" "1"
+
+"d3-time-format@2 - 3":
+  "integrity" "sha512-UXJh6EKsHBTjopVqZBhFysQcoXSv/5yLONZvkQ5Kk3qbwiUYkdX17Xa1PT6U1ZWXGGfB1ey5L8dKMlFq2DO0Ag=="
+  "resolved" "https://registry.npmjs.org/d3-time-format/-/d3-time-format-3.0.0.tgz"
+  "version" "3.0.0"
+  dependencies:
+    "d3-time" "1 - 2"
+
+"d3-time@^2.1.1", "d3-time@1 - 2":
+  "integrity" "sha512-/eIQe/eR4kCQwq7yxi7z4c6qEXf2IYGcjoWB5OOQy4Tq9Uv39/947qlDcN2TLkiTzQWzvnsuYPB9TrWaNfipKQ=="
+  "resolved" "https://registry.npmjs.org/d3-time/-/d3-time-2.1.1.tgz"
+  "version" "2.1.1"
+  dependencies:
+    "d3-array" "2"
+
 "daisyui@^3.6.1":
   "integrity" "sha512-H330IdmNoQy0i6ImktBIvIVsyYujl1N2R73rDiWFjgIGPzXIFRMFh2PcmErcSzpLJmZ28jPMEwQJEJaNp6uN5g=="
   "resolved" "https://registry.npmjs.org/daisyui/-/daisyui-3.6.1.tgz"
@@ -2928,6 +3022,11 @@
   "integrity" "sha512-0R9ikRb668HB7QDxT1vkpuUBtqc53YyAwMwGeUFKRojY/NWKvdZ+9UYtRfGmhqNbRkTSVpMbmyhXipFFv2cb/A=="
   "resolved" "https://registry.npmjs.org/data-uri-to-buffer/-/data-uri-to-buffer-4.0.1.tgz"
   "version" "4.0.1"
+
+"dayjs@^1.8.17":
+  "integrity" "sha512-QvzAURSbQ0pKdIye2txOzNaHmxtUBXerpY0FJsFXUMKbIZeFm5ht1LS/jFsrncjnmtv8HsG0W2g6c0zUjZWmpA=="
+  "resolved" "https://registry.npmjs.org/dayjs/-/dayjs-1.11.9.tgz"
+  "version" "1.11.9"
 
 "debug@^3.1.0":
   "integrity" "sha512-CFjzYYAi4ThfiQvizrFQevTTXHtnCqWfe7x1AhgEscTz6ZbLbfoLRLPugTQyBth6f8ZERVUSyWHFD/7Wu4t1XQ=="
@@ -4408,6 +4507,11 @@
   "integrity" "sha512-7PnF4oN3CvZF23ADhA5wRaYEQpJ8qygSkbtTXWBeXWXmEVRXK+1ITciHWwHhsjv1TmW0MgacIv6hEi5pX5NQdA=="
   "resolved" "https://registry.npmjs.org/ini/-/ini-2.0.0.tgz"
   "version" "2.0.0"
+
+"internmap@^1.0.0":
+  "integrity" "sha512-lDB5YccMydFBtasVtxnZ3MRBHuaoE8GKsppq+EchKL2U4nK/DmEpPHNH8MZe5HkMtpSiTSOZwfN0tzYjO/lJEw=="
+  "resolved" "https://registry.npmjs.org/internmap/-/internmap-1.0.1.tgz"
+  "version" "1.0.1"
 
 "ioredis@^5.3.2":
   "integrity" "sha512-1DKMMzlIHM02eBBVOFQ1+AolGjs6+xEcM4PDL7NqOS6szq7H9jSaEkIUH6/a5Hl241LzW6JLSiAbNvTQjUupUA=="
@@ -8164,6 +8268,11 @@
   dependencies:
     "ufo" "^1.1.1"
 
+"vue-chartjs@^5.2.0":
+  "integrity" "sha512-d3zpKmGZr2OWHQ1xmxBcAn5ShTG917+/UCLaSpaCDDqT0U7DBsvFzTs69ZnHCgKoXT55GZDW8YEj9Av+dlONLA=="
+  "resolved" "https://registry.npmjs.org/vue-chartjs/-/vue-chartjs-5.2.0.tgz"
+  "version" "5.2.0"
+
 "vue-demi@>=0.14.5":
   "integrity" "sha512-o9NUVpl/YlsGJ7t+xuqJKx8EBGf1quRhCiT6D/J0pfwmk9zUwYkC7yrF4SZCe6fETvSM3UNL2edcbYrSyc4QHA=="
   "resolved" "https://registry.npmjs.org/vue-demi/-/vue-demi-0.14.5.tgz"
@@ -8181,7 +8290,7 @@
   dependencies:
     "@vue/devtools-api" "^6.5.0"
 
-"vue@^2.7.0 || ^3.2.25", "vue@^3.0.0", "vue@^3.0.0-0 || ^2.6.0", "vue@^3.2.0", "vue@^3.2.25", "vue@^3.3.4", "vue@>=2.7 || >=3", "vue@3.3.4":
+"vue@^2.7.0 || ^3.2.25", "vue@^3.0.0", "vue@^3.0.0-0 || ^2.6.0", "vue@^3.0.0-0 || ^2.7.0", "vue@^3.2.0", "vue@^3.2.25", "vue@^3.3.4", "vue@>=2.7 || >=3", "vue@3.3.4":
   "integrity" "sha512-VTyEYn3yvIeY1Py0WaYGZsXnz3y5UnGi62GjVEqvEGPl6nxbOrCXbVOTQWBEJUqAyTUk2uJ5JLVnYJ6ZzGbrSw=="
   "resolved" "https://registry.npmjs.org/vue/-/vue-3.3.4.tgz"
   "version" "3.3.4"
