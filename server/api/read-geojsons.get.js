@@ -3,8 +3,8 @@ import fs from "node:fs";
 
 export default defineEventHandler(async (event) => {
   //// const filePath = path.join(process.cwd(), 'public', 'data', 'accum_runs');
-  const accumfolder = path.join(process.cwd(), "/public/data/accum_runs");
-  // const accumfolder = "/var/www/dockerize-nuxt/data";
+  // const accumfolder = path.join(process.cwd(), "/public/data/accum_runs");
+  const accumfolder = "/var/www/dockerize-nuxt/data";
 
   //  console.log(accumfolder);
   try {
