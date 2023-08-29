@@ -36,8 +36,16 @@ const showD = ref(false);
 const indexStart = ref(0);
 const indexEnd = ref(0);
 
+const filtersStore = useFiltersStore();
+const {distanceKm} = storeToRefs(filtersStore);
+
 function getData() {
-  var {result} = $fetch("/api/read-geojsons").then((result) => {
+  var {result} = $fetch("/api/read-geojsons", {
+    method: "POST",
+    body: {
+      inputData: distanceKm.value,
+    },
+  }).then((result) => {
     var k = 0;
     var geojs = result.geojs_data.filter((elements) => {
       if (k == 0 && elements != null) {
@@ -60,9 +68,6 @@ function getData() {
   console.log(geojson_arr.value);
   console.log(total_arr.value);
 }
-
-const filtersStore = useFiltersStore();
-const {distanceKm} = storeToRefs(filtersStore);
 
 watch(distanceKm, (distN) => {
   console.log(distanceKm.value);

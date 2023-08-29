@@ -2,10 +2,10 @@ import path from "path";
 import fs from "node:fs";
 import haversine from "haversine-distance";
 
-import {useFiltersStore} from "~/store/filters";
-import {storeToRefs} from "pinia";
-
 export default defineEventHandler(async (event) => {
+  const body = await readBody(event);
+
+  console.log(body.inputData);
   //// const filePath = path.join(process.cwd(), 'public', 'data', 'accum_runs');
   // const accumfolder = path.join(process.cwd(), "/public/data/accum_runs");
 
@@ -15,7 +15,7 @@ export default defineEventHandler(async (event) => {
   try {
     const filePaths = await readdirRecursive(accumfolder);
     // return filePaths;
-    return readGeoJSONFilesAndStoreInLocalStorage(filePaths);
+    return readGeoJSONFilesAndStoreInLocalStorage(filePaths, body.inputData);
     //  const db =  Promise.all(
     //    filePaths.map(async (fpath) => {
     //      const file = await fs.promises.readFile(path.join(accumfolder, fpath));
@@ -50,7 +50,7 @@ async function readdirRecursive(dir) {
   return geojsonFiles;
 }
 
-async function readGeoJSONFilesAndStoreInLocalStorage(filePaths) {
+async function readGeoJSONFilesAndStoreInLocalStorage(filePaths, dist) {
   let minTimestamp = Infinity;
   let maxTimestamp = -Infinity;
 
@@ -68,7 +68,7 @@ async function readGeoJSONFilesAndStoreInLocalStorage(filePaths) {
           } else {
             // Read the file content
             let fileContent = await fs.promises.readFile(filePath, "utf-8");
-            fileContent = geojsonReduce(fileContent);
+            fileContent = geojsonReduce(fileContent, dist);
             // console.log(fileContent.total);
 
             const key = convertFileNameToDateTime2(fileName);
@@ -143,12 +143,7 @@ const allowedSiteIds = ["26728", "19714", "18015", "20822"];
 
 const point1 = {lat: 46.05269, lng: 33.1234};
 
-function geojsonReduce(geojson) {
-  const filtersStore = useFiltersStore();
-  // const {addValueToFilterList} = filtersStore;
-  const {filtersList} = storeToRefs(filtersStore);
-  const {distanceKm} = storeToRefs(filtersStore);
-
+function geojsonReduce(geojson, distanceKm) {
   let total = 0;
   let jso = JSON.parse(geojson).features;
 
@@ -162,7 +157,7 @@ function geojsonReduce(geojson) {
         };
         var dist = haversine(point1, point2);
 
-        if (dist < distanceKm.value * 1000) {
+        if (dist < distanceKm * 1000) {
           // if (allowedSiteIds.includes(feature.properties.site_id)) {
 
           total += parseInt(feature.properties.site_accum);
