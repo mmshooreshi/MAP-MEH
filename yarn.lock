@@ -736,7 +736,7 @@
     "which" "^3.0.1"
     "ws" "^8.13.0"
 
-"@nuxt/kit@^3.0.0-rc.12", "@nuxt/kit@^3.5.3", "@nuxt/kit@^3.6.5", "@nuxt/kit@3.6.5":
+"@nuxt/kit@^3.0.0-rc.12", "@nuxt/kit@^3.5.0", "@nuxt/kit@^3.5.3", "@nuxt/kit@^3.6.5", "@nuxt/kit@3.6.5":
   "integrity" "sha512-uBI5I2Zx6sk+vRHU+nBmifwxg/nyXCGZ1g5hUKrUfgv1ZfiKB8JkN5T9iRoduDOaqbwM6XSnEl1ja73iloDcrw=="
   "resolved" "https://registry.npmjs.org/@nuxt/kit/-/kit-3.6.5.tgz"
   "version" "3.6.5"
@@ -964,6 +964,14 @@
     "@parcel/watcher-linux-x64-musl" "2.2.0"
     "@parcel/watcher-win32-arm64" "2.2.0"
     "@parcel/watcher-win32-x64" "2.2.0"
+
+"@pinia/nuxt@^0.4.11":
+  "integrity" "sha512-bhuNFngJpmBCdAqWguezNJ/oJFR7wvKieqiZrmmdmPR07XjsidAw8RLXHMZE9kUm32M9E6T057OBbG/22jERTg=="
+  "resolved" "https://registry.npmjs.org/@pinia/nuxt/-/nuxt-0.4.11.tgz"
+  "version" "0.4.11"
+  dependencies:
+    "@nuxt/kit" "^3.5.0"
+    "pinia" ">=2.1.0"
 
 "@pkgjs/parseargs@^0.11.0":
   "integrity" "sha512-+1VkjdD0QBLPodGrJUeqarH8VAIvQODIbwh9XpP5Syisf7YoQgsJKPNFoqqLQlu+VQ/tVSshMR6loPMn8U+dPg=="
@@ -2540,6 +2548,11 @@
   "integrity" "sha512-bIomtDF5KGpdogkLd9VspvFzk9KfpyyGlS8YFVZl7TGPBHL5snIOnxeshwVgPteQ9b4Eydl+pVbIyE1DcvCWgQ=="
   "resolved" "https://registry.npmjs.org/chownr/-/chownr-2.0.0.tgz"
   "version" "2.0.0"
+
+"chroma-js@^2.4.2":
+  "integrity" "sha512-U9eDw6+wt7V8z5NncY2jJfZa+hUH8XEj8FQHgFJTrUFnJfXYf4Ml4adI2vXZOjqRDpFWtYVWypDfZwnJ+HIR4A=="
+  "resolved" "https://registry.npmjs.org/chroma-js/-/chroma-js-2.4.2.tgz"
+  "version" "2.4.2"
 
 "chrome-trace-event@^1.0.2":
   "integrity" "sha512-p3KULyQg4S7NIHixdwbGX+nFHkoBiA4YQmyWtjb8XngSKV124nJmRysgAeujbUVb15vh+RvFUfCPqU7rXk+hZg=="
@@ -4245,6 +4258,11 @@
   "integrity" "sha512-WdZTbAByD+pHfl/g9QSsBIIwy8IT+EsPiKDs0KNX+zSHhdDLFKdZu0BQHljvO+0QI/BasbMSUa8wYNCZTvhslg=="
   "resolved" "https://registry.npmjs.org/hash-sum/-/hash-sum-2.0.0.tgz"
   "version" "2.0.0"
+
+"haversine-distance@^1.2.1":
+  "integrity" "sha512-rQpG89d6NlAis0eqOSFXDqNU/GZcMPlHNVMqTSzD16niD9s1fDK8T6kwrK0WJ7OMU+iRNy3cgGYnNQihMqmaHg=="
+  "resolved" "https://registry.npmjs.org/haversine-distance/-/haversine-distance-1.2.1.tgz"
+  "version" "1.2.1"
 
 "hookable@^5.5.3":
   "integrity" "sha512-Yc+BQe8SvoXH1643Qez1zqLRmbA5rCL+sSmk6TVos0LWVfNIB7PGncdlId77WzLGSIB5KaWgTaNTs2lNVEI6VQ=="
@@ -6313,6 +6331,14 @@
   "resolved" "https://registry.npmjs.org/pify/-/pify-3.0.0.tgz"
   "version" "3.0.0"
 
+"pinia@^2.1.6", "pinia@>=2.1.0":
+  "integrity" "sha512-bIU6QuE5qZviMmct5XwCesXelb5VavdOWKWaB17ggk++NUwQWWbP5YnsONTk3b752QkW9sACiR81rorpeOMSvQ=="
+  "resolved" "https://registry.npmjs.org/pinia/-/pinia-2.1.6.tgz"
+  "version" "2.1.6"
+  dependencies:
+    "@vue/devtools-api" "^6.5.0"
+    "vue-demi" ">=0.14.5"
+
 "pinkie-promise@^2.0.0":
   "integrity" "sha512-0Gni6D4UcLTbv9c57DfxDGdr41XfgUjqWZu492f0cIGr16zDU06BWP/RAEvOuo7CQ0CNjHaLlM59YJJFm3NWlw=="
   "resolved" "https://registry.npmjs.org/pinkie-promise/-/pinkie-promise-2.0.1.tgz"
@@ -7527,7 +7553,7 @@
     "fuzzy" "^0.1.1"
     "xtend" "^4.0.0"
 
-"supercluster@^8.0.0":
+"supercluster@^8.0.0", "supercluster@^8.0.1":
   "integrity" "sha512-IiOea5kJ9iqzD2t7QJq/cREyLHTtSmUT6gQsweojg9WH2sYJqZK9SswTu6jrscO6D1G5v5vYZ9ru/eq85lXeZQ=="
   "resolved" "https://registry.npmjs.org/supercluster/-/supercluster-8.0.1.tgz"
   "version" "8.0.1"
@@ -8290,7 +8316,7 @@
   dependencies:
     "@vue/devtools-api" "^6.5.0"
 
-"vue@^2.7.0 || ^3.2.25", "vue@^3.0.0", "vue@^3.0.0-0 || ^2.6.0", "vue@^3.0.0-0 || ^2.7.0", "vue@^3.2.0", "vue@^3.2.25", "vue@^3.3.4", "vue@>=2.7 || >=3", "vue@3.3.4":
+"vue@latest":
   "integrity" "sha512-VTyEYn3yvIeY1Py0WaYGZsXnz3y5UnGi62GjVEqvEGPl6nxbOrCXbVOTQWBEJUqAyTUk2uJ5JLVnYJ6ZzGbrSw=="
   "resolved" "https://registry.npmjs.org/vue/-/vue-3.3.4.tgz"
   "version" "3.3.4"

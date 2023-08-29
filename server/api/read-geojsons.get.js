@@ -1,10 +1,15 @@
 import path from "path";
 import fs from "node:fs";
+import haversine from "haversine-distance";
+
+import {useFiltersStore} from "~/store/filters";
+import {storeToRefs} from "pinia";
 
 export default defineEventHandler(async (event) => {
   //// const filePath = path.join(process.cwd(), 'public', 'data', 'accum_runs');
-  // const accumfolder = path.join(process.cwd(), "/public/data/accum_runs");
-  const accumfolder = "/var/www/dockerize-nuxt/data";
+  const accumfolder = path.join(process.cwd(), "/public/data/accum_runs");
+
+  // const accumfolder = "/var/www/dockerize-nuxt/data";
 
   //  console.log(accumfolder);
   try {
@@ -133,27 +138,47 @@ function convertFileNameToDateTime2(fileName) {
 
   return `${dateObj.toISOString().replace(/[-:.TZ]/g, "")}`;
 }
+const allowedSiteIds = ["26728", "19714", "18015", "20822"];
+// const pointC = [46.05269519417466, 33.123403650750646];
+
+const point1 = {lat: 46.05269, lng: 33.1234};
 
 function geojsonReduce(geojson) {
+  const filtersStore = useFiltersStore();
+  const {addValueToFilterList} = filtersStore;
+  const {filtersList} = storeToRefs(filtersStore);
+  const {distanceKm} = storeToRefs(filtersStore);
+
   let total = 0;
   let jso = JSON.parse(geojson).features;
+
   let newGeojson = {
     type: "FeatureCollection",
-    features: jso.map((feature) => {
-      total += parseInt(feature.properties.site_accum);
-      return {
-        type: "Feature",
-        geometry: feature.geometry,
-        properties: {
-          site_id: feature.properties.site_id,
-          site_accum: feature.properties.site_accum,
-        },
-      };
-    }),
+    features: jso
+      .map((feature) => {
+        var point2 = {
+          lat: feature.geometry.coordinates[0],
+          lng: feature.geometry.coordinates[1],
+        };
+
+        if (haversine(point1, point2) < distanceKm.value * 1000) {
+          // if (allowedSiteIds.includes(feature.properties.site_id)) {
+
+          total += parseInt(feature.properties.site_accum);
+          return {
+            type: "Feature",
+            geometry: feature.geometry,
+            properties: {
+              site_id: feature.properties.site_id,
+              site_accum: feature.properties.site_accum,
+            },
+          };
+        } else {
+          return null;
+        }
+      })
+      .filter((feature) => feature !== null),
   };
 
-  // console.log(newGeojson);
-
-  // console.log(newGeojson);
   return {newGeojson, total};
 }

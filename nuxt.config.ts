@@ -26,6 +26,7 @@ export default defineNuxtConfig({
     "nuxt-mapbox",
     "nuxt-font-loader",
     "@alireza-ab/vue3-persian-datepicker/nuxt",
+    '@pinia/nuxt',
   ],
   mapbox: {
     accessToken:
