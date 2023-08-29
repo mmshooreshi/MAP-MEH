@@ -57,6 +57,79 @@ const chartData = {
 // ChartJS.defaults.borderColor = "#ADCACB";
 // ChartJS.defaults.color = "#FEE3A2";
 
+function getDateFormat(uDate, option) {
+  let date = new Intl.DateTimeFormat("fa-IR", option).format(uDate);
+  return date;
+}
+function toFarsiNumber(n) {
+  const farsiDigits = ["۰", "۱", "۲", "۳", "۴", "۵", "۶", "۷", "۸", "۹"];
+
+  return n.toString().replace(/\d/g, (x) => farsiDigits[x]);
+}
+
+function toRegularNumber(str) {
+  const farsiDigits = ["۰", "۱", "۲", "۳", "۴", "۵", "۶", "۷", "۸", "۹"];
+
+  return str.replace(/[۰-۹]/g, (x) => farsiDigits.indexOf(x));
+}
+function formatdate(dateTimeString, type) {
+  if (dateTimeString != undefined) {
+    const year = dateTimeString.slice(0, 4);
+    const month = dateTimeString.slice(4, 6) - 1; // Subtract 1 as months are zero-based in Date objects
+    const day = dateTimeString.slice(6, 8);
+    const hour = dateTimeString.slice(8, 10);
+    const minute = dateTimeString.slice(10, 12);
+
+    const dateObj = new Date(year, month, day, hour, minute);
+    const timestamp = dateObj.getTime();
+
+    const iranize = `${dateTimeString.slice(0, 4)}/${dateTimeString.slice(
+      4,
+      6
+    )}/${dateTimeString.slice(6, 8)} ${dateTimeString.slice(
+      8,
+      10
+    )}:${dateTimeString.slice(10, 12)}`;
+
+    const thatdayFa = {
+      day: getDateFormat(timestamp, {day: "2-digit"}),
+      month: getDateFormat(timestamp, {month: "numeric"}),
+      monthTitle: getDateFormat(timestamp, {month: "long"}),
+      year: getDateFormat(timestamp, {year: "numeric"}),
+      dayWeek: getDateFormat(timestamp, {weekday: "long"}),
+    };
+
+    // console.log(thatdayFa);
+
+    if (type == 1) {
+      return (
+        "    در تاریخِ   " +
+        toRegularNumber(thatdayFa.year) +
+        "/" +
+        toRegularNumber(thatdayFa.month) +
+        "/" +
+        toRegularNumber(thatdayFa.day) +
+        "   و در ساعتِ   " +
+        toRegularNumber(hour) +
+        ":" +
+        toRegularNumber(minute)
+      );
+    } else {
+      return (
+        toRegularNumber(thatdayFa.year) +
+        "/" +
+        toRegularNumber(thatdayFa.month) +
+        "/" +
+        toRegularNumber(thatdayFa.day) +
+        "   " +
+        toRegularNumber(hour) +
+        ":" +
+        toRegularNumber(minute)
+      );
+    }
+  }
+}
+
 const optionsT = {
   responsive: true,
   scales: {
@@ -68,10 +141,20 @@ const optionsT = {
         display: false,
         color: "#00fa9a",
         beginAtZero: true,
+        callback: function (value, index, ticks) {
+          return formatdate(value.toString(), 1);
+        },
       },
     },
   },
   plugins: {
+    tooltip: {
+      label: {
+        callback: function (context) {
+          return formatdate(context.toString(), 1);
+        },
+      },
+    },
     legend: {
       labels: {
         // This more specific font property overrides the global property

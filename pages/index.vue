@@ -157,9 +157,30 @@ function formatdate(dateTimeString, type) {
 
 <template>
   <div class="font-peyda">
-    <div class="flex flex-row m-2">
+    <!-- <div class="flex flex-row m-2"> -->
+    <div
+      class="bg-black/50 font-peyda text-emerald-400 flex flex-row h-16 p-4 gap-2"
+    >
+      <div
+        v-if="geojson_arr"
+        class="text-emerald-400 w-full flex flex-row justify-stretch mt-1"
+      >
+        <div class="mt-1 mr-1 w-max whitespace-nowrap text-sm">
+          {{ formatdate(key_arr[index], 1) }}
+        </div>
+        <!-- {{ indexStart }} : {{ indexEnd }} -->
+        <input
+          type="range"
+          v-model="index"
+          min="0"
+          :max="key_arr.length - 1"
+          class="range w-full"
+          className="range child"
+          :step="1"
+        />
+      </div>
       <button
-        class="child p-1 m-1 w-max h-min whitespace-nowrap text-emerald-400 hover:text-green-800 bg-emerald-400/25 border-3 rounded-xl hover:bg-emerald-400/75"
+        class="child w-[100px] max-w-[100px] h-min whitespace-nowrap text-emerald-400 hover:text-green-800 bg-emerald-400/25 border-3 rounded-xl hover:bg-emerald-400/75"
         :class="{
           'border-green-400 ': showD,
           'border-transparent ': !showD,
@@ -168,27 +189,10 @@ function formatdate(dateTimeString, type) {
       >
         نمایش چارت
       </button>
-
-      <div
-        v-if="geojson_arr"
-        class="text-emerald-400 p-1 m-1 w-full flex flex-col gap-2"
-      >
-        <!-- {{ indexStart }} : {{ indexEnd }} -->
-        <input
-          type="range"
-          v-model="index"
-          min="0"
-          :max="key_arr.length - 1"
-          class="range"
-          className="range child"
-          :step="1"
-        />
-        <div class="w-full">{{ formatdate(key_arr[index], 1) }}</div>
-      </div>
     </div>
     <div
       v-if="geojson_arr.length > 0 && showD"
-      class="absolute m-2 mt-10 p-2 cursor-pointer lg:mx-28 2xl:mx-56 bg-[#1e503c50] border-1 border-emerald-400 rounded-xl overflow-hidden"
+      class="absolute z-10 w-[98%] lg:w-[74%] 2xl:w-[50%] m-2 mt-10 p-2 cursor-pointer lg:mx-[13%] 2xl:mx-[25%] bg-[#1e503c50] border-1 border-emerald-400 rounded-xl overflow-hidden"
     >
       <Chart
         class="chart font-peyda"
