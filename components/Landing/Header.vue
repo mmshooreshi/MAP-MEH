@@ -16,8 +16,7 @@ watch(dist, (distN) => {
 
 <template>
   <div class="bg-black/50 px-4">
-    Component: Landing/Header
-
+    فاصله از مرز مهران (km)
     <input
       type="range"
       v-model="dist"

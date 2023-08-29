@@ -188,7 +188,7 @@ function formatdate(dateTimeString, type) {
     </div>
     <div
       v-if="geojson_arr.length > 0 && showD"
-      class="m-2 mt-10 p-2 cursor-pointer lg:mx-28 2xl:mx-56 bg-[#1e503c50] border-1 border-emerald-400 rounded-xl overflow-hidden"
+      class="absolute m-2 mt-10 p-2 cursor-pointer lg:mx-28 2xl:mx-56 bg-[#1e503c50] border-1 border-emerald-400 rounded-xl overflow-hidden"
     >
       <Chart
         class="chart font-peyda"
