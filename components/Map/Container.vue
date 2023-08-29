@@ -210,13 +210,7 @@ function bindClusterClickEvent(el, feature, map) {
   <div>
     <MapboxMap
       map-id="mainMap"
-      style="
-        width: 100vw;
-        height: 83vh;
-        z-index: 1;
-        display: block;
-        margin-top: 12vh;
-      "
+      style="width: 100vw; height: 83vh; z-index: 1; display: block"
       :options="{
         style: 'mapbox://styles/mapbox/navigation-night-v1',
         center: [46.05269519417466, 33.123403650750646],
