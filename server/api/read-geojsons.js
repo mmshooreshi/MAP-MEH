@@ -5,7 +5,7 @@ import haversine from "haversine-distance";
 export default defineEventHandler(async (event) => {
   const body = await readBody(event);
 
-  console.log(body.inputData);
+  // console.log(body.inputData);
   //// const filePath = path.join(process.cwd(), 'public', 'data', 'accum_runs');
   // const accumfolder = path.join(process.cwd(), "/public/data/accum_runs");
 
@@ -167,7 +167,7 @@ function geojsonReduce(geojson, distanceKm) {
             properties: {
               site_id: feature.properties.site_id,
               site_accum: feature.properties.site_accum,
-              dist: dist,
+              // dist: dist,
             },
           };
         } else {

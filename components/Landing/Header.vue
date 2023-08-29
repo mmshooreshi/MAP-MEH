@@ -10,7 +10,7 @@ const {replaceDistanceKm} = filtersStore;
 
 watch(dist, (distN) => {
   replaceDistanceKm(distN);
-  console.log(distN);
+  // console.log(distN);
 });
 </script>
 

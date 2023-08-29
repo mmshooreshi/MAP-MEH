@@ -26,7 +26,7 @@ onMounted(() => {
   watch(props, (propsN) => {
     if (propsN && propsN.data[0] != undefined) {
       let features = propsN.data[0].features;
-      console.log("features: ", features);
+      // console.log("features: ", features);
       // this.setupMarkers(newFeatures);
       if (props.data[props.index]) {
         useMapbox("mainMap", (map) => {
@@ -50,7 +50,7 @@ onMounted(() => {
   });
 
   useMapbox("mainMap", (map) => {
-    console.log(map);
+    // console.log(map);
     addMarkers(map);
     // map.on("load", (map) => {
 
@@ -90,13 +90,13 @@ function addMarkers(map) {
     },
   });
 
-  console.log(clusterIndex.value);
+  // console.log(clusterIndex.value);
 
   // clusterIndex.value.load(locations.value.features);
 
   clusterIndex.value.load(props.data[props.index].features);
 
-  console.log(clusterIndex.value);
+  // console.log(clusterIndex.value);
 
   map.on("moveend", () => {
     moveEnd(map);
@@ -113,7 +113,7 @@ function updateClusters(map) {
     Math.floor(zoom)
   );
 
-  console.log(clustersGeojson.value);
+  // console.log(clustersGeojson.value);
 
   if (Object.keys(clusters.value).length) {
     clusters.value.forEach(function (cluster) {

@@ -64,13 +64,13 @@ function getData() {
     });
   });
 
-  console.log(key_arr.value);
-  console.log(geojson_arr.value);
-  console.log(total_arr.value);
+  // console.log(key_arr.value);
+  // console.log(geojson_arr.value);
+  // console.log(total_arr.value);
 }
 
 watch(distanceKm, (distN) => {
-  console.log(distanceKm.value);
+  // console.log(distanceKm.value);
 
   getData();
 });
@@ -123,7 +123,7 @@ function formatdate(dateTimeString, type) {
       dayWeek: getDateFormat(timestamp, {weekday: "long"}),
     };
 
-    console.log(thatdayFa);
+    // console.log(thatdayFa);
 
     if (type == 1) {
       return (
