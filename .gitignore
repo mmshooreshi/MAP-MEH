@@ -1,5 +1,4 @@
 # Nuxt dev/build outputs
-public/data
 .output
 .data
 .nuxt

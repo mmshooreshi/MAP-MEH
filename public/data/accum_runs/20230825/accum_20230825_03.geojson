@@ -1,0 +1,3387 @@
+{
+    "type": "FeatureCollection",
+    "features": [
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    46.92,
+                    33.404
+                ]
+            },
+            "properties": {
+                "site_id": "26706",
+                "city_id": "365",
+                "province_id": "26",
+                "site_accum": 117,
+                "city_accum": 477,
+                "province_accum": 49206,
+                "ts": "/mnt/data/accum_runs/20230825/2023082503"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    46.775,
+                    33.568
+                ]
+            },
+            "properties": {
+                "site_id": "5695",
+                "city_id": "369",
+                "province_id": "26",
+                "site_accum": 176,
+                "city_accum": 1211,
+                "province_accum": 49206,
+                "ts": "/mnt/data/accum_runs/20230825/2023082503"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    46.384,
+                    33.645
+                ]
+            },
+            "properties": {
+                "site_id": "5740",
+                "city_id": "363",
+                "province_id": "26",
+                "site_accum": 736,
+                "city_accum": 20917,
+                "province_accum": 49206,
+                "ts": "/mnt/data/accum_runs/20230825/2023082503"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    45.967,
+                    33.569
+                ]
+            },
+            "properties": {
+                "site_id": "28177",
+                "city_id": "363",
+                "province_id": "26",
+                "site_accum": 14,
+                "city_accum": 20917,
+                "province_accum": 49206,
+                "ts": "/mnt/data/accum_runs/20230825/2023082503"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    46.416,
+                    33.65
+                ]
+            },
+            "properties": {
+                "site_id": "18107",
+                "city_id": "363",
+                "province_id": "26",
+                "site_accum": 157,
+                "city_accum": 20917,
+                "province_accum": 49206,
+                "ts": "/mnt/data/accum_runs/20230825/2023082503"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    46.427,
+                    33.564
+                ]
+            },
+            "properties": {
+                "site_id": "18085",
+                "city_id": "363",
+                "province_id": "26",
+                "site_accum": 112,
+                "city_accum": 20917,
+                "province_accum": 49206,
+                "ts": "/mnt/data/accum_runs/20230825/2023082503"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    46.431,
+                    33.646
+                ]
+            },
+            "properties": {
+                "site_id": "18105",
+                "city_id": "363",
+                "province_id": "26",
+                "site_accum": 245,
+                "city_accum": 20917,
+                "province_accum": 49206,
+                "ts": "/mnt/data/accum_runs/20230825/2023082503"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    46.526,
+                    33.443
+                ]
+            },
+            "properties": {
+                "site_id": "22275",
+                "city_id": "370",
+                "province_id": "26",
+                "site_accum": 26,
+                "city_accum": 1256,
+                "province_accum": 49206,
+                "ts": "/mnt/data/accum_runs/20230825/2023082503"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    46.393,
+                    33.606
+                ]
+            },
+            "properties": {
+                "site_id": "19762",
+                "city_id": "363",
+                "province_id": "26",
+                "site_accum": 144,
+                "city_accum": 20917,
+                "province_accum": 49206,
+                "ts": "/mnt/data/accum_runs/20230825/2023082503"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    47.015,
+                    33.087
+                ]
+            },
+            "properties": {
+                "site_id": "28599",
+                "city_id": "368",
+                "province_id": "26",
+                "site_accum": 10,
+                "city_accum": 1127,
+                "province_accum": 49206,
+                "ts": "/mnt/data/accum_runs/20230825/2023082503"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    46.318,
+                    33.817
+                ]
+            },
+            "properties": {
+                "site_id": "22301",
+                "city_id": "364",
+                "province_id": "26",
+                "site_accum": 418,
+                "city_accum": 3733,
+                "province_accum": 49206,
+                "ts": "/mnt/data/accum_runs/20230825/2023082503"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    46.129,
+                    33.103
+                ]
+            },
+            "properties": {
+                "site_id": "26728",
+                "city_id": "371",
+                "province_id": "26",
+                "site_accum": 468,
+                "city_accum": 15942,
+                "province_accum": 49206,
+                "ts": "/mnt/data/accum_runs/20230825/2023082503"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    47.038,
+                    33.305
+                ]
+            },
+            "properties": {
+                "site_id": "21661",
+                "city_id": "365",
+                "province_id": "26",
+                "site_accum": 78,
+                "city_accum": 477,
+                "province_accum": 49206,
+                "ts": "/mnt/data/accum_runs/20230825/2023082503"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    46.849,
+                    33.43
+                ]
+            },
+            "properties": {
+                "site_id": "26348",
+                "city_id": "365",
+                "province_id": "26",
+                "site_accum": 6,
+                "city_accum": 477,
+                "province_accum": 49206,
+                "ts": "/mnt/data/accum_runs/20230825/2023082503"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    46.534,
+                    33.077
+                ]
+            },
+            "properties": {
+                "site_id": "18012",
+                "city_id": "371",
+                "province_id": "26",
+                "site_accum": 285,
+                "city_accum": 15942,
+                "province_accum": 49206,
+                "ts": "/mnt/data/accum_runs/20230825/2023082503"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    46.437,
+                    33.643
+                ]
+            },
+            "properties": {
+                "site_id": "24523",
+                "city_id": "363",
+                "province_id": "26",
+                "site_accum": 184,
+                "city_accum": 20917,
+                "province_accum": 49206,
+                "ts": "/mnt/data/accum_runs/20230825/2023082503"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    46.244,
+                    33.871
+                ]
+            },
+            "properties": {
+                "site_id": "5843",
+                "city_id": "364",
+                "province_id": "26",
+                "site_accum": 286,
+                "city_accum": 3733,
+                "province_accum": 49206,
+                "ts": "/mnt/data/accum_runs/20230825/2023082503"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    46.641,
+                    33.304
+                ]
+            },
+            "properties": {
+                "site_id": "18028",
+                "city_id": "370",
+                "province_id": "26",
+                "site_accum": 50,
+                "city_accum": 1256,
+                "province_accum": 49206,
+                "ts": "/mnt/data/accum_runs/20230825/2023082503"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    46.719,
+                    33.572
+                ]
+            },
+            "properties": {
+                "site_id": "21680",
+                "city_id": "369",
+                "province_id": "26",
+                "site_accum": 54,
+                "city_accum": 1211,
+                "province_accum": 49206,
+                "ts": "/mnt/data/accum_runs/20230825/2023082503"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    46.724,
+                    33.381
+                ]
+            },
+            "properties": {
+                "site_id": "26986",
+                "city_id": "370",
+                "province_id": "26",
+                "site_accum": 9,
+                "city_accum": 1256,
+                "province_accum": 49206,
+                "ts": "/mnt/data/accum_runs/20230825/2023082503"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    46.398,
+                    33.641
+                ]
+            },
+            "properties": {
+                "site_id": "18102",
+                "city_id": "363",
+                "province_id": "26",
+                "site_accum": 171,
+                "city_accum": 20917,
+                "province_accum": 49206,
+                "ts": "/mnt/data/accum_runs/20230825/2023082503"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    46.363,
+                    33.76
+                ]
+            },
+            "properties": {
+                "site_id": "5787",
+                "city_id": "364",
+                "province_id": "26",
+                "site_accum": 163,
+                "city_accum": 3733,
+                "province_accum": 49206,
+                "ts": "/mnt/data/accum_runs/20230825/2023082503"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    46.384,
+                    33.633
+                ]
+            },
+            "properties": {
+                "site_id": "18100",
+                "city_id": "363",
+                "province_id": "26",
+                "site_accum": 193,
+                "city_accum": 20917,
+                "province_accum": 49206,
+                "ts": "/mnt/data/accum_runs/20230825/2023082503"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    45.954,
+                    33.999
+                ]
+            },
+            "properties": {
+                "site_id": "23731",
+                "city_id": "360",
+                "province_id": "25",
+                "site_accum": 24,
+                "city_accum": 124,
+                "province_accum": 1158,
+                "ts": "/mnt/data/accum_runs/20230825/2023082503"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    46.423,
+                    33.646
+                ]
+            },
+            "properties": {
+                "site_id": "19768",
+                "city_id": "363",
+                "province_id": "26",
+                "site_accum": 91,
+                "city_accum": 20917,
+                "province_accum": 49206,
+                "ts": "/mnt/data/accum_runs/20230825/2023082503"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    46.053,
+                    33.119
+                ]
+            },
+            "properties": {
+                "site_id": "18015",
+                "city_id": "371",
+                "province_id": "26",
+                "site_accum": 589,
+                "city_accum": 15942,
+                "province_accum": 49206,
+                "ts": "/mnt/data/accum_runs/20230825/2023082503"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    46.346,
+                    33.718
+                ]
+            },
+            "properties": {
+                "site_id": "22295",
+                "city_id": "363",
+                "province_id": "26",
+                "site_accum": 195,
+                "city_accum": 20917,
+                "province_accum": 49206,
+                "ts": "/mnt/data/accum_runs/20230825/2023082503"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    46.993,
+                    33.344
+                ]
+            },
+            "properties": {
+                "site_id": "24150",
+                "city_id": "365",
+                "province_id": "26",
+                "site_accum": 86,
+                "city_accum": 477,
+                "province_accum": 49206,
+                "ts": "/mnt/data/accum_runs/20230825/2023082503"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    46.914,
+                    33.46
+                ]
+            },
+            "properties": {
+                "site_id": "25219",
+                "city_id": "369",
+                "province_id": "26",
+                "site_accum": 8,
+                "city_accum": 1211,
+                "province_accum": 49206,
+                "ts": "/mnt/data/accum_runs/20230825/2023082503"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    45.906,
+                    33.716
+                ]
+            },
+            "properties": {
+                "site_id": "28749",
+                "city_id": "363",
+                "province_id": "26",
+                "site_accum": 3,
+                "city_accum": 20917,
+                "province_accum": 49206,
+                "ts": "/mnt/data/accum_runs/20230825/2023082503"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    46.659,
+                    33.699
+                ]
+            },
+            "properties": {
+                "site_id": "5763",
+                "city_id": "366",
+                "province_id": "26",
+                "site_accum": 158,
+                "city_accum": 4543,
+                "province_accum": 49206,
+                "ts": "/mnt/data/accum_runs/20230825/2023082503"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    46.474,
+                    33.941
+                ]
+            },
+            "properties": {
+                "site_id": "14972",
+                "city_id": "360",
+                "province_id": "25",
+                "site_accum": 14,
+                "city_accum": 124,
+                "province_accum": 1158,
+                "ts": "/mnt/data/accum_runs/20230825/2023082503"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    46.052,
+                    33.122
+                ]
+            },
+            "properties": {
+                "site_id": "20822",
+                "city_id": "371",
+                "province_id": "26",
+                "site_accum": 405,
+                "city_accum": 15942,
+                "province_accum": 49206,
+                "ts": "/mnt/data/accum_runs/20230825/2023082503"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    46.298,
+                    33.694
+                ]
+            },
+            "properties": {
+                "site_id": "5761",
+                "city_id": "363",
+                "province_id": "26",
+                "site_accum": 590,
+                "city_accum": 20917,
+                "province_accum": 49206,
+                "ts": "/mnt/data/accum_runs/20230825/2023082503"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    46.547,
+                    33.897
+                ]
+            },
+            "properties": {
+                "site_id": "21699",
+                "city_id": "360",
+                "province_id": "25",
+                "site_accum": 52,
+                "city_accum": 124,
+                "province_accum": 1158,
+                "ts": "/mnt/data/accum_runs/20230825/2023082503"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    46.583,
+                    33.755
+                ]
+            },
+            "properties": {
+                "site_id": "25588",
+                "city_id": "366",
+                "province_id": "26",
+                "site_accum": 42,
+                "city_accum": 4543,
+                "province_accum": 49206,
+                "ts": "/mnt/data/accum_runs/20230825/2023082503"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    46.855,
+                    33.517
+                ]
+            },
+            "properties": {
+                "site_id": "28704",
+                "city_id": "369",
+                "province_id": "26",
+                "site_accum": 28,
+                "city_accum": 1211,
+                "province_accum": 49206,
+                "ts": "/mnt/data/accum_runs/20230825/2023082503"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    45.958,
+                    33.824
+                ]
+            },
+            "properties": {
+                "site_id": "24527",
+                "city_id": "363",
+                "province_id": "26",
+                "site_accum": 40,
+                "city_accum": 20917,
+                "province_accum": 49206,
+                "ts": "/mnt/data/accum_runs/20230825/2023082503"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    46.953,
+                    33.359
+                ]
+            },
+            "properties": {
+                "site_id": "26446",
+                "city_id": "365",
+                "province_id": "26",
+                "site_accum": 109,
+                "city_accum": 477,
+                "province_accum": 49206,
+                "ts": "/mnt/data/accum_runs/20230825/2023082503"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    46.376,
+                    33.59
+                ]
+            },
+            "properties": {
+                "site_id": "5701",
+                "city_id": "363",
+                "province_id": "26",
+                "site_accum": 773,
+                "city_accum": 20917,
+                "province_accum": 49206,
+                "ts": "/mnt/data/accum_runs/20230825/2023082503"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    46.564,
+                    33.766
+                ]
+            },
+            "properties": {
+                "site_id": "5790",
+                "city_id": "366",
+                "province_id": "26",
+                "site_accum": 203,
+                "city_accum": 4543,
+                "province_accum": 49206,
+                "ts": "/mnt/data/accum_runs/20230825/2023082503"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    46.653,
+                    33.828
+                ]
+            },
+            "properties": {
+                "site_id": "5818",
+                "city_id": "348",
+                "province_id": "25",
+                "site_accum": 526,
+                "city_accum": 910,
+                "province_accum": 1158,
+                "ts": "/mnt/data/accum_runs/20230825/2023082503"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    46.168,
+                    33.122
+                ]
+            },
+            "properties": {
+                "site_id": "5485",
+                "city_id": "371",
+                "province_id": "26",
+                "site_accum": 804,
+                "city_accum": 15942,
+                "province_accum": 49206,
+                "ts": "/mnt/data/accum_runs/20230825/2023082503"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    46.416,
+                    33.632
+                ]
+            },
+            "properties": {
+                "site_id": "18099",
+                "city_id": "363",
+                "province_id": "26",
+                "site_accum": 139,
+                "city_accum": 20917,
+                "province_accum": 49206,
+                "ts": "/mnt/data/accum_runs/20230825/2023082503"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    46.309,
+                    33.825
+                ]
+            },
+            "properties": {
+                "site_id": "5817",
+                "city_id": "364",
+                "province_id": "26",
+                "site_accum": 245,
+                "city_accum": 3733,
+                "province_accum": 49206,
+                "ts": "/mnt/data/accum_runs/20230825/2023082503"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    46.094,
+                    33.665
+                ]
+            },
+            "properties": {
+                "site_id": "14918",
+                "city_id": "363",
+                "province_id": "26",
+                "site_accum": 45,
+                "city_accum": 20917,
+                "province_accum": 49206,
+                "ts": "/mnt/data/accum_runs/20230825/2023082503"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    45.621,
+                    33.807
+                ]
+            },
+            "properties": {
+                "site_id": "14941",
+                "city_id": "357",
+                "province_id": "25",
+                "site_accum": 40,
+                "city_accum": 124,
+                "province_accum": 1158,
+                "ts": "/mnt/data/accum_runs/20230825/2023082503"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    46.721,
+                    33.818
+                ]
+            },
+            "properties": {
+                "site_id": "23725",
+                "city_id": "348",
+                "province_id": "25",
+                "site_accum": 384,
+                "city_accum": 910,
+                "province_accum": 1158,
+                "ts": "/mnt/data/accum_runs/20230825/2023082503"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    46.395,
+                    33.631
+                ]
+            },
+            "properties": {
+                "site_id": "26238",
+                "city_id": "363",
+                "province_id": "26",
+                "site_accum": 28,
+                "city_accum": 20917,
+                "province_accum": 49206,
+                "ts": "/mnt/data/accum_runs/20230825/2023082503"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    46.263,
+                    33.417
+                ]
+            },
+            "properties": {
+                "site_id": "19731",
+                "city_id": "371",
+                "province_id": "26",
+                "site_accum": 2017,
+                "city_accum": 15942,
+                "province_accum": 49206,
+                "ts": "/mnt/data/accum_runs/20230825/2023082503"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    46.43,
+                    33.875
+                ]
+            },
+            "properties": {
+                "site_id": "19780",
+                "city_id": "366",
+                "province_id": "26",
+                "site_accum": 188,
+                "city_accum": 4543,
+                "province_accum": 49206,
+                "ts": "/mnt/data/accum_runs/20230825/2023082503"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    46.182,
+                    33.929
+                ]
+            },
+            "properties": {
+                "site_id": "5890",
+                "city_id": "364",
+                "province_id": "26",
+                "site_accum": 199,
+                "city_accum": 3733,
+                "province_accum": 49206,
+                "ts": "/mnt/data/accum_runs/20230825/2023082503"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    46.141,
+                    33.95
+                ]
+            },
+            "properties": {
+                "site_id": "26312",
+                "city_id": "364",
+                "province_id": "26",
+                "site_accum": 339,
+                "city_accum": 3733,
+                "province_accum": 49206,
+                "ts": "/mnt/data/accum_runs/20230825/2023082503"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    46.484,
+                    33.567
+                ]
+            },
+            "properties": {
+                "site_id": "5694",
+                "city_id": "363",
+                "province_id": "26",
+                "site_accum": 91,
+                "city_accum": 20917,
+                "province_accum": 49206,
+                "ts": "/mnt/data/accum_runs/20230825/2023082503"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    46.482,
+                    33.521
+                ]
+            },
+            "properties": {
+                "site_id": "18076",
+                "city_id": "363",
+                "province_id": "26",
+                "site_accum": 69,
+                "city_accum": 20917,
+                "province_accum": 49206,
+                "ts": "/mnt/data/accum_runs/20230825/2023082503"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    46.634,
+                    33.268
+                ]
+            },
+            "properties": {
+                "site_id": "29251",
+                "city_id": "370",
+                "province_id": "26",
+                "site_accum": 6,
+                "city_accum": 1256,
+                "province_accum": 49206,
+                "ts": "/mnt/data/accum_runs/20230825/2023082503"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    46.414,
+                    33.64
+                ]
+            },
+            "properties": {
+                "site_id": "5735",
+                "city_id": "363",
+                "province_id": "26",
+                "site_accum": 319,
+                "city_accum": 20917,
+                "province_accum": 49206,
+                "ts": "/mnt/data/accum_runs/20230825/2023082503"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    46.497,
+                    33.528
+                ]
+            },
+            "properties": {
+                "site_id": "24980",
+                "city_id": "363",
+                "province_id": "26",
+                "site_accum": 64,
+                "city_accum": 20917,
+                "province_accum": 49206,
+                "ts": "/mnt/data/accum_runs/20230825/2023082503"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    46.248,
+                    33.822
+                ]
+            },
+            "properties": {
+                "site_id": "14942",
+                "city_id": "364",
+                "province_id": "26",
+                "site_accum": 326,
+                "city_accum": 3733,
+                "province_accum": 49206,
+                "ts": "/mnt/data/accum_runs/20230825/2023082503"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    46.787,
+                    33.442
+                ]
+            },
+            "properties": {
+                "site_id": "20844",
+                "city_id": "363",
+                "province_id": "26",
+                "site_accum": 59,
+                "city_accum": 20917,
+                "province_accum": 49206,
+                "ts": "/mnt/data/accum_runs/20230825/2023082503"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    46.483,
+                    33.831
+                ]
+            },
+            "properties": {
+                "site_id": "27197",
+                "city_id": "366",
+                "province_id": "26",
+                "site_accum": 28,
+                "city_accum": 4543,
+                "province_accum": 49206,
+                "ts": "/mnt/data/accum_runs/20230825/2023082503"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    46.389,
+                    33.665
+                ]
+            },
+            "properties": {
+                "site_id": "5751",
+                "city_id": "363",
+                "province_id": "26",
+                "site_accum": 56,
+                "city_accum": 20917,
+                "province_accum": 49206,
+                "ts": "/mnt/data/accum_runs/20230825/2023082503"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    46.486,
+                    33.091
+                ]
+            },
+            "properties": {
+                "site_id": "25425",
+                "city_id": "371",
+                "province_id": "26",
+                "site_accum": 165,
+                "city_accum": 15942,
+                "province_accum": 49206,
+                "ts": "/mnt/data/accum_runs/20230825/2023082503"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    46.802,
+                    33.106
+                ]
+            },
+            "properties": {
+                "site_id": "26275",
+                "city_id": "368",
+                "province_id": "26",
+                "site_accum": 5,
+                "city_accum": 1127,
+                "province_accum": 49206,
+                "ts": "/mnt/data/accum_runs/20230825/2023082503"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    46.399,
+                    33.635
+                ]
+            },
+            "properties": {
+                "site_id": "5728",
+                "city_id": "363",
+                "province_id": "26",
+                "site_accum": 98,
+                "city_accum": 20917,
+                "province_accum": 49206,
+                "ts": "/mnt/data/accum_runs/20230825/2023082503"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    46.229,
+                    33.707
+                ]
+            },
+            "properties": {
+                "site_id": "19772",
+                "city_id": "363",
+                "province_id": "26",
+                "site_accum": 15,
+                "city_accum": 20917,
+                "province_accum": 49206,
+                "ts": "/mnt/data/accum_runs/20230825/2023082503"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    46.875,
+                    32.86
+                ]
+            },
+            "properties": {
+                "site_id": "26100",
+                "city_id": "368",
+                "province_id": "26",
+                "site_accum": 353,
+                "city_accum": 1127,
+                "province_accum": 49206,
+                "ts": "/mnt/data/accum_runs/20230825/2023082503"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    46.436,
+                    33.243
+                ]
+            },
+            "properties": {
+                "site_id": "28770",
+                "city_id": "370",
+                "province_id": "26",
+                "site_accum": 4,
+                "city_accum": 1256,
+                "province_accum": 49206,
+                "ts": "/mnt/data/accum_runs/20230825/2023082503"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    46.409,
+                    33.634
+                ]
+            },
+            "properties": {
+                "site_id": "5727",
+                "city_id": "363",
+                "province_id": "26",
+                "site_accum": 115,
+                "city_accum": 20917,
+                "province_accum": 49206,
+                "ts": "/mnt/data/accum_runs/20230825/2023082503"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    46.572,
+                    33.77
+                ]
+            },
+            "properties": {
+                "site_id": "14938",
+                "city_id": "366",
+                "province_id": "26",
+                "site_accum": 313,
+                "city_accum": 4543,
+                "province_accum": 49206,
+                "ts": "/mnt/data/accum_runs/20230825/2023082503"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    46.397,
+                    33.621
+                ]
+            },
+            "properties": {
+                "site_id": "19764",
+                "city_id": "363",
+                "province_id": "26",
+                "site_accum": 401,
+                "city_accum": 20917,
+                "province_accum": 49206,
+                "ts": "/mnt/data/accum_runs/20230825/2023082503"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    46.426,
+                    33.638
+                ]
+            },
+            "properties": {
+                "site_id": "23957",
+                "city_id": "363",
+                "province_id": "26",
+                "site_accum": 108,
+                "city_accum": 20917,
+                "province_accum": 49206,
+                "ts": "/mnt/data/accum_runs/20230825/2023082503"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    46.744,
+                    33.607
+                ]
+            },
+            "properties": {
+                "site_id": "18094",
+                "city_id": "369",
+                "province_id": "26",
+                "site_accum": 86,
+                "city_accum": 1211,
+                "province_accum": 49206,
+                "ts": "/mnt/data/accum_runs/20230825/2023082503"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    46.428,
+                    33.642
+                ]
+            },
+            "properties": {
+                "site_id": "5737",
+                "city_id": "363",
+                "province_id": "26",
+                "site_accum": 151,
+                "city_accum": 20917,
+                "province_accum": 49206,
+                "ts": "/mnt/data/accum_runs/20230825/2023082503"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    46.569,
+                    33.523
+                ]
+            },
+            "properties": {
+                "site_id": "25730",
+                "city_id": "363",
+                "province_id": "26",
+                "site_accum": 63,
+                "city_accum": 20917,
+                "province_accum": 49206,
+                "ts": "/mnt/data/accum_runs/20230825/2023082503"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    46.378,
+                    33.621
+                ]
+            },
+            "properties": {
+                "site_id": "5715",
+                "city_id": "363",
+                "province_id": "26",
+                "site_accum": 276,
+                "city_accum": 20917,
+                "province_accum": 49206,
+                "ts": "/mnt/data/accum_runs/20230825/2023082503"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    46.262,
+                    33.959
+                ]
+            },
+            "properties": {
+                "site_id": "23155",
+                "city_id": "360",
+                "province_id": "25",
+                "site_accum": 34,
+                "city_accum": 124,
+                "province_accum": 1158,
+                "ts": "/mnt/data/accum_runs/20230825/2023082503"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    46.413,
+                    33.645
+                ]
+            },
+            "properties": {
+                "site_id": "5741",
+                "city_id": "363",
+                "province_id": "26",
+                "site_accum": 180,
+                "city_accum": 20917,
+                "province_accum": 49206,
+                "ts": "/mnt/data/accum_runs/20230825/2023082503"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    46.396,
+                    33.584
+                ]
+            },
+            "properties": {
+                "site_id": "23718",
+                "city_id": "363",
+                "province_id": "26",
+                "site_accum": 358,
+                "city_accum": 20917,
+                "province_accum": 49206,
+                "ts": "/mnt/data/accum_runs/20230825/2023082503"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    46.94,
+                    33.004
+                ]
+            },
+            "properties": {
+                "site_id": "26985",
+                "city_id": "368",
+                "province_id": "26",
+                "site_accum": 37,
+                "city_accum": 1127,
+                "province_accum": 49206,
+                "ts": "/mnt/data/accum_runs/20230825/2023082503"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    46.498,
+                    33.622
+                ]
+            },
+            "properties": {
+                "site_id": "28393",
+                "city_id": "363",
+                "province_id": "26",
+                "site_accum": 17,
+                "city_accum": 20917,
+                "province_accum": 49206,
+                "ts": "/mnt/data/accum_runs/20230825/2023082503"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    46.407,
+                    33.508
+                ]
+            },
+            "properties": {
+                "site_id": "22279",
+                "city_id": "371",
+                "province_id": "26",
+                "site_accum": 37,
+                "city_accum": 15942,
+                "province_accum": 49206,
+                "ts": "/mnt/data/accum_runs/20230825/2023082503"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    46.601,
+                    33.386
+                ]
+            },
+            "properties": {
+                "site_id": "5561",
+                "city_id": "370",
+                "province_id": "26",
+                "site_accum": 220,
+                "city_accum": 1256,
+                "province_accum": 49206,
+                "ts": "/mnt/data/accum_runs/20230825/2023082503"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    46.388,
+                    33.616
+                ]
+            },
+            "properties": {
+                "site_id": "20859",
+                "city_id": "363",
+                "province_id": "26",
+                "site_accum": 257,
+                "city_accum": 20917,
+                "province_accum": 49206,
+                "ts": "/mnt/data/accum_runs/20230825/2023082503"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    46.597,
+                    33.381
+                ]
+            },
+            "properties": {
+                "site_id": "5556",
+                "city_id": "370",
+                "province_id": "26",
+                "site_accum": 202,
+                "city_accum": 1256,
+                "province_accum": 49206,
+                "ts": "/mnt/data/accum_runs/20230825/2023082503"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    46.44,
+                    33.638
+                ]
+            },
+            "properties": {
+                "site_id": "19766",
+                "city_id": "363",
+                "province_id": "26",
+                "site_accum": 192,
+                "city_accum": 20917,
+                "province_accum": 49206,
+                "ts": "/mnt/data/accum_runs/20230825/2023082503"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    46.424,
+                    33.63
+                ]
+            },
+            "properties": {
+                "site_id": "5722",
+                "city_id": "363",
+                "province_id": "26",
+                "site_accum": 32,
+                "city_accum": 20917,
+                "province_accum": 49206,
+                "ts": "/mnt/data/accum_runs/20230825/2023082503"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    46.215,
+                    33.455
+                ]
+            },
+            "properties": {
+                "site_id": "5603",
+                "city_id": "371",
+                "province_id": "26",
+                "site_accum": 1028,
+                "city_accum": 15942,
+                "province_accum": 49206,
+                "ts": "/mnt/data/accum_runs/20230825/2023082503"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    45.993,
+                    33.667
+                ]
+            },
+            "properties": {
+                "site_id": "27886",
+                "city_id": "363",
+                "province_id": "26",
+                "site_accum": 15,
+                "city_accum": 20917,
+                "province_accum": 49206,
+                "ts": "/mnt/data/accum_runs/20230825/2023082503"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    46.163,
+                    33.115
+                ]
+            },
+            "properties": {
+                "site_id": "5481",
+                "city_id": "371",
+                "province_id": "26",
+                "site_accum": 494,
+                "city_accum": 15942,
+                "province_accum": 49206,
+                "ts": "/mnt/data/accum_runs/20230825/2023082503"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    46.518,
+                    33.204
+                ]
+            },
+            "properties": {
+                "site_id": "14792",
+                "city_id": "370",
+                "province_id": "26",
+                "site_accum": 397,
+                "city_accum": 1256,
+                "province_accum": 49206,
+                "ts": "/mnt/data/accum_runs/20230825/2023082503"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    46.356,
+                    33.627
+                ]
+            },
+            "properties": {
+                "site_id": "14900",
+                "city_id": "363",
+                "province_id": "26",
+                "site_accum": 193,
+                "city_accum": 20917,
+                "province_accum": 49206,
+                "ts": "/mnt/data/accum_runs/20230825/2023082503"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    46.962,
+                    32.818
+                ]
+            },
+            "properties": {
+                "site_id": "14726",
+                "city_id": "368",
+                "province_id": "26",
+                "site_accum": 161,
+                "city_accum": 1127,
+                "province_accum": 49206,
+                "ts": "/mnt/data/accum_runs/20230825/2023082503"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    46.39,
+                    33.628
+                ]
+            },
+            "properties": {
+                "site_id": "14901",
+                "city_id": "363",
+                "province_id": "26",
+                "site_accum": 308,
+                "city_accum": 20917,
+                "province_accum": 49206,
+                "ts": "/mnt/data/accum_runs/20230825/2023082503"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    46.571,
+                    33.763
+                ]
+            },
+            "properties": {
+                "site_id": "5788",
+                "city_id": "366",
+                "province_id": "26",
+                "site_accum": 33,
+                "city_accum": 4543,
+                "province_accum": 49206,
+                "ts": "/mnt/data/accum_runs/20230825/2023082503"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    46.415,
+                    33.636
+                ]
+            },
+            "properties": {
+                "site_id": "22289",
+                "city_id": "363",
+                "province_id": "26",
+                "site_accum": 210,
+                "city_accum": 20917,
+                "province_accum": 49206,
+                "ts": "/mnt/data/accum_runs/20230825/2023082503"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    46.314,
+                    33.824
+                ]
+            },
+            "properties": {
+                "site_id": "5816",
+                "city_id": "364",
+                "province_id": "26",
+                "site_accum": 341,
+                "city_accum": 3733,
+                "province_accum": 49206,
+                "ts": "/mnt/data/accum_runs/20230825/2023082503"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    46.372,
+                    33.625
+                ]
+            },
+            "properties": {
+                "site_id": "23147",
+                "city_id": "363",
+                "province_id": "26",
+                "site_accum": 138,
+                "city_accum": 20917,
+                "province_accum": 49206,
+                "ts": "/mnt/data/accum_runs/20230825/2023082503"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    46.411,
+                    33.625
+                ]
+            },
+            "properties": {
+                "site_id": "5717",
+                "city_id": "363",
+                "province_id": "26",
+                "site_accum": 305,
+                "city_accum": 20917,
+                "province_accum": 49206,
+                "ts": "/mnt/data/accum_runs/20230825/2023082503"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    46.287,
+                    33.941
+                ]
+            },
+            "properties": {
+                "site_id": "5898",
+                "city_id": "364",
+                "province_id": "26",
+                "site_accum": 207,
+                "city_accum": 3733,
+                "province_accum": 49206,
+                "ts": "/mnt/data/accum_runs/20230825/2023082503"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    46.299,
+                    33.834
+                ]
+            },
+            "properties": {
+                "site_id": "19777",
+                "city_id": "364",
+                "province_id": "26",
+                "site_accum": 385,
+                "city_accum": 3733,
+                "province_accum": 49206,
+                "ts": "/mnt/data/accum_runs/20230825/2023082503"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    46.672,
+                    33.731
+                ]
+            },
+            "properties": {
+                "site_id": "22297",
+                "city_id": "366",
+                "province_id": "26",
+                "site_accum": 2119,
+                "city_accum": 4543,
+                "province_accum": 49206,
+                "ts": "/mnt/data/accum_runs/20230825/2023082503"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    46.596,
+                    33.397
+                ]
+            },
+            "properties": {
+                "site_id": "14821",
+                "city_id": "370",
+                "province_id": "26",
+                "site_accum": 68,
+                "city_accum": 1256,
+                "province_accum": 49206,
+                "ts": "/mnt/data/accum_runs/20230825/2023082503"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    46.917,
+                    33.229
+                ]
+            },
+            "properties": {
+                "site_id": "23947",
+                "city_id": "368",
+                "province_id": "26",
+                "site_accum": 143,
+                "city_accum": 1127,
+                "province_accum": 49206,
+                "ts": "/mnt/data/accum_runs/20230825/2023082503"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    46.964,
+                    33.185
+                ]
+            },
+            "properties": {
+                "site_id": "26276",
+                "city_id": "368",
+                "province_id": "26",
+                "site_accum": 40,
+                "city_accum": 1127,
+                "province_accum": 49206,
+                "ts": "/mnt/data/accum_runs/20230825/2023082503"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    47.03,
+                    33.308
+                ]
+            },
+            "properties": {
+                "site_id": "19725",
+                "city_id": "365",
+                "province_id": "26",
+                "site_accum": 81,
+                "city_accum": 477,
+                "province_accum": 49206,
+                "ts": "/mnt/data/accum_runs/20230825/2023082503"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    46.436,
+                    33.632
+                ]
+            },
+            "properties": {
+                "site_id": "5725",
+                "city_id": "363",
+                "province_id": "26",
+                "site_accum": 691,
+                "city_accum": 20917,
+                "province_accum": 49206,
+                "ts": "/mnt/data/accum_runs/20230825/2023082503"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    46.253,
+                    33.31
+                ]
+            },
+            "properties": {
+                "site_id": "21662",
+                "city_id": "371",
+                "province_id": "26",
+                "site_accum": 1992,
+                "city_accum": 15942,
+                "province_accum": 49206,
+                "ts": "/mnt/data/accum_runs/20230825/2023082503"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    46.551,
+                    33.774
+                ]
+            },
+            "properties": {
+                "site_id": "5796",
+                "city_id": "366",
+                "province_id": "26",
+                "site_accum": 100,
+                "city_accum": 4543,
+                "province_accum": 49206,
+                "ts": "/mnt/data/accum_runs/20230825/2023082503"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    46.674,
+                    33.643
+                ]
+            },
+            "properties": {
+                "site_id": "25502",
+                "city_id": "369",
+                "province_id": "26",
+                "site_accum": 42,
+                "city_accum": 1211,
+                "province_accum": 49206,
+                "ts": "/mnt/data/accum_runs/20230825/2023082503"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    46.419,
+                    33.633
+                ]
+            },
+            "properties": {
+                "site_id": "14907",
+                "city_id": "363",
+                "province_id": "26",
+                "site_accum": 260,
+                "city_accum": 20917,
+                "province_accum": 49206,
+                "ts": "/mnt/data/accum_runs/20230825/2023082503"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    46.957,
+                    33.459
+                ]
+            },
+            "properties": {
+                "site_id": "27235",
+                "city_id": "369",
+                "province_id": "26",
+                "site_accum": 17,
+                "city_accum": 1211,
+                "province_accum": 49206,
+                "ts": "/mnt/data/accum_runs/20230825/2023082503"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    46.402,
+                    33.624
+                ]
+            },
+            "properties": {
+                "site_id": "23146",
+                "city_id": "363",
+                "province_id": "26",
+                "site_accum": 137,
+                "city_accum": 20917,
+                "province_accum": 49206,
+                "ts": "/mnt/data/accum_runs/20230825/2023082503"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    46.406,
+                    33.632
+                ]
+            },
+            "properties": {
+                "site_id": "18098",
+                "city_id": "363",
+                "province_id": "26",
+                "site_accum": 200,
+                "city_accum": 20917,
+                "province_accum": 49206,
+                "ts": "/mnt/data/accum_runs/20230825/2023082503"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    45.639,
+                    33.885
+                ]
+            },
+            "properties": {
+                "site_id": "19783",
+                "city_id": "357",
+                "province_id": "25",
+                "site_accum": 50,
+                "city_accum": 124,
+                "province_accum": 1158,
+                "ts": "/mnt/data/accum_runs/20230825/2023082503"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    46.421,
+                    33.654
+                ]
+            },
+            "properties": {
+                "site_id": "22291",
+                "city_id": "363",
+                "province_id": "26",
+                "site_accum": 136,
+                "city_accum": 20917,
+                "province_accum": 49206,
+                "ts": "/mnt/data/accum_runs/20230825/2023082503"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    45.968,
+                    33.75
+                ]
+            },
+            "properties": {
+                "site_id": "20873",
+                "city_id": "363",
+                "province_id": "26",
+                "site_accum": 138,
+                "city_accum": 20917,
+                "province_accum": 49206,
+                "ts": "/mnt/data/accum_runs/20230825/2023082503"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    46.395,
+                    33.63
+                ]
+            },
+            "properties": {
+                "site_id": "22288",
+                "city_id": "363",
+                "province_id": "26",
+                "site_accum": 206,
+                "city_accum": 20917,
+                "province_accum": 49206,
+                "ts": "/mnt/data/accum_runs/20230825/2023082503"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    46.363,
+                    33.961
+                ]
+            },
+            "properties": {
+                "site_id": "28529",
+                "city_id": "366",
+                "province_id": "26",
+                "site_accum": 76,
+                "city_accum": 4543,
+                "province_accum": 49206,
+                "ts": "/mnt/data/accum_runs/20230825/2023082503"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    46.393,
+                    33.636
+                ]
+            },
+            "properties": {
+                "site_id": "14908",
+                "city_id": "363",
+                "province_id": "26",
+                "site_accum": 284,
+                "city_accum": 20917,
+                "province_accum": 49206,
+                "ts": "/mnt/data/accum_runs/20230825/2023082503"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    46.403,
+                    33.216
+                ]
+            },
+            "properties": {
+                "site_id": "22742",
+                "city_id": "370",
+                "province_id": "26",
+                "site_accum": 85,
+                "city_accum": 1256,
+                "province_accum": 49206,
+                "ts": "/mnt/data/accum_runs/20230825/2023082503"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    46.418,
+                    33.627
+                ]
+            },
+            "properties": {
+                "site_id": "20862",
+                "city_id": "363",
+                "province_id": "26",
+                "site_accum": 417,
+                "city_accum": 20917,
+                "province_accum": 49206,
+                "ts": "/mnt/data/accum_runs/20230825/2023082503"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    46.436,
+                    33.635
+                ]
+            },
+            "properties": {
+                "site_id": "25731",
+                "city_id": "363",
+                "province_id": "26",
+                "site_accum": 226,
+                "city_accum": 20917,
+                "province_accum": 49206,
+                "ts": "/mnt/data/accum_runs/20230825/2023082503"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    46.538,
+                    33.506
+                ]
+            },
+            "properties": {
+                "site_id": "24156",
+                "city_id": "363",
+                "province_id": "26",
+                "site_accum": 185,
+                "city_accum": 20917,
+                "province_accum": 49206,
+                "ts": "/mnt/data/accum_runs/20230825/2023082503"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    46.854,
+                    33.664
+                ]
+            },
+            "properties": {
+                "site_id": "14916",
+                "city_id": "366",
+                "province_id": "26",
+                "site_accum": 215,
+                "city_accum": 4543,
+                "province_accum": 49206,
+                "ts": "/mnt/data/accum_runs/20230825/2023082503"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    46.216,
+                    33.557
+                ]
+            },
+            "properties": {
+                "site_id": "22281",
+                "city_id": "371",
+                "province_id": "26",
+                "site_accum": 948,
+                "city_accum": 15942,
+                "province_accum": 49206,
+                "ts": "/mnt/data/accum_runs/20230825/2023082503"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    46.5,
+                    33.728
+                ]
+            },
+            "properties": {
+                "site_id": "5773",
+                "city_id": "369",
+                "province_id": "26",
+                "site_accum": 545,
+                "city_accum": 1211,
+                "province_accum": 49206,
+                "ts": "/mnt/data/accum_runs/20230825/2023082503"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    46.814,
+                    33.565
+                ]
+            },
+            "properties": {
+                "site_id": "14886",
+                "city_id": "369",
+                "province_id": "26",
+                "site_accum": 135,
+                "city_accum": 1211,
+                "province_accum": 49206,
+                "ts": "/mnt/data/accum_runs/20230825/2023082503"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    46.847,
+                    33.305
+                ]
+            },
+            "properties": {
+                "site_id": "14805",
+                "city_id": "370",
+                "province_id": "26",
+                "site_accum": 15,
+                "city_accum": 1256,
+                "province_accum": 49206,
+                "ts": "/mnt/data/accum_runs/20230825/2023082503"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    46.358,
+                    33.924
+                ]
+            },
+            "properties": {
+                "site_id": "20889",
+                "city_id": "366",
+                "province_id": "26",
+                "site_accum": 109,
+                "city_accum": 4543,
+                "province_accum": 49206,
+                "ts": "/mnt/data/accum_runs/20230825/2023082503"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    46.083,
+                    33.439
+                ]
+            },
+            "properties": {
+                "site_id": "28985",
+                "city_id": "371",
+                "province_id": "26",
+                "site_accum": 1,
+                "city_accum": 15942,
+                "province_accum": 49206,
+                "ts": "/mnt/data/accum_runs/20230825/2023082503"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    46.187,
+                    33.47
+                ]
+            },
+            "properties": {
+                "site_id": "18063",
+                "city_id": "371",
+                "province_id": "26",
+                "site_accum": 1018,
+                "city_accum": 15942,
+                "province_accum": 49206,
+                "ts": "/mnt/data/accum_runs/20230825/2023082503"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    46.354,
+                    33.161
+                ]
+            },
+            "properties": {
+                "site_id": "20826",
+                "city_id": "371",
+                "province_id": "26",
+                "site_accum": 717,
+                "city_accum": 15942,
+                "province_accum": 49206,
+                "ts": "/mnt/data/accum_runs/20230825/2023082503"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    46.16,
+                    33.122
+                ]
+            },
+            "properties": {
+                "site_id": "5484",
+                "city_id": "371",
+                "province_id": "26",
+                "site_accum": 706,
+                "city_accum": 15942,
+                "province_accum": 49206,
+                "ts": "/mnt/data/accum_runs/20230825/2023082503"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    46.407,
+                    33.644
+                ]
+            },
+            "properties": {
+                "site_id": "5739",
+                "city_id": "363",
+                "province_id": "26",
+                "site_accum": 264,
+                "city_accum": 20917,
+                "province_accum": 49206,
+                "ts": "/mnt/data/accum_runs/20230825/2023082503"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    46.284,
+                    33.095
+                ]
+            },
+            "properties": {
+                "site_id": "14781",
+                "city_id": "371",
+                "province_id": "26",
+                "site_accum": 853,
+                "city_accum": 15942,
+                "province_accum": 49206,
+                "ts": "/mnt/data/accum_runs/20230825/2023082503"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    46.387,
+                    33.64
+                ]
+            },
+            "properties": {
+                "site_id": "14910",
+                "city_id": "363",
+                "province_id": "26",
+                "site_accum": 513,
+                "city_accum": 20917,
+                "province_accum": 49206,
+                "ts": "/mnt/data/accum_runs/20230825/2023082503"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    46.559,
+                    33.772
+                ]
+            },
+            "properties": {
+                "site_id": "19774",
+                "city_id": "366",
+                "province_id": "26",
+                "site_accum": 262,
+                "city_accum": 4543,
+                "province_accum": 49206,
+                "ts": "/mnt/data/accum_runs/20230825/2023082503"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    46.466,
+                    33.43
+                ]
+            },
+            "properties": {
+                "site_id": "5587",
+                "city_id": "370",
+                "province_id": "26",
+                "site_accum": 116,
+                "city_accum": 1256,
+                "province_accum": 49206,
+                "ts": "/mnt/data/accum_runs/20230825/2023082503"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    46.432,
+                    33.635
+                ]
+            },
+            "properties": {
+                "site_id": "5729",
+                "city_id": "363",
+                "province_id": "26",
+                "site_accum": 500,
+                "city_accum": 20917,
+                "province_accum": 49206,
+                "ts": "/mnt/data/accum_runs/20230825/2023082503"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    46.304,
+                    33.833
+                ]
+            },
+            "properties": {
+                "site_id": "5821",
+                "city_id": "364",
+                "province_id": "26",
+                "site_accum": 435,
+                "city_accum": 3733,
+                "province_accum": 49206,
+                "ts": "/mnt/data/accum_runs/20230825/2023082503"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    46.552,
+                    33.698
+                ]
+            },
+            "properties": {
+                "site_id": "14924",
+                "city_id": "369",
+                "province_id": "26",
+                "site_accum": 103,
+                "city_accum": 1211,
+                "province_accum": 49206,
+                "ts": "/mnt/data/accum_runs/20230825/2023082503"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    46.071,
+                    33.118
+                ]
+            },
+            "properties": {
+                "site_id": "19714",
+                "city_id": "371",
+                "province_id": "26",
+                "site_accum": 2246,
+                "city_accum": 15942,
+                "province_accum": 49206,
+                "ts": "/mnt/data/accum_runs/20230825/2023082503"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    46.543,
+                    33.253
+                ]
+            },
+            "properties": {
+                "site_id": "14795",
+                "city_id": "370",
+                "province_id": "26",
+                "site_accum": 33,
+                "city_accum": 1256,
+                "province_accum": 49206,
+                "ts": "/mnt/data/accum_runs/20230825/2023082503"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    46.741,
+                    33.462
+                ]
+            },
+            "properties": {
+                "site_id": "26180",
+                "city_id": "363",
+                "province_id": "26",
+                "site_accum": 19,
+                "city_accum": 20917,
+                "province_accum": 49206,
+                "ts": "/mnt/data/accum_runs/20230825/2023082503"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    46.433,
+                    33.629
+                ]
+            },
+            "properties": {
+                "site_id": "5719",
+                "city_id": "363",
+                "province_id": "26",
+                "site_accum": 203,
+                "city_accum": 20917,
+                "province_accum": 49206,
+                "ts": "/mnt/data/accum_runs/20230825/2023082503"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    46.619,
+                    33.653
+                ]
+            },
+            "properties": {
+                "site_id": "26595",
+                "city_id": "369",
+                "province_id": "26",
+                "site_accum": 17,
+                "city_accum": 1211,
+                "province_accum": 49206,
+                "ts": "/mnt/data/accum_runs/20230825/2023082503"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    46.509,
+                    33.637
+                ]
+            },
+            "properties": {
+                "site_id": "5732",
+                "city_id": "363",
+                "province_id": "26",
+                "site_accum": 2801,
+                "city_accum": 20917,
+                "province_accum": 49206,
+                "ts": "/mnt/data/accum_runs/20230825/2023082503"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    46.289,
+                    33.717
+                ]
+            },
+            "properties": {
+                "site_id": "18122",
+                "city_id": "363",
+                "province_id": "26",
+                "site_accum": 291,
+                "city_accum": 20917,
+                "province_accum": 49206,
+                "ts": "/mnt/data/accum_runs/20230825/2023082503"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    46.403,
+                    33.616
+                ]
+            },
+            "properties": {
+                "site_id": "20860",
+                "city_id": "363",
+                "province_id": "26",
+                "site_accum": 861,
+                "city_accum": 20917,
+                "province_accum": 49206,
+                "ts": "/mnt/data/accum_runs/20230825/2023082503"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    46.379,
+                    33.633
+                ]
+            },
+            "properties": {
+                "site_id": "5726",
+                "city_id": "363",
+                "province_id": "26",
+                "site_accum": 431,
+                "city_accum": 20917,
+                "province_accum": 49206,
+                "ts": "/mnt/data/accum_runs/20230825/2023082503"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    46.411,
+                    33.631
+                ]
+            },
+            "properties": {
+                "site_id": "14902",
+                "city_id": "363",
+                "province_id": "26",
+                "site_accum": 290,
+                "city_accum": 20917,
+                "province_accum": 49206,
+                "ts": "/mnt/data/accum_runs/20230825/2023082503"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    46.402,
+                    33.642
+                ]
+            },
+            "properties": {
+                "site_id": "14911",
+                "city_id": "363",
+                "province_id": "26",
+                "site_accum": 104,
+                "city_accum": 20917,
+                "province_accum": 49206,
+                "ts": "/mnt/data/accum_runs/20230825/2023082503"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    46.444,
+                    33.644
+                ]
+            },
+            "properties": {
+                "site_id": "20865",
+                "city_id": "363",
+                "province_id": "26",
+                "site_accum": 294,
+                "city_accum": 20917,
+                "province_accum": 49206,
+                "ts": "/mnt/data/accum_runs/20230825/2023082503"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    46.159,
+                    33.775
+                ]
+            },
+            "properties": {
+                "site_id": "22299",
+                "city_id": "363",
+                "province_id": "26",
+                "site_accum": 30,
+                "city_accum": 20917,
+                "province_accum": 49206,
+                "ts": "/mnt/data/accum_runs/20230825/2023082503"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    46.76,
+                    33.682
+                ]
+            },
+            "properties": {
+                "site_id": "24370",
+                "city_id": "366",
+                "province_id": "26",
+                "site_accum": 117,
+                "city_accum": 4543,
+                "province_accum": 49206,
+                "ts": "/mnt/data/accum_runs/20230825/2023082503"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    46.311,
+                    33.831
+                ]
+            },
+            "properties": {
+                "site_id": "5820",
+                "city_id": "364",
+                "province_id": "26",
+                "site_accum": 320,
+                "city_accum": 3733,
+                "province_accum": 49206,
+                "ts": "/mnt/data/accum_runs/20230825/2023082503"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    46.421,
+                    33.639
+                ]
+            },
+            "properties": {
+                "site_id": "5734",
+                "city_id": "363",
+                "province_id": "26",
+                "site_accum": 283,
+                "city_accum": 20917,
+                "province_accum": 49206,
+                "ts": "/mnt/data/accum_runs/20230825/2023082503"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    46.379,
+                    33.655
+                ]
+            },
+            "properties": {
+                "site_id": "5746",
+                "city_id": "363",
+                "province_id": "26",
+                "site_accum": 104,
+                "city_accum": 20917,
+                "province_accum": 49206,
+                "ts": "/mnt/data/accum_runs/20230825/2023082503"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    46.887,
+                    33.009
+                ]
+            },
+            "properties": {
+                "site_id": "18005",
+                "city_id": "368",
+                "province_id": "26",
+                "site_accum": 230,
+                "city_accum": 1127,
+                "province_accum": 49206,
+                "ts": "/mnt/data/accum_runs/20230825/2023082503"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    46.392,
+                    33.645
+                ]
+            },
+            "properties": {
+                "site_id": "18104",
+                "city_id": "363",
+                "province_id": "26",
+                "site_accum": 370,
+                "city_accum": 20917,
+                "province_accum": 49206,
+                "ts": "/mnt/data/accum_runs/20230825/2023082503"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    46.266,
+                    33.58
+                ]
+            },
+            "properties": {
+                "site_id": "25429",
+                "city_id": "371",
+                "province_id": "26",
+                "site_accum": 4,
+                "city_accum": 15942,
+                "province_accum": 49206,
+                "ts": "/mnt/data/accum_runs/20230825/2023082503"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    46.424,
+                    33.636
+                ]
+            },
+            "properties": {
+                "site_id": "22290",
+                "city_id": "363",
+                "province_id": "26",
+                "site_accum": 182,
+                "city_accum": 20917,
+                "province_accum": 49206,
+                "ts": "/mnt/data/accum_runs/20230825/2023082503"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    46.405,
+                    33.638
+                ]
+            },
+            "properties": {
+                "site_id": "18101",
+                "city_id": "363",
+                "province_id": "26",
+                "site_accum": 186,
+                "city_accum": 20917,
+                "province_accum": 49206,
+                "ts": "/mnt/data/accum_runs/20230825/2023082503"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    46.421,
+                    33.643
+                ]
+            },
+            "properties": {
+                "site_id": "24698",
+                "city_id": "363",
+                "province_id": "26",
+                "site_accum": 212,
+                "city_accum": 20917,
+                "province_accum": 49206,
+                "ts": "/mnt/data/accum_runs/20230825/2023082503"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    46.194,
+                    33.465
+                ]
+            },
+            "properties": {
+                "site_id": "25500",
+                "city_id": "371",
+                "province_id": "26",
+                "site_accum": 246,
+                "city_accum": 15942,
+                "province_accum": 49206,
+                "ts": "/mnt/data/accum_runs/20230825/2023082503"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    46.817,
+                    32.874
+                ]
+            },
+            "properties": {
+                "site_id": "26234",
+                "city_id": "368",
+                "province_id": "26",
+                "site_accum": 148,
+                "city_accum": 1127,
+                "province_accum": 49206,
+                "ts": "/mnt/data/accum_runs/20230825/2023082503"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    46.433,
+                    33.639
+                ]
+            },
+            "properties": {
+                "site_id": "20864",
+                "city_id": "363",
+                "province_id": "26",
+                "site_accum": 189,
+                "city_accum": 20917,
+                "province_accum": 49206,
+                "ts": "/mnt/data/accum_runs/20230825/2023082503"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    46.429,
+                    33.627
+                ]
+            },
+            "properties": {
+                "site_id": "18097",
+                "city_id": "363",
+                "province_id": "26",
+                "site_accum": 632,
+                "city_accum": 20917,
+                "province_accum": 49206,
+                "ts": "/mnt/data/accum_runs/20230825/2023082503"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    46.4,
+                    33.63
+                ]
+            },
+            "properties": {
+                "site_id": "5721",
+                "city_id": "363",
+                "province_id": "26",
+                "site_accum": 223,
+                "city_accum": 20917,
+                "province_accum": 49206,
+                "ts": "/mnt/data/accum_runs/20230825/2023082503"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    46.3,
+                    33.537
+                ]
+            },
+            "properties": {
+                "site_id": "20855",
+                "city_id": "371",
+                "province_id": "26",
+                "site_accum": 919,
+                "city_accum": 15942,
+                "province_accum": 49206,
+                "ts": "/mnt/data/accum_runs/20230825/2023082503"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    46.27,
+                    33.853
+                ]
+            },
+            "properties": {
+                "site_id": "5831",
+                "city_id": "364",
+                "province_id": "26",
+                "site_accum": 69,
+                "city_accum": 3733,
+                "province_accum": 49206,
+                "ts": "/mnt/data/accum_runs/20230825/2023082503"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    45.642,
+                    33.784
+                ]
+            },
+            "properties": {
+                "site_id": "19775",
+                "city_id": "357",
+                "province_id": "25",
+                "site_accum": 34,
+                "city_accum": 124,
+                "province_accum": 1158,
+                "ts": "/mnt/data/accum_runs/20230825/2023082503"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    46.506,
+                    33.805
+                ]
+            },
+            "properties": {
+                "site_id": "5809",
+                "city_id": "366",
+                "province_id": "26",
+                "site_accum": 580,
+                "city_accum": 4543,
+                "province_accum": 49206,
+                "ts": "/mnt/data/accum_runs/20230825/2023082503"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    46.309,
+                    33.589
+                ]
+            },
+            "properties": {
+                "site_id": "23467",
+                "city_id": "363",
+                "province_id": "26",
+                "site_accum": 597,
+                "city_accum": 20917,
+                "province_accum": 49206,
+                "ts": "/mnt/data/accum_runs/20230825/2023082503"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    46.496,
+                    33.372
+                ]
+            },
+            "properties": {
+                "site_id": "26731",
+                "city_id": "370",
+                "province_id": "26",
+                "site_accum": 25,
+                "city_accum": 1256,
+                "province_accum": 49206,
+                "ts": "/mnt/data/accum_runs/20230825/2023082503"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    46.417,
+                    33.645
+                ]
+            },
+            "properties": {
+                "site_id": "20866",
+                "city_id": "363",
+                "province_id": "26",
+                "site_accum": 244,
+                "city_accum": 20917,
+                "province_accum": 49206,
+                "ts": "/mnt/data/accum_runs/20230825/2023082503"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    46.382,
+                    33.628
+                ]
+            },
+            "properties": {
+                "site_id": "24160",
+                "city_id": "363",
+                "province_id": "26",
+                "site_accum": 264,
+                "city_accum": 20917,
+                "province_accum": 49206,
+                "ts": "/mnt/data/accum_runs/20230825/2023082503"
+            }
+        }
+    ]
+}
