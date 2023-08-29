@@ -3,6 +3,7 @@
     <h3 class="chart__title text-center w-full text-emerald-400 mb-2">
       {{ props.title }}
     </h3>
+
     <Bar class="chart__bar" :data="chartData" :options="optionsT" />
   </div>
 </template>
@@ -19,6 +20,8 @@ import {
   BarElement,
   CategoryScale,
   LinearScale,
+  elements,
+  Chart,
 } from "chart.js";
 
 ChartJS.register(
@@ -29,7 +32,6 @@ ChartJS.register(
   CategoryScale,
   LinearScale
 );
-
 const props = defineProps(["title", "label", "labels", "data"]);
 var maxP = Math.max(...props.data);
 
@@ -129,7 +131,6 @@ function formatdate(dateTimeString, type) {
     }
   }
 }
-
 const optionsT = {
   responsive: true,
   scales: {

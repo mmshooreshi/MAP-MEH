@@ -70,9 +70,17 @@ function getData() {
 }
 
 watch(distanceKm, (distN) => {
-  // console.log(distanceKm.value);
-
+  showD.value = false;
   getData();
+  // console.log(distanceKm.value);
+  setTimeout(() => (showD.value = true), 500);
+
+  // setTimeout(() => (showD.value = false), 1000);
+
+  // console.log(ChartJS.instances[0].$context.chart);
+  // ChartJS.instances[0].$context.chart.update();
+
+  // showD.value = true;
 });
 
 onMounted(() => {
@@ -194,6 +202,12 @@ function formatdate(dateTimeString, type) {
       v-if="geojson_arr.length > 0 && showD"
       class="absolute z-10 w-[98%] lg:w-[74%] 2xl:w-[50%] m-2 mt-10 p-2 cursor-pointer lg:mx-[13%] 2xl:mx-[25%] bg-[#1e503c50] border-1 border-emerald-400 rounded-xl overflow-hidden"
     >
+      <div
+        class="font-mono p-0 -m-2 ml-1 mt-0 absolute text-4xl hover:text-pink text-yellow"
+        @click="showD = false"
+      >
+        ✖
+      </div>
       <Chart
         class="chart font-peyda"
         title="انباشت ساعتی"
