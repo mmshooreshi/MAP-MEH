@@ -5,6 +5,9 @@
 // const {addValueToFilterList} = filtersStore;
 // const {filtersList} = storeToRefs(filtersStore);
 
+import {useFiltersStore} from "~/store/filters";
+import {storeToRefs} from "pinia";
+
 import {
   Chart as ChartJS,
   Title,
@@ -35,11 +38,20 @@ const indexEnd = ref(0);
 
 function getData() {
   var {result} = $fetch("/api/read-geojsons").then((result) => {
+    var k = 0;
     var geojs = result.geojs_data.filter((elements) => {
-      key_arr.value.push(elements.key);
-      geojson_arr.value.push(elements.fileContent);
-      total_arr.value.push(elements.total);
-      indexEnd.value += 1;
+      if (k == 0 && elements != null) {
+        key_arr.value = [elements.key];
+        geojson_arr.value = [elements.fileContent];
+        total_arr.value = [elements.total];
+        indexEnd.value = 1;
+      } else if (elements != null) {
+        key_arr.value.push(elements.key);
+        geojson_arr.value.push(elements.fileContent);
+        total_arr.value.push(elements.total);
+        indexEnd.value += 1;
+      }
+      k += 1;
       return elements !== null;
     });
   });
@@ -48,11 +60,94 @@ function getData() {
   console.log(geojson_arr.value);
   console.log(total_arr.value);
 }
+
+const filtersStore = useFiltersStore();
+const {distanceKm} = storeToRefs(filtersStore);
+
+watch(distanceKm, (distN) => {
+  console.log(distanceKm.value);
+
+  getData();
+});
+
 onMounted(() => {
   getData();
 });
 
 // The type of chart we want to create
+
+function getDateFormat(uDate, option) {
+  let date = new Intl.DateTimeFormat("fa-IR", option).format(uDate);
+  return date;
+}
+function toFarsiNumber(n) {
+  const farsiDigits = ["۰", "۱", "۲", "۳", "۴", "۵", "۶", "۷", "۸", "۹"];
+
+  return n.toString().replace(/\d/g, (x) => farsiDigits[x]);
+}
+
+function toRegularNumber(str) {
+  const farsiDigits = ["۰", "۱", "۲", "۳", "۴", "۵", "۶", "۷", "۸", "۹"];
+
+  return str.replace(/[۰-۹]/g, (x) => farsiDigits.indexOf(x));
+}
+function formatdate(dateTimeString, type) {
+  if (dateTimeString != undefined) {
+    const year = dateTimeString.slice(0, 4);
+    const month = dateTimeString.slice(4, 6) - 1; // Subtract 1 as months are zero-based in Date objects
+    const day = dateTimeString.slice(6, 8);
+    const hour = dateTimeString.slice(8, 10);
+    const minute = dateTimeString.slice(10, 12);
+
+    const dateObj = new Date(year, month, day, hour, minute);
+    const timestamp = dateObj.getTime();
+
+    const iranize = `${dateTimeString.slice(0, 4)}/${dateTimeString.slice(
+      4,
+      6
+    )}/${dateTimeString.slice(6, 8)} ${dateTimeString.slice(
+      8,
+      10
+    )}:${dateTimeString.slice(10, 12)}`;
+
+    const thatdayFa = {
+      day: getDateFormat(timestamp, {day: "2-digit"}),
+      month: getDateFormat(timestamp, {month: "numeric"}),
+      monthTitle: getDateFormat(timestamp, {month: "long"}),
+      year: getDateFormat(timestamp, {year: "numeric"}),
+      dayWeek: getDateFormat(timestamp, {weekday: "long"}),
+    };
+
+    console.log(thatdayFa);
+
+    if (type == 1) {
+      return (
+        "    در تاریخِ   " +
+        toRegularNumber(thatdayFa.year) +
+        "/" +
+        toRegularNumber(thatdayFa.month) +
+        "/" +
+        toRegularNumber(thatdayFa.day) +
+        "   و در ساعتِ   " +
+        toRegularNumber(hour) +
+        ":" +
+        toRegularNumber(minute)
+      );
+    } else {
+      return (
+        toRegularNumber(thatdayFa.year) +
+        "/" +
+        toRegularNumber(thatdayFa.month) +
+        "/" +
+        toRegularNumber(thatdayFa.day) +
+        "   " +
+        toRegularNumber(hour) +
+        ":" +
+        toRegularNumber(minute)
+      );
+    }
+  }
+}
 </script>
 
 <template>
@@ -73,7 +168,7 @@ onMounted(() => {
         v-if="geojson_arr"
         class="text-emerald-400 p-1 m-1 w-full flex flex-col gap-2"
       >
-        {{ indexStart }} : {{ indexEnd }}
+        <!-- {{ indexStart }} : {{ indexEnd }} -->
         <input
           type="range"
           v-model="index"
@@ -83,7 +178,7 @@ onMounted(() => {
           className="range child"
           :step="1"
         />
-        <div class="w-full">{{ key_arr[index] }}</div>
+        <div class="w-full">{{ formatdate(key_arr[index], 1) }}</div>
       </div>
     </div>
     <div

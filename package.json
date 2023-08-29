@@ -26,6 +26,7 @@
     "@alireza-ab/vue3-persian-datepicker": "^1.0.2",
     "@nuxtjs/tailwindcss": "^6.8.0",
     "@pinia/nuxt": "^0.4.11",
+    "@studiometa/vue-mapbox-gl": "^2.1.1",
     "@unocss/reset": "^0.55.2",
     "@vueform/slider": "^2.1.7",
     "chart.js": "^4.4.0",

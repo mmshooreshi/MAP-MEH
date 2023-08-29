@@ -1,4 +1,5 @@
 <script setup>
+import Supercluster from "supercluster";
 const props = defineProps(["data", "index"]);
 const selectedFeature = ref(null);
 const data = ref([]);
@@ -23,26 +24,47 @@ onMounted(() => {
   }
 
   watch(props, (propsN) => {
-    if (propsN && 0) {
+    if (propsN && propsN.data[0] != undefined) {
       let features = propsN.data[0].features;
+      console.log("features: ", features);
       // this.setupMarkers(newFeatures);
+      if (props.data[props.index]) {
+        useMapbox("mainMap", (map) => {
+          addMarkers(map);
 
-      useMapbox("mainMap", (map) => {
-        features.forEach((feature) => {
-          const marker = new mapboxgl.Marker()
-            .setLngLat(feature.geometry.coordinates)
-            .addTo(map);
+          // features.forEach((feature) => {
+          //   const marker = new mapboxgl.Marker()
+          //     .setLngLat(feature.geometry.coordinates)
+          //     .addTo(map);
 
-          marker.getElement().addEventListener("click", () => {
-            openModal(feature);
-          });
+          //   marker.getElement().addEventListener("click", () => {
+          //     openModal(feature);
+          //   });
+          // });
+
+          // Do whatever with map here
+          // console.log(map);
         });
-
-        // Do whatever with map here
-        console.log(map);
-      });
+      }
     }
   });
+
+  useMapbox("mainMap", (map) => {
+    console.log(map);
+    addMarkers(map);
+    // map.on("load", (map) => {
+
+    // map.addSource("t1", {
+    //   type: "geojson",
+    //   data: props.data[props.index],
+    //   cluster: true,
+    //   clusterMaxZoom: 14, // Max zoom to cluster points on
+    //   clusterRadius: 50, // Radius of each cluster when clustering points (defaults to 50)
+    // });
+
+    // const clustersNew = indexNew.getClusters([-180, -85, 180, 85], 2);
+  });
+  // });
 });
 
 function openModal(feature) {
@@ -50,6 +72,137 @@ function openModal(feature) {
 }
 function closeModal() {
   selectedFeature.value = null;
+}
+
+const locations = ref([]);
+const clusters = ref([]);
+const markers = ref([]);
+const clustersGeojson = ref({});
+const clusterIndex = ref(null);
+
+function addMarkers(map) {
+  clusterIndex.value = new Supercluster({
+    radius: 90,
+    maxZoom: 10,
+    map: (props2) => ({sum_accum: props2.site_accum}),
+    reduce: (accumulated, props2) => {
+      accumulated.sum_accum += props2.sum_accum;
+    },
+  });
+
+  console.log(clusterIndex.value);
+
+  // clusterIndex.value.load(locations.value.features);
+
+  clusterIndex.value.load(props.data[props.index].features);
+
+  console.log(clusterIndex.value);
+
+  map.on("moveend", () => {
+    moveEnd(map);
+  });
+  updateClusters(map);
+}
+
+function updateClusters(map) {
+  var bounds = map.getBounds(),
+    zoom = map.getZoom();
+
+  clustersGeojson.value = clusterIndex.value.getClusters(
+    [bounds.getWest(), bounds.getSouth(), bounds.getEast(), bounds.getNorth()],
+    Math.floor(zoom)
+  );
+
+  console.log(clustersGeojson.value);
+
+  if (Object.keys(clusters.value).length) {
+    clusters.value.forEach(function (cluster) {
+      cluster.remove();
+    });
+  }
+
+  displayFeatures(clustersGeojson.value, map);
+}
+function moveEnd(map) {
+  updateClusters(map);
+}
+function displayFeatures(features, map) {
+  if (markers.value.length) {
+    markers.value.forEach(function (marker) {
+      marker.remove();
+    });
+  }
+
+  features.forEach((feature) => {
+    var isCluster = !!feature.properties.cluster ? true : false,
+      $feature;
+
+    if (isCluster) {
+      var leaf = clusterIndex.value.getLeaves(feature.properties.cluster_id)[0];
+      $feature = document.createElement("div");
+
+      if (feature.properties.sum_accum > 1000) {
+        $feature.className = `transition-border  font-peyda flex text-2xl items-center justify-center w-56 h-56 rounded-full text-center text-yellow font-bold shadow bg-cover cursor-pointer bg-center   hover:border-1 border-teal/50`;
+      } else if (feature.properties.sum_accum > 500) {
+        $feature.className = `transition-border  font-peyda flex text-2xl items-center justify-center w-48 h-48 rounded-full text-center text-lime font-bold shadow bg-cover cursor-pointer bg-center  hover:border-1 border-teal/50`;
+      } else if (feature.properties.sum_accum > 250) {
+        $feature.className = `transition-border   font-peyda flex text-2xl items-center justify-center w-36 h-36 rounded-full text-center text-lime-500  font-bold shadow bg-cover cursor-pointer bg-center  hover:border-1 border-teal/50`;
+      } else if (feature.properties.sum_accum > 100) {
+        $feature.className = `transition-border  font-peyda flex text-xl items-center justify-center w-28 h-28 rounded-full text-center text-lime-400 font-bold shadow bg-cover cursor-pointer bg-center  hover:border-1 border-teal/50`;
+      } else if (feature.properties.sum_accum > 50) {
+        $feature.className = `transition-border  font-peyda flex text-lg items-center justify-center w-24 h-24 rounded-full text-center text-lime-400 font-bold shadow bg-cover cursor-pointer bg-center  hover:border-1 border-teal/50`;
+      } else if (feature.properties.sum_accum > 20) {
+        $feature.className = `transition-border  font-peyda flex text-base items-center justify-center w-16 h-16 rounded-full text-center text-lime-400 font-bold shadow bg-cover cursor-pointer bg-center  hover:border-1 border-teal/50`;
+      } else {
+        $feature.className = `transition-border font-peyda flex text-sm items-center justify-center w-12 h-12 rounded-full text-center text-lime-300 font-bold shadow bg-cover cursor-pointer bg-center  hover:border-1 border-teal/50`;
+      }
+      // $feature.style.backgroundImage = `url(${leaf.properties.image})`;
+
+      var $inner = document.createElement("div");
+      $inner.innerHTML = feature.properties.sum_accum;
+
+      $feature.appendChild($inner);
+      bindClusterClickEvent($feature, feature, map);
+
+      clusters.value[feature.properties.cluster_id] = new mapboxgl.Marker(
+        $feature
+      )
+        .setLngLat(feature.geometry.coordinates)
+        .addTo(map);
+    } else {
+      $feature = document.createElement("div");
+      $feature.className =
+        "font-peyda  text-lg flex items-center justify-center w-12 h-6 pt-2  rounded-full text-center text-teal font-bold shadow bg-cover cursor-pointer bg-center border-teal-400 border-1 bg-teal-600/50 hover:bg-teal-800";
+      // $feature.style.backgroundImage = `url(${feature.properties.image})`;
+      var $inner = document.createElement("div");
+      $inner.innerHTML = feature.properties.site_accum;
+
+      $feature.appendChild($inner);
+
+      markers.value.push(
+        new mapboxgl.Marker($feature)
+          .setLngLat(feature.geometry.coordinates)
+          .addTo(map)
+      );
+    }
+  });
+}
+function bindClusterClickEvent(el, feature, map) {
+  el.addEventListener("click", (e) => {
+    e.stopPropagation();
+    var bounds = new mapboxgl.LngLatBounds();
+
+    var features = clusterIndex.value.getLeaves(
+      feature.properties.cluster_id,
+      100
+    );
+
+    features.forEach(function (feature) {
+      bounds.extend(feature.geometry.coordinates);
+    });
+
+    map.fitBounds(bounds, {padding: 100});
+  });
 }
 </script>
 
@@ -86,15 +239,14 @@ function closeModal() {
         }"
       />
 
-      <div v-if="props.data[index] != undefined">
-        <MapboxSource
-          source-id="t1"
-          :source="{
-            type: 'geojson',
-            data: props.data[props.index],
-          }"
-        />
-      </div>
+      <MapboxSource
+        v-if="props.data[0] != undefined"
+        source-id="t1"
+        :source="{
+          type: 'geojson',
+          data: props.data[props.index],
+        }"
+      />
 
       <MapboxLayer
         :layer="{
@@ -116,11 +268,11 @@ function closeModal() {
               ['linear'],
               ['heatmap-density'],
               0,
-              'rgba(209, 229, 240, 0)',
+              'rgba(0, 255, 255, 0.05)', // Cool color 1
               0.05,
-              'rgba(209, 229, 240, 0.3)',
+              'rgba(0, 128, 128,0.5)', // Cool color 2
               1,
-              'rgba(227, 16, 48, 0.5)',
+              'rgba(150, 60, 105,0.6)',
             ],
             'heatmap-radius': {
               stops: [
@@ -143,7 +295,7 @@ function closeModal() {
         :layer="{
           id: 'property-point',
           type: 'circle',
-          source: 't1',
+          source: 't12',
           minzoom: 8,
           paint: {
             'circle-color': [
@@ -183,20 +335,6 @@ function closeModal() {
             },
             'circle-translate': [0, -10],
             'circle-translate-anchor': 'map',
-          },
-        }"
-      />
-
-      <MapboxLayer
-        :layer="{
-          id: 'cluster-count',
-          type: 'symbol',
-          source: 't1',
-          filter: ['has', 'site_accum'],
-          layout: {
-            'text-field': ['get', 'site_accum'],
-            'text-font': ['DIN Offc Pro Medium', 'Arial Unicode MS Bold'],
-            'text-size': 18,
           },
         }"
       />

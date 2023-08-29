@@ -497,7 +497,7 @@
   "resolved" "https://registry.npmjs.org/@mapbox/jsonlint-lines-primitives/-/jsonlint-lines-primitives-2.0.2.tgz"
   "version" "2.0.2"
 
-"@mapbox/mapbox-gl-geocoder@5.0.1":
+"@mapbox/mapbox-gl-geocoder@^5.0.1", "@mapbox/mapbox-gl-geocoder@5.0.1":
   "integrity" "sha512-/OUL42eh4OBaIerhcwCpa27oD+u4a2xN8V7vEdsglwd8lCplFAxJCdwT9Kprli1TH5mTYsXyONmh03FwoWBWfA=="
   "resolved" "https://registry.npmjs.org/@mapbox/mapbox-gl-geocoder/-/mapbox-gl-geocoder-5.0.1.tgz"
   "version" "5.0.1"
@@ -1119,6 +1119,11 @@
   "integrity" "sha512-t09vSN3MdfsyCHoFcTRCH/iUtG7OJ0CsjzB8cjAmKc/va/kIgeDI/TxsigdncE/4be734m0cvIYwNaV4i2XqAw=="
   "resolved" "https://registry.npmjs.org/@sindresorhus/is/-/is-4.6.0.tgz"
   "version" "4.6.0"
+
+"@studiometa/vue-mapbox-gl@^2.1.1":
+  "integrity" "sha512-fFCBHxTBrJNdnztux/OOoZL9i82LNG7qoM8TVq9iqc36mbhUSxYiR4Wa0zRAfUHDlXpG5lTsfueT+khraVtR0Q=="
+  "resolved" "https://registry.npmjs.org/@studiometa/vue-mapbox-gl/-/vue-mapbox-gl-2.1.1.tgz"
+  "version" "2.1.1"
 
 "@szmarczak/http-timer@^4.0.5":
   "integrity" "sha512-4BAffykYOgO+5nzBWYwE3W90sBgLJoUPRWWcL8wlyiM8IB8ipJz3UMJ9KXQd1RKQXpKp8Tutn80HZtWsu2u76w=="
@@ -5217,7 +5222,7 @@
   "resolved" "https://registry.npmjs.org/map-obj/-/map-obj-4.3.0.tgz"
   "version" "4.3.0"
 
-"mapbox-gl@^2.15.0", "mapbox-gl@>= 0.47.0 < 3.0.0":
+"mapbox-gl@^2.15.0", "mapbox-gl@^2.8.2", "mapbox-gl@>= 0.47.0 < 3.0.0":
   "integrity" "sha512-fjv+aYrd5TIHiL7wRa+W7KjtUqKWziJMZUkK5hm8TvJ3OLeNPx4NmW/DgfYhd/jHej8wWL+QJBDbdMMAKvNC0A=="
   "resolved" "https://registry.npmjs.org/mapbox-gl/-/mapbox-gl-2.15.0.tgz"
   "version" "2.15.0"

@@ -145,7 +145,7 @@ const point1 = {lat: 46.05269, lng: 33.1234};
 
 function geojsonReduce(geojson) {
   const filtersStore = useFiltersStore();
-  const {addValueToFilterList} = filtersStore;
+  // const {addValueToFilterList} = filtersStore;
   const {filtersList} = storeToRefs(filtersStore);
   const {distanceKm} = storeToRefs(filtersStore);
 
@@ -160,8 +160,9 @@ function geojsonReduce(geojson) {
           lat: feature.geometry.coordinates[0],
           lng: feature.geometry.coordinates[1],
         };
+        var dist = haversine(point1, point2);
 
-        if (haversine(point1, point2) < distanceKm.value * 1000) {
+        if (dist < distanceKm.value * 1000) {
           // if (allowedSiteIds.includes(feature.properties.site_id)) {
 
           total += parseInt(feature.properties.site_accum);
@@ -171,6 +172,7 @@ function geojsonReduce(geojson) {
             properties: {
               site_id: feature.properties.site_id,
               site_accum: feature.properties.site_accum,
+              dist: dist,
             },
           };
         } else {
