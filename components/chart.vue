@@ -139,12 +139,9 @@ const optionsT = {
     },
     x: {
       ticks: {
-        display: false,
+        display: true,
         color: "#00fa9a",
         beginAtZero: true,
-        callback: function (value, index, ticks) {
-          return formatdate(value.toString(), 1);
-        },
       },
     },
   },
@@ -152,7 +149,8 @@ const optionsT = {
     tooltip: {
       label: {
         callback: function (context) {
-          return formatdate(context.toString(), 1);
+          // return formatdate(context.toString(), 1);
+          return context;
         },
       },
     },

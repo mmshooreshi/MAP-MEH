@@ -32,6 +32,7 @@ ChartJS.register(
   LinearScale
 );
 
+const minHour = ref(10000);
 const nref = ref(24);
 const key_arr = ref([]);
 const key_arr_shamsi = ref([]);
@@ -119,8 +120,11 @@ function splitFunction(n) {
   let array_new = {};
   let chartArrX = [];
   let chartArrY = [];
+
+  let rawchartArrX = [];
+  let rawchartArrY = [];
   for (let day in days) {
-    for (let hour = 0; hour <= 24 - n + 1; hour += n) {
+    for (let hour = 0; hour <= 24 - n; hour += n) {
       let hourData = days[day].slice(hour, hour + n); // Get the data for the next 2 hours
       array_new[day] = array_new[day] || {};
       array_new[day][hour] = [
@@ -138,12 +142,48 @@ function splitFunction(n) {
           }
         }, ""),
       ];
+      jMoment.locale("fa");
 
-      chartArrX.push(array_new[day][hour][2]);
-      chartArrY.push(array_new[day][hour][1]);
+      if (array_new[day][hour][1] >= minHour.value * n) {
+        if (chartArrY.length >= 1) {
+          let mult = array_new[day][hour][1] / chartArrY[chartArrY.length - 1];
+          if (mult < 5 && mult > 0.3) {
+            chartArrX.push(
+              jMoment(day, "YYYYMMDD").format("jMM/jDD") +
+                "\n" +
+                hour +
+                ":00" +
+                "->" +
+                (parseInt(hour) + n).toString() +
+                ":00"
+            );
+            chartArrY.push(array_new[day][hour][1]);
+          }
+        } else {
+          chartArrX.push(
+            jMoment(day, "YYYYMMDD").format("jMM/jDD") +
+              "\n" +
+              hour +
+              "->" +
+              (parseInt(hour) + n).toString() +
+              ":00"
+          );
+          chartArrY.push(array_new[day][hour][1]);
+        }
+      }
+      rawchartArrX.push(
+        day +
+          "  " +
+          hour +
+          ":00" +
+          " => " +
+          (parseInt(hour) + n).toString() +
+          ":00"
+      );
+      rawchartArrY.push(array_new[day][hour][1]);
     }
   }
-  return {array_new, chartArrX, chartArrY};
+  return {array_new, chartArrX, chartArrY, rawchartArrX, rawchartArrY};
 }
 
 watch(distanceKm, async (distN) => {
@@ -330,6 +370,15 @@ function formatdate(dateTimeString, type) {
           :labels="item.chartArrX"
           :data="item.chartArrY"
         />
+
+        <!-- <Chart
+          v-if="chartIndex == index"
+          class="chart font-peyda"
+          title="انباشت ساعتی"
+          label="جمعیت"
+          :labels="item.rawchartArrX"
+          :data="item.rawchartArrY"
+        /> -->
       </div>
 
       <div class="w-1/2 mx-auto">
