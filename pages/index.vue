@@ -144,10 +144,13 @@ function splitFunction(n) {
       ];
       jMoment.locale("fa");
 
-      if (array_new[day][hour][1] >= minHour.value * n) {
+      if (
+        array_new[day][hour][1] >=
+        (minHour.value / (100 / distanceKm.value)) * n
+      ) {
         if (chartArrY.length >= 1) {
           let mult = array_new[day][hour][1] / chartArrY[chartArrY.length - 1];
-          if (mult < 5 && mult > 0.3) {
+          if (mult < 8.5 && mult > 0.15) {
             chartArrX.push(
               jMoment(day, "YYYYMMDD").format("jMM/jDD") +
                 "\n" +
