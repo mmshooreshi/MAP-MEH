@@ -1,4 +1,5 @@
 # Nuxt dev/build outputs
+public/data
 .output
 .data
 .nuxt
@@ -10,7 +11,7 @@ dist
 
 # Node dependencies
 node_modules
-
+pages
 # Logs
 logs
 *.log
