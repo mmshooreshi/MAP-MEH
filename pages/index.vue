@@ -41,7 +41,7 @@ const geojson_arr = ref([]);
 const total_arr = ref([]);
 const index = ref(0);
 const showD = ref(false);
-const chartIndex = ref(0);
+const chartIndex = ref(23);
 const key_arr_day = ref([]);
 const total_arr_day_shamsi = ref([]);
 const total_arr_day = ref([]);
@@ -150,7 +150,7 @@ function splitFunction(n) {
       ) {
         if (chartArrY.length >= 1) {
           let mult = array_new[day][hour][1] / chartArrY[chartArrY.length - 1];
-          if (mult < 8.5 && mult > 0.15) {
+          if (mult < 7.5 && mult > 0.3) {
             chartArrX.push(
               jMoment(day, "YYYYMMDD").format("jMM/jDD") +
                 "\n" +
@@ -343,7 +343,7 @@ function formatdate(dateTimeString, type) {
     </div>
     <div
       v-if="geojson_arr.length > 0 && showD"
-      class="absolute z-10 w-[98%] lg:w-[74%] 2xl:w-[50%] m-2 mt-10 p-2 cursor-pointer lg:mx-[13%] 2xl:mx-[25%] bg-[#1e503c50] border-1 border-emerald-400 rounded-xl overflow-hidden"
+      class="absolute z-10 w-[98%] lg:max-w-[74%] 2xl:max-w-[50%] m-2 mt-0 p-2 cursor-pointer lg:mx-[13%] 2xl:mx-[25%] morphg bg-[#2a6160a7] border-1 border-emerald-400 overflow-hidden rounded-xl h-[80vh]"
     >
       <div
         @click="showD = false"
@@ -362,68 +362,70 @@ function formatdate(dateTimeString, type) {
         :labels="key_arr"
         :data="total_arr"
       /> -->
+      <div class="w-full">
+        <div class="w-ful mx-8 mr-12 mt-2">
+          <input
+            type="range"
+            v-model="chartIndex"
+            min="0"
+            :max="nref - 1"
+            class="range range-error w-full mx-auto"
+            className="range child"
+            :step="1"
+          />
 
-      <div v-for="(item, index) in sp" :key="index">
-        <!-- <div class="w-full h-16 overflow-auto">{{ index }} , {{ item }}</div> -->
-        <Chart
-          v-if="chartIndex == index"
-          class="chart font-peyda"
-          title="انباشت ساعتی"
-          label="جمعیت"
-          :labels="item.chartArrX"
-          :data="item.chartArrY"
-        />
-
-        <!-- <Chart
-          v-if="chartIndex == index"
-          class="chart font-peyda"
-          title="انباشت ساعتی"
-          label="جمعیت"
-          :labels="item.rawchartArrX"
-          :data="item.rawchartArrY"
-        /> -->
+          <div
+            class="w-full flex justify-between text-center mb-8 mb-2 px-2 -translate-x-2"
+          >
+            <span
+              v-for="span in nref"
+              :key="span"
+              :class="{
+                'text-teal-600': span % 2 == 0 && span % 6 != 0,
+                'text-red-400': span % 6 == 0,
+              }"
+              ><div
+                class="w-4 h-4 transition-all duration-100 absolute dot"
+                :class="{
+                  'scale-100': span - 1 == chartIndex,
+                  'scale-0': span - 1 != chartIndex,
+                }"
+              >
+                ⊙
+              </div>
+              <div
+                class="w-4 h-2 translate-y-[2px] transition-all duration-100 absolute dot"
+                :class="{
+                  'scale-0 mt-1': span - 1 == chartIndex,
+                  'scale-100': span - 1 != chartIndex,
+                }"
+              >
+                •
+              </div>
+            </span>
+          </div>
+        </div>
       </div>
 
-      <div class="w-1/2 mx-auto">
-        <input
-          type="range"
-          v-model="chartIndex"
-          min="0"
-          :max="nref - 1"
-          class="range range-error w-full mx-auto"
-          className="range child"
-          :step="1"
-        />
+      <div class="h-full w-full overflow-scroll pb-16">
+        <div v-for="(item, index) in sp" :key="index">
+          <!-- <div class="w-full h-16 overflow-auto">{{ index }} , {{ item }}</div> -->
 
-        <div
-          class="w-full flex justify-between text-center mb-8 mb-2 px-2 -translate-x-2"
-        >
-          <span
-            v-for="span in nref"
-            :key="span"
-            :class="{
-              'text-teal-600': span % 2 == 0 && span % 6 != 0,
-              'text-red-400': span % 6 == 0,
-            }"
-            ><div
-              class="w-4 h-4 transition-all duration-100 absolute dot"
-              :class="{
-                'scale-100': span - 1 == chartIndex,
-                'scale-0': span - 1 != chartIndex,
-              }"
-            >
-              ⊙
-            </div>
-            <div
-              class="w-4 h-2 translate-y-[2px] transition-all duration-100 absolute dot"
-              :class="{
-                'scale-0 mt-1': span - 1 == chartIndex,
-                'scale-100': span - 1 != chartIndex,
-              }"
-            >
-              •
-            </div>
-          </span>
+          <Chart
+            v-if="chartIndex == index"
+            class="chart font-peyda max-h-[40vh]"
+            label="جمعیت"
+            :labels="item.chartArrX"
+            :data="item.chartArrY"
+          />
+
+          <Chart
+            v-if="chartIndex == index"
+            class="chart font-peyda max-h-[40vh]"
+            label="جمعیت"
+            :labels="item.rawchartArrX"
+            :data="item.rawchartArrY"
+          />
         </div>
       </div>
       <!-- 
@@ -487,4 +489,13 @@ function formatdate(dateTimeString, type) {
 //     transform: translateY(0) scale3d(0.96, 0.96, 1);
 //   }
 // }
+
+.morphg {
+  background: rgba(1, 41, 35, 0.556);
+  box-shadow: 0 8px 32px 0 rgba(10, 18, 133, 0.37);
+  backdrop-filter: blur(7.5px);
+  -webkit-backdrop-filter: blur(7.5px);
+  border-radius: 10px;
+  border: 1px solid rgba(29, 248, 201, 0.632);
+}
 </style>
