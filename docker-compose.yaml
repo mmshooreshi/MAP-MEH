@@ -6,7 +6,7 @@ services:
     container_name: nuxt-app
     restart: always
     volumes:
-      - "/home/ubuntu/data/accum_runs/:/var/www/dockerize-nuxt/nuxt-app/public/data/accum_runs"
+      - "/home/ubuntu/data/:/var/www/dockerize-nuxt/data/"
     ports:
       - '3010:3010'
     command: 'npm start'
