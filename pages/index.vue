@@ -8,6 +8,11 @@
 import {useFiltersStore} from "~/store/filters";
 import {storeToRefs} from "pinia";
 
+import moment from "moment";
+import jMoment from "moment-jalaali";
+
+// Given arrays
+
 import {
   Chart as ChartJS,
   Title,
@@ -27,11 +32,18 @@ ChartJS.register(
   LinearScale
 );
 
+const nref = ref(24);
 const key_arr = ref([]);
+const key_arr_shamsi = ref([]);
+const sp = ref([]);
 const geojson_arr = ref([]);
 const total_arr = ref([]);
 const index = ref(0);
 const showD = ref(false);
+const chartIndex = ref(0);
+const key_arr_day = ref([]);
+const total_arr_day_shamsi = ref([]);
+const total_arr_day = ref([]);
 
 const indexStart = ref(0);
 const indexEnd = ref(0);
@@ -39,13 +51,15 @@ const indexEnd = ref(0);
 const filtersStore = useFiltersStore();
 const {distanceKm} = storeToRefs(filtersStore);
 
-function getData() {
-  var {result} = $fetch("/api/read-geojsons", {
+async function getData() {
+  // console.log("distanceKm is", distanceKm.value);
+  var {result} = await $fetch("/api/read-geojsons", {
     method: "POST",
     body: {
       inputData: distanceKm.value,
     },
   }).then((result) => {
+    // console.log("result", result);
     var k = 0;
     var geojs = result.geojs_data.filter((elements) => {
       if (k == 0 && elements != null) {
@@ -62,18 +76,93 @@ function getData() {
       k += 1;
       return elements !== null;
     });
-  });
+    return 1;
+    // for (let i = 0; i < key_arr.value.length; i++) {
+    //   const shamsiDate = jMoment(key_arr.value[i], "YYYYMMDDHHmmssSSS").format(
+    //     "jYYYYjMMjDDHH"
+    //   );
+    //   // console.log(key_arr.value[i], shamsiDate);
+    //   key_arr_shamsi.value[i] = shamsiDate;
+    //   const day = key_arr_shamsi.value[i].slice(0, 8);
 
+    //   const existingIndex = key_arr_day.value.indexOf(day);
+
+    //   if (existingIndex === -1) {
+    //     key_arr_day.value.push(day);
+    //     total_arr_day.value.push(total_arr.value[i]);
+    //   } else {
+    //     total_arr_day.value[existingIndex] += total_arr.value[i];
+    //   }
+    // }
+  });
+}
+
+function splitFunction(n) {
+  let days = {};
+
+  for (let [index, filename] of key_arr.value.entries()) {
+    let day = filename.slice(0, 8); // Extract the day part of the filename
+    let hour = parseInt(filename.slice(8, 10)); // Extract the hour part of the
+
+    days[day] = days[day] || []; // Initialize the day array if it doesn't exist
+    days[day][hour] = [filename, total_arr.value[index]]; // Assign the filename to the specific hour of t
+  }
+
+  for (let day in days) {
+    for (let hour = 0; hour <= 24 - n; hour++) {
+      if (!days[day][hour]) {
+        days[day][hour] = ["-" + hour.toString().padStart(2, "0"), 0];
+      }
+    }
+  }
+
+  let array_new = {};
+  let chartArrX = [];
+  let chartArrY = [];
+  for (let day in days) {
+    for (let hour = 0; hour <= 24 - n + 1; hour += n) {
+      let hourData = days[day].slice(hour, hour + n); // Get the data for the next 2 hours
+      array_new[day] = array_new[day] || {};
+      array_new[day][hour] = [
+        hourData.map((value) => value),
+        hourData.reduce((sum, value) => sum + value[1], 0), // Calculate the sum
+        hourData.reduce((sum, value) => {
+          let hourN = value[0];
+          if (parseInt(hourN) >= 0) {
+            hourN = value[0].slice(8, 10);
+          }
+          if (hourData.indexOf(value) !== hourData.length - 1) {
+            return sum + hourN + ":";
+          } else {
+            return sum + hourN;
+          }
+        }, ""),
+      ];
+
+      chartArrX.push(array_new[day][hour][2]);
+      chartArrY.push(array_new[day][hour][1]);
+    }
+  }
+  return {array_new, chartArrX, chartArrY};
+}
+
+watch(distanceKm, async (distN) => {
+  showD.value = false;
   // console.log(key_arr.value);
   // console.log(geojson_arr.value);
   // console.log(total_arr.value);
-}
+  // console.log(key_arr_day.value);
+  // console.log(total_arr_day.value);
 
-watch(distanceKm, (distN) => {
-  showD.value = false;
-  getData();
+  await getData();
+
+  sp.value = [];
+  for (let span = 1; span <= 24; span += 24 / nref.value) {
+    sp.value.push(splitFunction(span));
+    // console.log("running: ", span, sp.value);
+  }
   // console.log(distanceKm.value);
-  setTimeout(() => (showD.value = true), 500);
+  // setTimeout(() => (showD.value = true), 500);
 
   // setTimeout(() => (showD.value = false), 1000);
 
@@ -83,8 +172,19 @@ watch(distanceKm, (distN) => {
   // showD.value = true;
 });
 
-onMounted(() => {
-  getData();
+onMounted(async () => {
+  // sp.value = [];
+  // console.log("started (mounted) ", sp.value);
+  await getData();
+  // console.log("get data finished (mounted) ", key_arr.value, total_arr.value);
+  // console.log("started sp");
+  sp.value = [];
+
+  for (let span = 1; span <= 24; span += 24 / nref.value) {
+    sp.value.push(splitFunction(span));
+    // console.log("running: ", span, sp.value);
+  }
+  // console.log("end of sp", sp.value);
 });
 
 // The type of chart we want to create
@@ -164,7 +264,7 @@ function formatdate(dateTimeString, type) {
 </script>
 
 <template>
-  <div class="font-peyda">
+  <div class="">
     <!-- <div class="flex flex-row m-2"> -->
     <div
       class="bg-black/50 font-peyda text-emerald-400 flex flex-row h-16 p-4 gap-2"
@@ -203,21 +303,132 @@ function formatdate(dateTimeString, type) {
       class="absolute z-10 w-[98%] lg:w-[74%] 2xl:w-[50%] m-2 mt-10 p-2 cursor-pointer lg:mx-[13%] 2xl:mx-[25%] bg-[#1e503c50] border-1 border-emerald-400 rounded-xl overflow-hidden"
     >
       <div
-        class="font-mono p-0 -m-2 ml-1 mt-0 absolute text-4xl hover:text-pink text-yellow"
+        class="font-mono p-0 -m-2 ml-1 mt-0 absolute text-lg lg:text-4xl hover:text-pink text-yellow"
         @click="showD = false"
       >
         ✖
       </div>
-      <Chart
+      <!-- <Chart
         class="chart font-peyda"
         title="انباشت ساعتی"
         label="جمعیت"
         :labels="key_arr"
         :data="total_arr"
-      />
+      /> -->
+
+      <div v-for="(item, index) in sp" :key="index">
+        <!-- <div class="w-full h-16 overflow-auto">{{ index }} , {{ item }}</div> -->
+        <Chart
+          v-if="chartIndex == index"
+          class="chart font-peyda"
+          title="انباشت ساعتی"
+          label="جمعیت"
+          :labels="item.chartArrX"
+          :data="item.chartArrY"
+        />
+      </div>
+
+      <div class="w-1/2 mx-auto">
+        <input
+          type="range"
+          v-model="chartIndex"
+          min="0"
+          :max="nref - 1"
+          class="range range-error w-full mx-auto"
+          className="range child"
+          :step="1"
+        />
+
+        <div
+          class="w-full flex justify-between text-center mb-8 mb-2 px-2 -translate-x-2"
+        >
+          <span
+            v-for="span in nref"
+            :key="span"
+            :class="{
+              'text-teal-600': span % 2 == 0 && span % 6 != 0,
+              'text-red-400': span % 6 == 0,
+            }"
+            ><div
+              class="w-4 h-4 transition-all duration-100 absolute dot"
+              :class="{
+                'scale-100': span - 1 == chartIndex,
+                'scale-0': span - 1 != chartIndex,
+              }"
+            >
+              ⊙
+            </div>
+            <div
+              class="w-4 h-2 translate-y-[2px] transition-all duration-100 absolute dot"
+              :class="{
+                'scale-0 mt-1': span - 1 == chartIndex,
+                'scale-100': span - 1 != chartIndex,
+              }"
+            >
+              •
+            </div>
+          </span>
+        </div>
+      </div>
+      <!-- 
+      <Chart
+        class="chart font-peyda"
+        title="انباشت ساعتی"
+        label="جمعیت"
+        :labels="key_arr_day"
+        :data="total_arr_day"
+      /> -->
     </div>
     <MapContainer :index="index" :data="geojson_arr"></MapContainer>
   </div>
 </template>
 
-<style scoped></style>
+<style lang="scss" scoped>
+.dot {
+  transform-origin: center;
+  transition: transform;
+}
+
+.dot.scale-0 {
+  transform: scale(0);
+  transition: transform;
+}
+
+.dot.scale-100 {
+  // animation: moveit 1s cubic-bezier(0.68, -0.55, 0.265, 1.55) both;
+  animation: moveit 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  transition: transform;
+
+  // will-change: transform;
+}
+
+@keyframes moveit {
+  0% {
+    transform: scale3d(0.92, 0.92, 1);
+  }
+  20% {
+    transform: scale3d(1.4, 1.4, 1);
+  }
+  40% {
+    transform: scale3d(0.94, 0.94, 1);
+  }
+  60% {
+    transform: scale3d(1.1, 1.1, 1);
+  }
+  80% {
+    transform: scale3d(0.99, 0.99, 1);
+  }
+  100% {
+    transform: scale3d(1, 1, 1);
+  }
+}
+
+// @keyframes moveitback {
+//   0% {
+//     transform: translateY(60px);
+//   }
+//   100% {
+//     transform: translateY(0) scale3d(0.96, 0.96, 1);
+//   }
+// }
+</style>
