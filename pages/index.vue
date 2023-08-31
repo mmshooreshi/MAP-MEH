@@ -303,12 +303,16 @@ function formatdate(dateTimeString, type) {
       class="absolute z-10 w-[98%] lg:w-[74%] 2xl:w-[50%] m-2 mt-10 p-2 cursor-pointer lg:mx-[13%] 2xl:mx-[25%] bg-[#1e503c50] border-1 border-emerald-400 rounded-xl overflow-hidden"
     >
       <div
-        class="font-mono p-0 -m-2 ml-1 mt-0 absolute text-lg lg:text-4xl hover:text-pink text-yellow"
         @click="showD = false"
+        class="group hover:bg-red hover:scale-125 transition-colors duration-100 transition-transform text-black p-0 w-2 h-2 px-1 text-center pt-0 scale-100 bg-red-400/10 border-1 border-red rounded-lg w-min h-min absolute right-0 top-0 m-4"
       >
-        ✖
+        <div
+          class="scale-100 relative -mt-1 group-hover:scale-150 text-red group-hover:text-black transition-transform transition-colors duration-100"
+        >
+          ×
+        </div>
       </div>
-      <!-- <Chart
+      <!-- <Chart×✖x
         class="chart font-peyda"
         title="انباشت ساعتی"
         label="جمعیت"
