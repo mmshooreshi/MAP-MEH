@@ -1,17 +1,29 @@
 <template>
-  <div class="chart font-peyda">
+  <div
+    class="chart font-peyda pointer-events-auto"
+    @click="showXticks = !showXticks"
+  >
+    <!-- {{ chartData }} -->
     <h3 class="chart__title text-center w-full text-emerald-400 mb-2">
       {{ props.title }}
     </h3>
 
-    <Bar class="chart__bar" :data="chartData" :options="optionsT" />
+    <Bar
+      class="chart__bar transition-all duration-10"
+      :data="chartData"
+      :options="optionsT"
+    />
   </div>
 </template>
 
 <script setup>
 import chroma from "chroma-js";
 
+import {useChartsDataStore} from "~/store/chartsData";
+import {storeToRefs} from "pinia";
+
 import {Bar} from "vue-chartjs";
+
 import {
   Chart as ChartJS,
   Title,
@@ -32,28 +44,95 @@ ChartJS.register(
   CategoryScale,
   LinearScale
 );
-const props = defineProps(["title", "label", "labels", "data"]);
-var maxP = Math.max(...props.data);
 
-const chartData = {
-  labels: props.labels,
-  datasets: [
-    {
-      data: props.data,
-      barPercentage: 1,
-      minBarLength: 5,
-      backgroundColor: props.data.map((item) => {
-        // Generate a color based on the item value using a gradient scale
-        const color = chroma
-          .scale(["#758989", "#00fa9a"])
-          .mode("lch")(item / maxP)
-          .hex();
-        return color;
-      }),
-      label: props.label,
-    },
-  ],
+const chartsDataStore = useChartsDataStore();
+const {chartsData} = storeToRefs(chartsDataStore);
+
+const showXticks = ref(true);
+const props = defineProps(["title", "label", "index", "mode", "nref"]);
+
+const lh = ref([]);
+const col = ref([]);
+
+const chartArrY = computed(() => {
+  return chartsData.value[props.index].chartArrY;
+});
+
+// const maxP = 15000;
+const generateColors = (chartArrY) => {
+  let maxP = Math.max(...chartArrY);
+  return chartArrY.map((item, index) => {
+    if (item < 0) {
+      return "#000";
+    } else {
+      return chroma
+        .scale(["#758989", "#00fa9a"])
+        .mode("lch")(item / maxP)
+        .hex();
+    }
+  });
 };
+
+watch(chartArrY, (chartArrYNew) => {
+  col.value = generateColors(chartArrYNew);
+});
+
+const chartData = computed(() => {
+  return {
+    labels: chartsData.value[props.index].chartArrX,
+    datasets: [
+      {
+        data: chartArrY.value.map((num) => Math.abs(num)),
+        barPercentage: 1,
+        minBarLength: 5,
+        backgroundColor: col.value,
+        label: props.label,
+      },
+    ],
+  };
+});
+
+if (props.mode == "processed") {
+}
+
+// const maxP = Math.max(...chartsData.value[props.index].chartArrY);
+
+// const lh = ref([]);
+// const col = ref([]);
+
+// const generateColors = (chartArrY) => {
+//   return chartArrY.map((item, index) => {
+//     if (item < 0) {
+//       console.log(item);
+//       lh.value.push(item * -1);
+//       return "#000";
+//     } else {
+//       lh.value.push(item);
+//       return chroma
+//         .scale(["#758989", "#00fa9a"])
+//         .mode("lch")(item / maxP.value)
+//         .hex();
+//     }
+//   });
+// };
+
+// const chartData = computed(() => {
+//
+//   col.value = generateColors(chartArrY);
+
+//   return {
+//     labels: chartsData.value[props.index].chartArrX,
+//     datasets: [
+//       {
+//         data: lh.value,
+//         barPercentage: 1,
+//         minBarLength: 5,
+//         backgroundColor: col.value,
+//         label: props.label,
+//       },
+//     ],
+//   };
+// });
 
 // ChartJS.defaults.backgroundColor = "#9BD0F5";
 // ChartJS.defaults.borderColor = "#ADCACB";
@@ -131,7 +210,7 @@ function formatdate(dateTimeString, type) {
     }
   }
 }
-const optionsT = {
+const optionsT = ref({
   responsive: true,
   scales: {
     y: {
@@ -139,7 +218,7 @@ const optionsT = {
     },
     x: {
       ticks: {
-        display: true,
+        display: showXticks.value,
         color: "#00fa9a",
         beginAtZero: true,
       },
@@ -165,7 +244,7 @@ const optionsT = {
       },
     },
   },
-};
+});
 ChartJS.defaults.borderColor = "#00fa9a20";
 // ChartJS.defaults.color = "#00fa9a";
 // ChartJS.defaults.backgroundColor = "#F3C301";

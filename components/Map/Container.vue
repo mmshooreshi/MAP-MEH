@@ -207,156 +207,154 @@ function bindClusterClickEvent(el, feature, map) {
 </script>
 
 <template>
-  <div>
-    <MapboxMap
-      map-id="mainMap"
-      style="width: 100vw; height: 84vh; z-index: 1; display: block"
-      :options="{
-        style: 'mapbox://styles/mapbox/navigation-night-v1',
-        center: [46.05269519417466, 33.123403650750646],
-        zoom: 10,
-        maxZoom: 22,
+  <MapboxMap
+    map-id="mainMap"
+    :style="{height: '100%', width: '100%'}"
+    :options="{
+      style: 'mapbox://styles/mapbox/navigation-night-v1',
+      center: [46.05269519417466, 33.123403650750646],
+      zoom: 10,
+      maxZoom: 22,
+    }"
+  >
+    <MapboxSource
+      source-id="ID"
+      :source="{
+        type: 'geojson',
+        data: '/data/iran.geojson',
       }"
+    />
+    <MapboxSource
+      source-id="IDD"
+      :source="{
+        type: 'geojson',
+        data: '/data/mehran-towers.geojson',
+      }"
+    />
+
+    <MapboxSource
+      v-if="props.data[0] != undefined"
+      source-id="t1"
+      :source="{
+        type: 'geojson',
+        data: props.data[props.index],
+      }"
+    />
+
+    <MapboxLayer
+      :layer="{
+        id: 'property-heat',
+        type: 'heatmap',
+        source: 't1',
+        maxzoom: 18,
+        paint: {
+          'heatmap-weight': {
+            property: 'site_accum',
+            type: 'exponential',
+            stops: [
+              [0, 0],
+              [1000, 7],
+            ],
+          },
+          'heatmap-color': [
+            'interpolate',
+            ['linear'],
+            ['heatmap-density'],
+            0,
+            'rgba(0, 255, 255, 0.05)', // Cool color 1
+            0.05,
+            'rgba(0, 128, 128,0.5)', // Cool color 2
+            1,
+            'rgba(150, 60, 105,0.6)',
+          ],
+          'heatmap-radius': {
+            stops: [
+              [5, 50],
+              [18, 100],
+            ],
+          },
+          'heatmap-opacity': {
+            default: 1,
+            stops: [
+              [14, 1],
+              [18, 0],
+            ],
+          },
+        },
+      }"
+    />
+
+    <MapboxLayer
+      :layer="{
+        id: 'property-point',
+        type: 'circle',
+        source: 't12',
+        minzoom: 8,
+        paint: {
+          'circle-color': [
+            'interpolate',
+            ['linear'],
+            ['get', 'site_accum'],
+            1,
+            'rgba(253, 141, 60, 0.333)',
+            250,
+            'rgba(255, 255, 178, 0.208)',
+            376,
+            'rgba(254, 178, 76, 0.271)',
+            400,
+            'rgba(253, 141, 60, 0.333)',
+            800,
+            'rgba(252, 78, 38, 0.396)',
+            1000,
+            'rgba(227, 26, 28, 0.522)',
+          ],
+          'circle-stroke-color': 'white',
+          'circle-stroke-width': 0,
+          'circle-radius': {
+            property: 'site_accum',
+            type: 'exponential',
+            stops: [
+              [{zoom: 8, value: 0}, 10],
+              [{zoom: 8, value: 7}, 20],
+              [{zoom: 22, value: 0}, 40],
+              [{zoom: 22, value: 7}, 100],
+            ],
+          },
+          'circle-opacity': {
+            stops: [
+              [14, 0],
+              [18, 1],
+            ],
+          },
+          'circle-translate': [0, -10],
+          'circle-translate-anchor': 'map',
+        },
+      }"
+    />
+
+    <MapboxDefaultMarker
+      marker-id="marker1"
+      :options="{}"
+      :lnglat="[46.05269519417466, 33.123403650750646]"
     >
-      <MapboxSource
-        source-id="ID"
-        :source="{
-          type: 'geojson',
-          data: '/data/iran.geojson',
-        }"
-      />
-      <MapboxSource
-        source-id="IDD"
-        :source="{
-          type: 'geojson',
-          data: '/data/mehran-towers.geojson',
-        }"
-      />
-
-      <MapboxSource
-        v-if="props.data[0] != undefined"
-        source-id="t1"
-        :source="{
-          type: 'geojson',
-          data: props.data[props.index],
-        }"
-      />
-
-      <MapboxLayer
-        :layer="{
-          id: 'property-heat',
-          type: 'heatmap',
-          source: 't1',
-          maxzoom: 18,
-          paint: {
-            'heatmap-weight': {
-              property: 'site_accum',
-              type: 'exponential',
-              stops: [
-                [0, 0],
-                [1000, 7],
-              ],
-            },
-            'heatmap-color': [
-              'interpolate',
-              ['linear'],
-              ['heatmap-density'],
-              0,
-              'rgba(0, 255, 255, 0.05)', // Cool color 1
-              0.05,
-              'rgba(0, 128, 128,0.5)', // Cool color 2
-              1,
-              'rgba(150, 60, 105,0.6)',
-            ],
-            'heatmap-radius': {
-              stops: [
-                [5, 50],
-                [18, 100],
-              ],
-            },
-            'heatmap-opacity': {
-              default: 1,
-              stops: [
-                [14, 1],
-                [18, 0],
-              ],
-            },
-          },
-        }"
-      />
-
-      <MapboxLayer
-        :layer="{
-          id: 'property-point',
-          type: 'circle',
-          source: 't12',
-          minzoom: 8,
-          paint: {
-            'circle-color': [
-              'interpolate',
-              ['linear'],
-              ['get', 'site_accum'],
-              1,
-              'rgba(253, 141, 60, 0.333)',
-              250,
-              'rgba(255, 255, 178, 0.208)',
-              376,
-              'rgba(254, 178, 76, 0.271)',
-              400,
-              'rgba(253, 141, 60, 0.333)',
-              800,
-              'rgba(252, 78, 38, 0.396)',
-              1000,
-              'rgba(227, 26, 28, 0.522)',
-            ],
-            'circle-stroke-color': 'white',
-            'circle-stroke-width': 0,
-            'circle-radius': {
-              property: 'site_accum',
-              type: 'exponential',
-              stops: [
-                [{zoom: 8, value: 0}, 10],
-                [{zoom: 8, value: 7}, 20],
-                [{zoom: 22, value: 0}, 40],
-                [{zoom: 22, value: 7}, 100],
-              ],
-            },
-            'circle-opacity': {
-              stops: [
-                [14, 0],
-                [18, 1],
-              ],
-            },
-            'circle-translate': [0, -10],
-            'circle-translate-anchor': 'map',
-          },
-        }"
-      />
-
-      <MapboxDefaultMarker
-        marker-id="marker1"
-        :options="{}"
+      <MapboxDefaultPopup
+        popup-id="popup1"
         :lnglat="[46.05269519417466, 33.123403650750646]"
+        :options="{
+          closeOnClick: true,
+        }"
       >
-        <MapboxDefaultPopup
-          popup-id="popup1"
-          :lnglat="[46.05269519417466, 33.123403650750646]"
-          :options="{
-            closeOnClick: true,
-          }"
-        >
-          <h1 class="text-lg font-peyda text-gray-200">ناحیه‌ی مرزی مهران</h1>
-        </MapboxDefaultPopup>
-      </MapboxDefaultMarker>
+        <h1 class="text-lg font-peyda text-gray-200">ناحیه‌ی مرزی مهران</h1>
+      </MapboxDefaultPopup>
+    </MapboxDefaultMarker>
 
-      <MapboxGeolocateControl position="top-left" />
-    </MapboxMap>
+    <MapboxGeolocateControl position="top-left" />
+  </MapboxMap>
 
-    <div v-if="selectedFeature" class="absolute w-56 h-56 bg-black/25">
-      {{ selectedFeature.properties.site_id }}
+  <div v-if="selectedFeature" class="absolute w-56 h-56 bg-black/25">
+    {{ selectedFeature.properties.site_id }}
 
-      <button @click="closeModal">Close</button>
-    </div>
+    <button @click="closeModal">Close</button>
   </div>
 </template>
 

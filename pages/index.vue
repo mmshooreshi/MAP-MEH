@@ -1,18 +1,9 @@
 <script setup>
-// import {useFiltersStore} from "~/store/filters";
-// import {storeToRefs} from "pinia";
-// const filtersStore = useFiltersStore();
-// const {addValueToFilterList} = filtersStore;
-// const {filtersList} = storeToRefs(filtersStore);
-
 import {useFiltersStore} from "~/store/filters";
+import {useChartsDataStore} from "~/store/chartsData";
 import {storeToRefs} from "pinia";
-
 import moment from "moment";
 import jMoment from "moment-jalaali";
-
-// Given arrays
-
 import {
   Chart as ChartJS,
   Title,
@@ -22,7 +13,6 @@ import {
   CategoryScale,
   LinearScale,
 } from "chart.js";
-
 ChartJS.register(
   Title,
   Tooltip,
@@ -31,36 +21,34 @@ ChartJS.register(
   CategoryScale,
   LinearScale
 );
-
 const minHour = ref(10000);
 const nref = ref(24);
 const key_arr = ref([]);
 const key_arr_shamsi = ref([]);
-const sp = ref([]);
+
 const geojson_arr = ref([]);
 const total_arr = ref([]);
 const index = ref(0);
 const showD = ref(false);
-const chartIndex = ref(23);
+const chartIndex = ref(0);
 const key_arr_day = ref([]);
 const total_arr_day_shamsi = ref([]);
 const total_arr_day = ref([]);
-
 const indexStart = ref(0);
 const indexEnd = ref(0);
-
 const filtersStore = useFiltersStore();
+const chartsDataStore = useChartsDataStore();
+
 const {distanceKm} = storeToRefs(filtersStore);
+const {chartsData} = storeToRefs(chartsDataStore);
 
 async function getData() {
-  // console.log("distanceKm is", distanceKm.value);
   var {result} = await $fetch("/api/read-geojsons", {
     method: "POST",
     body: {
       inputData: distanceKm.value,
     },
   }).then((result) => {
-    // console.log("result", result);
     var k = 0;
     var geojs = result.geojs_data.filter((elements) => {
       if (k == 0 && elements != null) {
@@ -78,37 +66,17 @@ async function getData() {
       return elements !== null;
     });
     return 1;
-    // for (let i = 0; i < key_arr.value.length; i++) {
-    //   const shamsiDate = jMoment(key_arr.value[i], "YYYYMMDDHHmmssSSS").format(
-    //     "jYYYYjMMjDDHH"
-    //   );
-    //   // console.log(key_arr.value[i], shamsiDate);
-    //   key_arr_shamsi.value[i] = shamsiDate;
-    //   const day = key_arr_shamsi.value[i].slice(0, 8);
-
-    //   const existingIndex = key_arr_day.value.indexOf(day);
-
-    //   if (existingIndex === -1) {
-    //     key_arr_day.value.push(day);
-    //     total_arr_day.value.push(total_arr.value[i]);
-    //   } else {
-    //     total_arr_day.value[existingIndex] += total_arr.value[i];
-    //   }
-    // }
   });
 }
 
 function splitFunction(n) {
   let days = {};
-
   for (let [index, filename] of key_arr.value.entries()) {
-    let day = filename.slice(0, 8); // Extract the day part of the filename
-    let hour = parseInt(filename.slice(8, 10)); // Extract the hour part of the
-
-    days[day] = days[day] || []; // Initialize the day array if it doesn't exist
-    days[day][hour] = [filename, total_arr.value[index]]; // Assign the filename to the specific hour of t
+    let day = filename.slice(0, 8);
+    let hour = parseInt(filename.slice(8, 10));
+    days[day] = days[day] || [];
+    days[day][hour] = [filename, total_arr.value[index]];
   }
-
   for (let day in days) {
     for (let hour = 0; hour <= 24 - n; hour++) {
       if (!days[day][hour]) {
@@ -116,20 +84,18 @@ function splitFunction(n) {
       }
     }
   }
-
   let array_new = {};
   let chartArrX = [];
   let chartArrY = [];
-
   let rawchartArrX = [];
   let rawchartArrY = [];
   for (let day in days) {
     for (let hour = 0; hour <= 24 - n; hour += n) {
-      let hourData = days[day].slice(hour, hour + n); // Get the data for the next 2 hours
+      let hourData = days[day].slice(hour, hour + n);
       array_new[day] = array_new[day] || {};
       array_new[day][hour] = [
         hourData.map((value) => value),
-        hourData.reduce((sum, value) => sum + value[1], 0), // Calculate the sum
+        hourData.reduce((sum, value) => sum + value[1], 0),
         hourData.reduce((sum, value) => {
           let hourN = value[0];
           if (parseInt(hourN) >= 0) {
@@ -143,14 +109,23 @@ function splitFunction(n) {
         }, ""),
       ];
       jMoment.locale("fa");
-
       if (
         array_new[day][hour][1] >=
         (minHour.value / (100 / distanceKm.value)) * n
       ) {
         if (chartArrY.length >= 1) {
-          let mult = array_new[day][hour][1] / chartArrY[chartArrY.length - 1];
-          if (mult < 7.5 && mult > 0.3) {
+          let mult = 0;
+          try {
+            if (hour == 0) {
+              mult =
+                array_new[day][hour][1] /
+                array_new[day - 1][array_new[day - 1].length - 1][1];
+            } else {
+              mult = array_new[day][hour][1] / array_new[day][hour - n][1];
+            }
+          } catch (e) {}
+          // console.log(mult);
+          if (mult < 5 && mult >= 0.2) {
             chartArrX.push(
               jMoment(day, "YYYYMMDD").format("jMM/jDD") +
                 "\n" +
@@ -161,6 +136,18 @@ function splitFunction(n) {
                 ":00"
             );
             chartArrY.push(array_new[day][hour][1]);
+          } else {
+            chartArrX.push(
+              jMoment(day, "YYYYMMDD").format("jMM/jDD") +
+                "\n" +
+                hour +
+                ":00" +
+                "->" +
+                (parseInt(hour) + n).toString() +
+                ":00"
+            );
+            let t = 10000;
+            chartArrY.push(array_new[day][hour][1] * -1);
           }
         } else {
           chartArrX.push(
@@ -191,147 +178,95 @@ function splitFunction(n) {
 
 watch(distanceKm, async (distN) => {
   showD.value = false;
-  // console.log(key_arr.value);
-  // console.log(geojson_arr.value);
-  // console.log(total_arr.value);
-  // console.log(key_arr_day.value);
-  // console.log(total_arr_day.value);
-
   await getData();
-
-  sp.value = [];
+  chartsDataStore.reInit;
   for (let span = 1; span <= 24; span += 24 / nref.value) {
-    sp.value.push(splitFunction(span));
-    // console.log("running: ", span, sp.value);
+    let tmpV = splitFunction(span);
+    chartsDataStore.addValueToChartsData(tmpV);
+    // console.log(chartsData);
+    // console.log(chartsDataStore);
   }
-  // console.log(distanceKm.value);
-  // setTimeout(() => (showD.value = true), 500);
-
-  // setTimeout(() => (showD.value = false), 1000);
-
-  // console.log(ChartJS.instances[0].$context.chart);
-  // ChartJS.instances[0].$context.chart.update();
-
-  // showD.value = true;
 });
-
+const router = useRouter();
 onMounted(async () => {
-  // sp.value = [];
-  // console.log("started (mounted) ", sp.value);
   await getData();
-  // console.log("get data finished (mounted) ", key_arr.value, total_arr.value);
-  // console.log("started sp");
-  sp.value = [];
+
+  chartsDataStore.reInit;
 
   for (let span = 1; span <= 24; span += 24 / nref.value) {
-    sp.value.push(splitFunction(span));
-    // console.log("running: ", span, sp.value);
+    // console.log(nref.value);
+    let tmpV = splitFunction(span);
+    chartsDataStore.addValueToChartsData(tmpV);
+    // console.log(chartsData);
+    // console.log(chartsDataStore);
   }
-  // console.log("end of sp", sp.value);
 });
-
-// The type of chart we want to create
-
-function getDateFormat(uDate, option) {
-  let date = new Intl.DateTimeFormat("fa-IR", option).format(uDate);
-  return date;
-}
-function toFarsiNumber(n) {
-  const farsiDigits = ["۰", "۱", "۲", "۳", "۴", "۵", "۶", "۷", "۸", "۹"];
-
-  return n.toString().replace(/\d/g, (x) => farsiDigits[x]);
-}
-
-function toRegularNumber(str) {
-  const farsiDigits = ["۰", "۱", "۲", "۳", "۴", "۵", "۶", "۷", "۸", "۹"];
-
-  return str.replace(/[۰-۹]/g, (x) => farsiDigits.indexOf(x));
-}
-function formatdate(dateTimeString, type) {
-  if (dateTimeString != undefined) {
-    const year = dateTimeString.slice(0, 4);
-    const month = dateTimeString.slice(4, 6) - 1; // Subtract 1 as months are zero-based in Date objects
-    const day = dateTimeString.slice(6, 8);
-    const hour = dateTimeString.slice(8, 10);
-    const minute = dateTimeString.slice(10, 12);
-
-    const dateObj = new Date(year, month, day, hour, minute);
-    const timestamp = dateObj.getTime();
-
-    const iranize = `${dateTimeString.slice(0, 4)}/${dateTimeString.slice(
-      4,
-      6
-    )}/${dateTimeString.slice(6, 8)} ${dateTimeString.slice(
-      8,
-      10
-    )}:${dateTimeString.slice(10, 12)}`;
-
-    const thatdayFa = {
-      day: getDateFormat(timestamp, {day: "2-digit"}),
-      month: getDateFormat(timestamp, {month: "numeric"}),
-      monthTitle: getDateFormat(timestamp, {month: "long"}),
-      year: getDateFormat(timestamp, {year: "numeric"}),
-      dayWeek: getDateFormat(timestamp, {weekday: "long"}),
-    };
-
-    // console.log(thatdayFa);
-
-    if (type == 1) {
-      return (
-        "    در تاریخِ   " +
-        toRegularNumber(thatdayFa.year) +
-        "/" +
-        toRegularNumber(thatdayFa.month) +
-        "/" +
-        toRegularNumber(thatdayFa.day) +
-        "   و در ساعتِ   " +
-        toRegularNumber(hour) +
-        ":" +
-        toRegularNumber(minute)
-      );
-    } else {
-      return (
-        toRegularNumber(thatdayFa.year) +
-        "/" +
-        toRegularNumber(thatdayFa.month) +
-        "/" +
-        toRegularNumber(thatdayFa.day) +
-        "   " +
-        toRegularNumber(hour) +
-        ":" +
-        toRegularNumber(minute)
-      );
-    }
-  }
-}
 </script>
 
 <template>
-  <div class="">
-    <!-- <div class="flex flex-row m-2"> -->
+  <div
+    class="font-peyda bg-transparent h-full w-full flex flex-col justify-start"
+  >
+    <!-- <DateFormat
+      class="text-sm whitespace-nowrap mt-0"
+      :date="key_arr[index]"
+      :mode="1"
+    /> -->
+
+    <Loading v-if="key_arr.length == 0" />
+
     <div
-      class="bg-black/50 font-peyda text-emerald-400 flex flex-row h-16 p-4 gap-2"
+      class="bg-black/50 cursor-pointer border-1 border-transparent hover:border-emerald hover:bg-black/25 font-peyda text-emerald-400 flex flex-row h-24 p-3 m-4 mt-0 pt-3 gap-2 rounded-lg max-w-screen overflow-hidden"
+      v-if="key_arr.length != 0"
     >
       <div
         v-if="geojson_arr"
-        class="text-emerald-400 w-full flex flex-row justify-stretch mt-1"
+        class="text-emerald-400 w-full flex flex-col mt-0 mb-2"
       >
-        <div class="mt-1 mr-1 w-max whitespace-nowrap text-sm">
-          {{ formatdate(key_arr[index], 1) }}
-        </div>
-        <!-- {{ indexStart }} : {{ indexEnd }} -->
         <input
           type="range"
           v-model="index"
           min="0"
           :max="key_arr.length - 1"
-          class="range w-full"
-          className="range child"
+          class="range-sm range w-full -mt-1 min-h-5"
+          className="range "
           :step="1"
         />
+        <div
+          class="w-full flex justify-between text-center mb-2 px-2 -translate-x-2 h-1 translate-y-[12px]"
+        >
+          <span
+            v-for="span in key_arr.length"
+            :key="span"
+            :class="{
+              'text-red-400/25 scale-150 -translate-x-[3px] -translate-y-[5px] transform-origin-center z-1 ':
+                span % 24 == 1,
+              'text-emerald-400/10 ': span % 24 != 1,
+            }"
+          >
+            <div
+              class="w-4 text-2xl -mt-1 h-4 transition-all duration-100 absolute dot text-yellow-400 z-10"
+              :class="{
+                'scale-100': span - 1 == index,
+                'scale-0': span - 1 != index,
+              }"
+            >
+              |
+            </div>
+            <div
+              class="w-4 h-2 transition-all duration-100 absolute dot"
+              :class="{
+                'scale-0 mt-1': span - 1 == index,
+                'scale-100': span - 1 != index,
+              }"
+            >
+              |
+            </div>
+          </span>
+        </div>
       </div>
       <button
-        class="child w-[100px] max-w-[100px] h-min whitespace-nowrap text-emerald-400 hover:text-green-800 bg-emerald-400/25 border-3 rounded-xl hover:bg-emerald-400/75"
+        class="w-[100px] max-w-[100px] px-1 h-14 whitespace-nowrap text-emerald-400 hover:text-green-800 bg-emerald-400/25 border-3 rounded-xl hover:bg-emerald-400/75"
         :class="{
           'border-green-400 ': showD,
           'border-transparent ': !showD,
@@ -341,27 +276,27 @@ function formatdate(dateTimeString, type) {
         نمایش چارت
       </button>
     </div>
+
+    <div
+      v-if="key_arr.length != 0"
+      class="max-h-10 h-10 text-center w-full mr-1 whitespace-nowrap text-lg my-1 mb-4 text-emerald-400"
+    >
+      <DateFormat :date="key_arr[index]" :mode="1" />
+    </div>
     <div
       v-if="geojson_arr.length > 0 && showD"
-      class="absolute z-10 w-[98%] lg:max-w-[74%] 2xl:max-w-[50%] m-2 mt-0 p-2 cursor-pointer lg:mx-[13%] 2xl:mx-[25%] morphg bg-[#2a6160a7] border-1 border-emerald-400 overflow-hidden rounded-xl h-[80vh]"
+      class="h-fit mx-2 absolute z-10 w-[98%] lg:max-w-[74%] 2xl:max-w-[50%] p-2 cursor-pointer lg:mx-[13%] 2xl:mx-[25%] morphg bg-[#2a6160a7] border-1 border-emerald-400 overflow-hidden rounded-xl"
     >
       <div
         @click="showD = false"
-        class="group hover:bg-red hover:scale-125 transition-colors duration-100 transition-transform text-black p-0 w-2 h-2 px-1 text-center pt-0 scale-100 bg-red-400/10 border-1 border-red rounded-lg w-min h-min absolute right-0 top-0 m-4"
+        class="group hover:bg-red hover:scale-125 duration-100 transition-transform text-black p-1 w-5 h-6 m-4 text-center scale-100 bg-red-400/10 border-1 border-red rounded-lg absolute right-0 top-0"
       >
         <div
-          class="scale-100 relative -mt-1 group-hover:scale-150 text-red group-hover:text-black transition-transform transition-colors duration-100"
+          class="scale-100 relative -mt-1 group-hover:scale-150 text-red group-hover:text-black transition-transform duration-100"
         >
           ×
         </div>
       </div>
-      <!-- <Chart×✖x
-        class="chart font-peyda"
-        title="انباشت ساعتی"
-        label="جمعیت"
-        :labels="key_arr"
-        :data="total_arr"
-      /> -->
       <div class="w-full">
         <div class="w-ful mx-8 mr-12 mt-2">
           <input
@@ -373,9 +308,8 @@ function formatdate(dateTimeString, type) {
             className="range child"
             :step="1"
           />
-
           <div
-            class="w-full flex justify-between text-center mb-8 mb-2 px-2 -translate-x-2"
+            class="w-full flex justify-between text-center mb-2 px-2 -translate-x-2"
           >
             <span
               v-for="span in nref"
@@ -384,7 +318,8 @@ function formatdate(dateTimeString, type) {
                 'text-teal-600': span % 2 == 0 && span % 6 != 0,
                 'text-red-400': span % 6 == 0,
               }"
-              ><div
+            >
+              <div
                 class="w-4 h-4 transition-all duration-100 absolute dot"
                 :class="{
                   'scale-100': span - 1 == chartIndex,
@@ -406,60 +341,63 @@ function formatdate(dateTimeString, type) {
           </div>
         </div>
       </div>
+      <div class="w-full pt-8 pb-0 h-fit overflow-scroll">
+        <!-- <div v-for="(item, index) in sp" :key="index"> -->
+        <!-- {{ chartsData[chartIndex].chartArrY }} -->
 
-      <div class="h-full w-full overflow-scroll pb-16">
-        <div v-for="(item, index) in sp" :key="index">
-          <!-- <div class="w-full h-16 overflow-auto">{{ index }} , {{ item }}</div> -->
-
-          <Chart
-            v-if="chartIndex == index"
-            class="chart font-peyda max-h-[40vh]"
-            label="جمعیت"
-            :labels="item.chartArrX"
-            :data="item.chartArrY"
-          />
-
-          <Chart
-            v-if="chartIndex == index"
-            class="chart font-peyda max-h-[40vh]"
-            label="جمعیت"
-            :labels="item.rawchartArrX"
-            :data="item.rawchartArrY"
-          />
-        </div>
+        <Chart
+          class="chart font-peyda mx-8"
+          label="جمعیت"
+          :index="chartIndex"
+          :mode="'processed'"
+          :nref="nref"
+        />
+        <!-- <Chart
+          class="chart font-peyda max-h-fit mx-8"
+          label="جمعیت"
+          :index="chartIndex"
+          :mode="'unprocessed'"
+        /> -->
+        <!-- </div> -->
       </div>
-      <!-- 
-      <Chart
-        class="chart font-peyda"
-        title="انباشت ساعتی"
-        label="جمعیت"
-        :labels="key_arr_day"
-        :data="total_arr_day"
-      /> -->
     </div>
-    <MapContainer :index="index" :data="geojson_arr"></MapContainer>
+
+    <div class="map-container0 border-t-2 border-t-teal-600">
+      <MapContainer :index="index" :data="geojson_arr"></MapContainer>
+    </div>
   </div>
 </template>
 
 <style lang="scss" scoped>
+.container0 {
+  position: relative;
+  height: 100%;
+  /* Add other styles for the container */
+}
+
+.map-container0 {
+  // position: absolute;
+  // top: 0;
+  // left: 0;
+  // right: 0;
+  // bottom: 0;
+  // z-index: 1;
+  position: relative;
+  height: 100%;
+  width: 100%;
+}
 .dot {
   transform-origin: center;
   transition: transform;
 }
-
 .dot.scale-0 {
   transform: scale(0);
   transition: transform;
 }
-
 .dot.scale-100 {
-  // animation: moveit 1s cubic-bezier(0.68, -0.55, 0.265, 1.55) both;
   animation: moveit 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
   transition: transform;
-
-  // will-change: transform;
 }
-
 @keyframes moveit {
   0% {
     transform: scale3d(0.92, 0.92, 1);
@@ -480,16 +418,6 @@ function formatdate(dateTimeString, type) {
     transform: scale3d(1, 1, 1);
   }
 }
-
-// @keyframes moveitback {
-//   0% {
-//     transform: translateY(60px);
-//   }
-//   100% {
-//     transform: translateY(0) scale3d(0.96, 0.96, 1);
-//   }
-// }
-
 .morphg {
   background: rgba(1, 41, 35, 0.556);
   box-shadow: 0 8px 32px 0 rgba(10, 18, 133, 0.37);
@@ -497,5 +425,9 @@ function formatdate(dateTimeString, type) {
   -webkit-backdrop-filter: blur(7.5px);
   border-radius: 10px;
   border: 1px solid rgba(29, 248, 201, 0.632);
+}
+
+.range::-moz-range-track {
+  background-color: rgba(43, 232, 169, 0.381);
 }
 </style>
