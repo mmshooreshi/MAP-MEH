@@ -352,7 +352,7 @@ onMounted(async () => {
       </div>
       <div class="w-full pt-8 pb-0 h-fit overflow-scroll">
         <!-- <div v-for="(item, index) in sp" :key="index"> -->
-        {{ chartsData[chartIndex].chartArrY }}
+        <!-- {{ chartsData[chartIndex].chartArrY }} -->
 
         <Chart
           class="chart font-peyda mx-8"
