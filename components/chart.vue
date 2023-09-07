@@ -62,14 +62,18 @@ const chartArrY = computed(() => {
 const generateColors = (chartArrY) => {
   let maxP = Math.max(...chartArrY);
   return chartArrY.map((item, index) => {
-    if (item < 0) {
-      return "#000";
-    } else {
-      return chroma
-        .scale(["#758989", "#00fa9a"])
-        .mode("lch")(item / maxP)
-        .hex();
-    }
+    return chroma
+      .scale(["#758989", "#00fa9a"])
+      .mode("lch")(item / maxP)
+      .hex();
+    // if (item < 0) {
+    //   return "#000";
+    // } else {
+    //   return chroma
+    //     .scale(["#758989", "#00fa9a"])
+    //     .mode("lch")(item / maxP)
+    //     .hex();
+    // }
   });
 };
 

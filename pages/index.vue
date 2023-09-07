@@ -41,14 +41,16 @@ const chartsDataStore = useChartsDataStore();
 
 const {distanceKm} = storeToRefs(filtersStore);
 const {chartsData} = storeToRefs(chartsDataStore);
-
+const loadingVar = ref(0);
 async function getData() {
+  loadingVar.value = 1;
   var {result} = await $fetch("/api/read-geojsons", {
     method: "POST",
     body: {
       inputData: distanceKm.value,
     },
   }).then((result) => {
+    loadingVar.value = 0;
     var k = 0;
     var geojs = result.geojs_data.filter((elements) => {
       if (k == 0 && elements != null) {
@@ -177,21 +179,28 @@ function splitFunction(n) {
 }
 
 watch(distanceKm, async (distN) => {
-  showD.value = false;
+  // console.log("before:");
+  // showD.value = false;
+  // console.log(chartsData);
+  // console.log("--------");
   await getData();
-  chartsDataStore.reInit;
+  chartsDataStore.reInit();
+  // console.log("after:");
+  // console.log(chartsData);
   for (let span = 1; span <= 24; span += 24 / nref.value) {
     let tmpV = splitFunction(span);
     chartsDataStore.addValueToChartsData(tmpV);
+    // console.log(span);
     // console.log(chartsData);
     // console.log(chartsDataStore);
   }
 });
 const router = useRouter();
+
 onMounted(async () => {
   await getData();
 
-  chartsDataStore.reInit;
+  chartsDataStore.reInit();
 
   for (let span = 1; span <= 24; span += 24 / nref.value) {
     // console.log(nref.value);
@@ -212,8 +221,8 @@ onMounted(async () => {
       :date="key_arr[index]"
       :mode="1"
     /> -->
-
-    <Loading v-if="key_arr.length == 0" />
+    <!-- {{ loadingVar }} -->
+    <Loading v-if="key_arr.length == 0 || loadingVar == 1" />
 
     <div
       class="bg-black/50 cursor-pointer border-1 border-transparent hover:border-emerald hover:bg-black/25 font-peyda text-emerald-400 flex flex-row h-24 p-3 m-4 mt-0 pt-3 gap-2 rounded-lg max-w-screen overflow-hidden"
@@ -343,7 +352,7 @@ onMounted(async () => {
       </div>
       <div class="w-full pt-8 pb-0 h-fit overflow-scroll">
         <!-- <div v-for="(item, index) in sp" :key="index"> -->
-        <!-- {{ chartsData[chartIndex].chartArrY }} -->
+        {{ chartsData[chartIndex].chartArrY }}
 
         <Chart
           class="chart font-peyda mx-8"
