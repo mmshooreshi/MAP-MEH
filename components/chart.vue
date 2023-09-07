@@ -80,7 +80,7 @@ const generateColors = (chartArrY) => {
 watch(chartArrY, (chartArrYNew) => {
   col.value = generateColors(chartArrYNew);
 });
-col.value = generateColors(chartArrY);
+col.value = generateColors(chartArrY.value);
 
 const chartData = computed(() => {
   return {
